@@ -1,0 +1,66 @@
+{
+  "brand": "Global Digital Centre",
+  "tagline": "Your Vision. Our Strategy. Real Impact.",
+  "heroLead": "Events, communications and consultancy shaped with purpose and delivered with precision.",
+  "aboutHeading": "One partner, many ways to move an idea forward.",
+  "aboutText": "Global Digital Centre is a full-service Events, PR & Communications and Consultancy firm in Nairobi. We bring strategic thinking, creative design and technical expertise together for public institutions, development partners, corporates and communities.",
+  "servicesIntro": "From the first conversation to the final detail, our teams connect strategy, creative work and delivery around what matters to you.",
+  "services": [
+    {
+      "title": "Event Design, Management & Technical Support",
+      "summary": "Complete event planning and production, from concept and set-up to guest experience and on-site delivery.",
+      "detail": "Event design, stages, exhibition booths, audio-visual production, coordination, logistics and vendor management."
+    },
+    {
+      "title": "Public Relations & Communications",
+      "summary": "Communication strategies that help organisations speak clearly, build trust and engage the right audiences.",
+      "detail": "Media relations, campaigns, stakeholder engagement, crisis communication, digital strategy and editorial content."
+    },
+    {
+      "title": "Creative Design, Branding & Digital Solutions",
+      "summary": "Distinct visual identities and digital experiences that make stories easier to see and remember.",
+      "detail": "Brand identity, campaign and event graphics, motion creative, publications and website design."
+    },
+    {
+      "title": "Simultaneous Interpretation Equipment & Services",
+      "summary": "Multilingual conference support that makes important conversations accessible across languages.",
+      "detail": "Interpreter booths, multi-channel audio systems, interpreters and technical integration."
+    },
+    {
+      "title": "Photography, Videography & Livestreaming",
+      "summary": "Visual content that captures an event and extends its story beyond the room.",
+      "detail": "Event coverage, documentary and corporate video, live streams, photography and post-production."
+    },
+    {
+      "title": "Data Analysis & Visualization",
+      "summary": "Turning research and data into clear stories that support decisions and reporting.",
+      "detail": "Analysis, dashboards, infographics, monitoring and evaluation visuals, and data storytelling."
+    },
+    {
+      "title": "Consultancy & Research",
+      "summary": "Research-led advice for organisations planning growth, transformation and sustainable impact.",
+      "detail": "Manufacturing, climate and renewable energy, public sector advice, market intelligence and project support."
+    }
+  ],
+  "approach": [
+    {"step": "Understand", "description": "We start with your objectives, audience and the result you need."},
+    {"step": "Shape", "description": "Our team develops a clear creative, strategic and delivery plan."},
+    {"step": "Deliver", "description": "The right people and technical detail bring the plan to life."},
+    {"step": "Learn", "description": "We review what worked and what should come next."}
+  ],
+  "why": [
+    {"title": "Connected thinking", "description": "Strategy, creative work, communications and technical delivery work together."},
+    {"title": "Care in execution", "description": "A coordinated team keeps the details, people and deadlines in view."},
+    {"title": "Built around the brief", "description": "The approach follows the client, audience and purpose of each project."}
+  ],
+  "contact": {
+    "email": "info@gdc-ltd.org",
+    "phones": ["0758 431 170", "+254 724 997 041"],
+    "address": "Real Estate, South C, Nairobi, Kenya"
+  },
+  "social": {
+    "instagram": "https://www.instagram.com/globaldigitalcentre/",
+    "linkedin": "https://www.linkedin.com/company/globaldigitalcentre/",
+    "facebook": "https://www.facebook.com/GlobalDigitalC3/"
+  }
+}
