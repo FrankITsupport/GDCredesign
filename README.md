@@ -24,6 +24,8 @@ Screenshots for quick review: [desktop home](previews/home-desktop.png), [mobile
 
 Selected GDC images and logos are stored in `assets/media/`. The case-study video players currently reference files on the live GDC site. Those videos should be copied and compressed for the final deployment after the visual selection is approved.
 
+The 13 source videos total about 934 MB, so they are not committed to this repository. The plan records the pending content checks and final media delivery decision.
+
 The contact form is a preview of an email enquiry flow. A live submission has not been tested. The Careers placeholder does not accept applications or direct candidates to email; the posting and application workflow will be planned later.
 
 SEO work remains in the later phase of the task tracker, after the client finalises content.

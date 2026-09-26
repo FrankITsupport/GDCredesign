@@ -101,11 +101,11 @@ function page({ title, description, prefix = '', active = '', body, bodyClass = 
 </html>`;
 }
 
-function card(project, prefix = '', size = '') {
+function card(project, prefix = '', size = '', headingLevel = 3) {
   return `<a class="project-card ${size}" href="${urlFor(project, prefix)}" data-category="${attr(groupFor(project))}">
     <div class="project-card-image"><img src="${asset(project.cover, prefix)}" alt="${attr(project.title)} project" loading="lazy" decoding="async"><span class="card-arrow" aria-hidden="true">↗</span></div>
     <div class="project-card-meta"><span>${esc(project.category)}</span><span>View project ${arrow}</span></div>
-    <h3>${esc(project.title)}</h3>
+    <h${headingLevel}>${esc(project.title)}</h${headingLevel}>
   </a>`;
 }
 
@@ -198,7 +198,7 @@ write('index.html', page({ title: 'Global Digital Centre', description: site.her
 const categories = [['All projects', 'all'], ['Conferences & forums', 'Conferences'], ['Experiences', 'Experiences'], ['Corporate', 'Corporate']];
 const work = `
   <section class="inner-hero work-hero"><div class="container"><p class="section-label">OUR WORK / GLOBAL DIGITAL CENTRE</p><div class="inner-hero-row"><h1>Work made<br><em>to matter.</em></h1><p>Explore the experiences and platforms we have helped bring to life. Open any project to see more of the story.</p></div></div></section>
-  <section class="section projects-section"><div class="container"><div class="filter-bar" role="group" aria-label="Filter projects">${categories.map(([label, value], index) => `<button type="button" class="filter-button ${index === 0 ? 'is-active' : ''}" data-filter="${value}" aria-pressed="${index === 0}">${label}</button>`).join('')}</div><div class="project-grid">${projects.map(project => card(project, '../')).join('')}</div><p class="empty-filter" hidden>No projects in this category yet.</p></div></section>
+  <section class="section projects-section"><div class="container"><div class="filter-bar" role="group" aria-label="Filter projects">${categories.map(([label, value], index) => `<button type="button" class="filter-button ${index === 0 ? 'is-active' : ''}" data-filter="${value}" aria-pressed="${index === 0}">${label}</button>`).join('')}</div><div class="project-grid">${projects.map(project => card(project, '../', '', 2)).join('')}</div><p class="empty-filter" hidden>No projects in this category yet.</p></div></section>
   <section class="work-cta"><div class="container"><p>Have a project in mind?</p><h2>Let's make it happen.</h2><a class="button button-light" href="../index.html#contact">Start a conversation ${arrow}</a></div></section>`;
 write('our-work/index.html', page({ title: 'Our Work | Global Digital Centre', description: 'Explore selected GDC projects and case studies.', prefix: '../', active: 'work', body: work, bodyClass: 'work-page' }));
 
@@ -209,7 +209,7 @@ projects.forEach((project, index) => {
   const video = project.video ? `<section class="case-video-section"><div class="container"><div class="case-section-heading"><p class="section-label">PROJECT FILM</p><h2>See the work in motion.</h2></div><video controls preload="none" playsinline poster="${asset(project.cover, prefix)}"><source src="${attr(project.video)}" type="video/mp4">Your browser does not support video playback.</video></div></section>` : '';
   const body = `
     <section class="case-hero"><div class="case-hero-image"><img src="${asset(project.cover, prefix)}" alt="${attr(project.title)}" fetchpriority="high"></div><div class="case-hero-shade"></div><div class="container case-hero-content"><a class="back-link" href="../">← All projects</a><p class="eyebrow">${esc(project.category)} / GDC PROJECT</p><h1>${esc(project.articleTitle)}</h1><p>${esc(project.lead)}</p></div></section>
-    <section class="section case-story"><div class="container case-layout"><aside><p class="section-label">THE PROJECT</p><span class="case-aside-line"></span><p>Global Digital Centre<br>Nairobi, Kenya</p></aside><div class="case-copy">${project.bodyHtml}</div></div></section>
+    <section class="section case-story"><div class="container case-layout"><aside><p class="section-label">THE PROJECT</p><span class="case-aside-line"></span><p>Global Digital Centre<br>Nairobi, Kenya</p></aside><div class="case-copy">${project.bodyHtml.replace(/<(\/?)h4>/g, '<$1h2>')}</div></div></section>
     <section class="section case-gallery"><div class="container"><div class="case-section-heading"><p class="section-label">PROJECT GALLERY</p><h2>A closer look.</h2></div><div class="gallery-grid">${gallery}</div></div></section>
     ${video}
     <section class="next-project"><div class="container"><span>NEXT PROJECT</span><a href="../${slugify(next.title)}/">${esc(next.title)} <span aria-hidden="true">↗</span></a></div></section>`;

@@ -1,6 +1,6 @@
 # GDC website redesign — plan and task tracker
 
-Status: first visual build ready for review
+Status: visual build complete; content and media review in progress
 Last updated: 26 September 2026
 
 Update this file as work progresses: change `[ ]` to `[x]` only when the task is finished. Record major client decisions under **Decision log**.
@@ -75,7 +75,8 @@ Preview the current build with `node scripts/serve.mjs`, then open `http://local
 - [x] Draft concise home-page copy from the live site and the relevant PDF material.
 - [x] Condense the seven service descriptions for web reading while preserving their meaning.
 - [ ] Review other existing site assets and download any additional approved selections.
-- [ ] Select and edit case-study text; flag missing outcomes or unclear claims for client review.
+- [x] Audit case-study text and flag missing outcomes or unclear claims for client review.
+- [ ] Edit and confirm final case-study text with the client.
 - [ ] Verify displayed contact details and client-logo/project permissions with the client.
 
 ### 4. Build the visual site
@@ -91,8 +92,9 @@ Preview the current build with `node scripts/serve.mjs`, then open `http://local
 
 - [x] Check desktop, tablet, and mobile layouts for the page types in the preview.
 - [x] Verify all 16 generated pages render, local links resolve, the mobile menu opens, and the project filters show the expected results.
-- [ ] Check navigation, case-study links, contact actions, and media playback/fallbacks.
-- [ ] Check readable type, keyboard access, colour contrast, and reduced-motion behaviour.
+- [x] Check all project links, keyboard menu behaviour, required form fields, reduced-motion behaviour, video poster fallbacks, and a representative video metadata load.
+- [x] Check readable type, keyboard access, colour contrast, and reduced-motion behaviour on the main page types.
+- [ ] Verify the live contact form submission and all final media files before launch.
 - [ ] Apply team/client visual and content feedback.
 - [ ] Obtain final approval of copy, project facts, media choices, and contact numbers.
 
@@ -124,12 +126,23 @@ Preview the current build with `node scripts/serve.mjs`, then open `http://local
 | 26 Sep 2026 | Defer SEO work until the client finalises content. |
 | 26 Sep 2026 | First visual build completed locally: home, Our Work, 13 case studies, and Careers placeholder. Project videos currently stream from the live GDC site; final media files remain to be prepared. |
 | 26 Sep 2026 | The Careers placeholder links to the work portfolio rather than inviting applications by email. |
+| 26 Sep 2026 | The first visual direction received positive initial feedback. Continue with functional, content, and media review before final client approval. |
+| 26 Sep 2026 | The 13 existing case videos are about 934 MB in total. Keep the live-site links for this review; prepare a compressed delivery plan before release. |
 
 ## Preview review notes
 
 - The preview was checked at 390 px, 768 px, and 1440 px widths. The tested pages returned successfully, had no horizontal overflow or browser script errors, and each had one main heading.
 - The mobile menu and four Our Work filters worked. The selected project images loaded in the preview.
-- The contact enquiry form and remote case-study video playback have not been submitted or fully verified. They remain on the review checklist.
+- All 13 case-study cards open. The skip link, mobile menu keyboard controls, required form fields, and reduced-motion setting worked. An automated WCAG A/AA scan found no violations on the tested home, work, case-study, and Careers layouts at mobile and desktop widths; manual review remains important as content changes.
+- All 13 remote video URLs returned MP4 responses. The Swift case-study video loaded its metadata in the browser, and its local cover displayed as a poster. The contact enquiry form has not been submitted, and the full set of final videos has not been played through.
+
+## Content review queue
+
+- **Featured work:** the home page currently highlights Swift Connect Africa, IEA Global Conference, ARIEL Product Launch, and UN SACCO Jubilee Celebration. Confirm the four projects and their order with the client.
+- **Specific claims to confirm:** KAIICO's attendance/exhibitor counts and named guests; Midnight East's audience size and four-city connection; and the IEA case study's broad impact statements. These are carried over from the live website and should be checked against client records before publication.
+- **Short case studies:** ISSA, Regional Climate Change Summit, NSSF AGM, APRA, ARIEL, YNBS, UN SACCO, and Migaa mainly describe the event and GDC's general role. Ask the client for concrete deliverables, GDC's exact scope, and approved outcomes. Avoid inventing results.
+- **Contact and identity:** confirm which of the two published phone numbers to show, plus approval for client logos and project media.
+- **Media delivery:** keep the local photo galleries; choose compression and hosting for the 13 case videos before launch. The original files total about 934 MB and are not in the Git repository.
 
 ## Open decisions
 
