@@ -19,6 +19,8 @@ Screenshots for quick review: [desktop home](previews/home-desktop.png), [mobile
 
 Case-study gallery thumbnails open an image viewer with next/previous controls, arrow-key navigation, and Escape to close. Project cards link to full case studies.
 
+The main home sections fill at least the available screen height below the navigation and grow when needed for smaller screens. The hero ends with a continuously scrolling client ribbon, with pause/resume and reduced-motion support. Review the [hero viewport](previews/home-viewport.png) and [six service cards](previews/services-desktop.png).
+
 ## Where to edit
 
 - `content/site.json`: home-page and shared copy.
@@ -26,6 +28,8 @@ Case-study gallery thumbnails open an image viewer with next/previous controls, 
 - `content/careers.json`: three clearly labelled sample Careers posts for layout review.
 - `styles.css`: visual design and responsive layouts.
 - `scripts/build.mjs`: page templates. Run this script after changing content or templates.
+
+Data Analysis & Visualization is preserved in `content/site.json` with `enabled: false` and emitted as an HTML comment. Set it to `true` and rebuild when it is needed again; the cards, heading count, and enquiry dropdown will update together.
 
 Selected GDC images and logos are stored in `assets/media/`. The case-study video players currently reference files on the live GDC site. Those videos should be copied and compressed for the final deployment after the visual selection is approved.
 

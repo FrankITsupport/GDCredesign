@@ -1,6 +1,6 @@
 # GDC website redesign — plan and task tracker
 
-Status: compact visual revision ready for review; content and final media remain pending
+Status: landing-page viewport and service-card revision ready for review; content and final media remain pending
 Last updated: 28 September 2026
 
 Update this file as work progresses: change `[ ]` to `[x]` only when the task is finished. Record major client decisions under **Decision log**.
@@ -14,14 +14,16 @@ Redesign [gdc-ltd.org](https://gdc-ltd.org/) as an elegant, easy-to-navigate sit
 - Use HTML and CSS with light JavaScript. PHP can provide shared templates and later power the Careers posting editor.
 - Use a visible, simple navigation and a natural vertical page flow inspired by [KClassique Event Rentals](https://kclassiqueventrentals.co.ke/).
 - Use white or warm neutral space, charcoal/black text, slim modern typography, restrained red accents, and subtle gradients. Avoid large solid-red page sections.
-- Cover all seven services currently listed on GDC's [About page](https://gdc-ltd.org/about.html):
+- Present six active services from GDC's [About page](https://gdc-ltd.org/about.html) in a responsive card grid:
   1. Event Design, Management & Technical Support
   2. Public Relations & Communications
   3. Creative Design, Branding & Digital Solutions
   4. Simultaneous Interpretation Equipment & Services
   5. Photography, Videography & Livestreaming
-  6. Data Analysis & Visualization
-  7. Consultancy & Research
+  6. Consultancy & Research
+- Retain Data Analysis & Visualization in the source with `enabled: false` and an HTML comment for later. Omit it from visible service cards and the enquiry dropdown.
+- Each main landing-page section fills at least the screen height below the sticky navigation. Allow sections to grow when their content needs more space on smaller screens. Keep the client ribbon inside the hero at its bottom.
+- Scroll the client logos in a continuous loop, with a pause/resume control and a static, horizontally scrollable ribbon for reduced-motion preferences.
 - Remove Team from the new navigation and page plan.
 - Show selected projects on the home page with a **View More Work** link. The Our Work page opens individual, fuller case studies.
 - Keep Careers as a public placeholder with clearly labelled sample posts in this phase. Discuss the simple job-posting admin and application flow in a later phase; do not direct candidates to email.
@@ -52,7 +54,7 @@ Preview the current build with `node scripts/serve.mjs`, then open `http://local
 
 - [x] Confirm target website and visual inspiration.
 - [x] Confirm single-flow home page, separate Our Work page, and Careers placeholder.
-- [x] Confirm all seven live-site services must appear.
+- [x] Confirm the initial seven-service inventory; defer Data Analysis & Visualization as requested on 28 September.
 - [x] Confirm Team removal, restrained red, selective document content, and deferred SEO.
 - [x] Locate and review both supplied PDFs at a high level.
 - [x] Review the live site's main pages and existing project-card/case-study structure.
@@ -82,7 +84,7 @@ Preview the current build with `node scripts/serve.mjs`, then open `http://local
 ### 4. Build the visual site
 
 - [x] Build the responsive home page and navigation.
-- [x] Build all seven service presentations and the selected-work section.
+- [x] Build the six active service cards and the selected-work section; preserve the seventh service in a comment for later.
 - [x] Build the Our Work grid and individual case-study pages.
 - [x] Build the Careers placeholder.
 - [x] Wire contact actions and the existing email enquiry flow in the preview.
@@ -124,6 +126,15 @@ Preview the current build with `node scripts/serve.mjs`, then open `http://local
 - [ ] Build or adapt the job-posting editor for creating, editing, publishing, and closing roles.
 - [ ] Confirm the application destination and verify expired roles no longer appear open.
 
+### Landing-page viewport revision — 28 September 2026
+
+- [x] Make the main home sections fill the available viewport height below the navigation; allow natural growth for smaller screens.
+- [x] Include the client ribbon at the bottom of the hero, with About beginning below the first screen.
+- [x] Display six services as cards in three columns on desktop, two on tablet, and one on mobile.
+- [x] Disable and comment out Data Analysis & Visualization while keeping its source content for later; remove it from the enquiry dropdown.
+- [x] Add a seamless repeating client-logo track with pause/resume and reduced-motion handling.
+- [x] Check viewport boundaries, card count, loop continuity, responsive widths, and accessibility; update the home and Services previews.
+
 ## Decision log
 
 | Date | Decision |
@@ -141,6 +152,9 @@ Preview the current build with `node scripts/serve.mjs`, then open `http://local
 | 28 Sep 2026 | Reduce unused vertical space throughout the site and make project imagery more compact. Case-study gallery images open in a modal; project cards continue to open full case studies. |
 | 28 Sep 2026 | Careers now shows three clearly labelled dummy posts with expandable details. Applications and admin access remain deferred. |
 | 28 Sep 2026 | Use explicit `index.html` page links for direct-file and server previews, plus compatibility links for `projects.html` and `careers.html`. Final search URL decisions remain deferred. |
+| 28 Sep 2026 | Main home sections now fill the available screen height. The client ribbon belongs to the hero, so About does not appear in its initial screen. Sections can grow for readable content on smaller displays. |
+| 28 Sep 2026 | Services now use six cards. Data Analysis & Visualization is disabled in the content source and preserved in an HTML comment for later. |
+| 28 Sep 2026 | The client-logo ribbon scrolls continuously through two matching groups. Pause/resume preserves its position, and reduced-motion mode displays a static ribbon. |
 
 ## Preview review notes
 
@@ -149,6 +163,8 @@ Preview the current build with `node scripts/serve.mjs`, then open `http://local
 - All 13 case-study cards open. The skip link, mobile menu keyboard controls, required form fields, and reduced-motion setting worked. An automated WCAG A/AA scan found no violations on the tested home, work, case-study, and Careers layouts at mobile and desktop widths; manual review remains important as content changes.
 - All 13 remote video URLs returned MP4 responses. The Swift case-study video loaded its metadata in the browser, and its local cover displayed as a poster. The contact enquiry form has not been submitted, and the full set of final videos has not been played through.
 - The compact revision has no horizontal overflow at the five tested widths. All 18 HTML files have valid local references. Gallery opening, image navigation, keyboard focus, Escape, backdrop close, mobile sizing, and returning focus were checked. Direct local-file navigation and the three expandable sample Careers posts also worked.
+- The viewport revision was checked at 1915×917, 1440×900, 1366×768, 1024×768, 768×1024, 390×844, and 320×568. About stays below the first screen, the ribbon ends with the hero, and no horizontal overflow or hero copy clipping was found. Very small screens allow the hero and longer sections to grow.
+- Six active service cards render, and the deferred service is absent from the dropdown. The matching logo groups line up at the animation wrap point with no measured jump. Pause/resume and reduced-motion handling work. The home-page automated accessibility checks found no violations at the tested mobile and desktop widths.
 
 ## Content review queue
 

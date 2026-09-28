@@ -50,6 +50,17 @@
     });
   });
 
+  const clientRibbon = document.querySelector('.client-strip');
+  const clientToggle = document.querySelector('.client-scroll-toggle');
+  if (clientRibbon && clientToggle) {
+    clientToggle.addEventListener('click', () => {
+      const paused = clientRibbon.classList.toggle('is-paused');
+      clientToggle.setAttribute('aria-pressed', String(paused));
+      clientToggle.setAttribute('aria-label', paused ? 'Resume client logos' : 'Pause client logos');
+      clientToggle.textContent = paused ? 'Resume' : 'Pause';
+    });
+  }
+
   const galleryItems = [...document.querySelectorAll('[data-gallery-item]')];
   const galleryModal = document.querySelector('.gallery-modal');
 

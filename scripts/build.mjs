@@ -6,6 +6,9 @@ const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const site = JSON.parse(readFileSync(join(root, 'content/site.json'), 'utf8'));
 const projects = JSON.parse(readFileSync(join(root, 'content/projects.json'), 'utf8'));
 const careerPosts = JSON.parse(readFileSync(join(root, 'content/careers.json'), 'utf8'));
+// Data Analysis & Visualization stays in the content file for later, but is commented out in the page.
+const activeServices = site.services.filter(service => service.enabled !== false);
+const serviceCountLabel = ({ 6: 'Six', 7: 'Seven' })[activeServices.length] || String(activeServices.length);
 
 const esc = (value = '') => String(value).replace(/[&<>"']/g, (char) => ({
   '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
@@ -126,6 +129,23 @@ const clientLogos = [
   ['kentraco.png', 'KETRACO']
 ];
 
+function clientLogoGroup(duplicate = false) {
+  return `<div class="client-logo-group"${duplicate ? ' aria-hidden="true"' : ''}>${clientLogos.map(([file, name]) => `<span class="client-logo${file === 'issa.png' ? ' client-logo-issa' : ''}"><img src="assets/media/clients/${file}" alt="${duplicate ? '' : name}" loading="eager" decoding="async"></span>`).join('')}</div>`;
+}
+
+const serviceIcons = [
+  '<rect x="4" y="6" width="24" height="20" rx="2"/><path d="M4 12h24M10 3v6M22 3v6M10 18h5M10 22h12"/>',
+  '<path d="M27 16a11 11 0 0 1-11 11H5l2-6a11 11 0 1 1 20-5Z"/><path d="M10 12h12M10 17h8"/>',
+  '<path d="m7 22 14-14 5 5-14 14-7 2 2-7ZM18 11l5 5M5 5h9M5 5v9M19 27h8"/>',
+  '<circle cx="16" cy="16" r="12"/><path d="M4 16h24M16 4c8 8 8 16 0 24-8-8-8-16 0-24Z"/>',
+  '<rect x="3" y="8" width="26" height="20" rx="2"/><path d="m10 8 2-4h8l2 4"/><circle cx="16" cy="18" r="6"/>',
+  '<circle cx="13" cy="13" r="9"/><path d="m20 20 8 8M8 15l3-4 4 2 3-5"/>'
+];
+
+function serviceCard(service, index) {
+  return `<article class="service-card"><div class="service-card-top"><span class="service-number">${String(index + 1).padStart(2, '0')}</span><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${serviceIcons[index] || serviceIcons[5]}</svg></div><h3>${esc(service.title)}</h3><p>${esc(service.summary)}</p><span class="service-detail">${esc(service.detail)}</span></article>`;
+}
+
 const home = `
   <section class="hero" aria-labelledby="hero-title">
     <div class="container hero-grid">
@@ -146,10 +166,9 @@ const home = `
       </div>
     </div>
     <div class="hero-bottom container"><span>01 / DISCOVER GDC</span><a href="#about" aria-label="Scroll to about GDC">Scroll to explore <span aria-hidden="true">↓</span></a></div>
-  </section>
-
-  <section class="client-strip" aria-label="Selected clients">
-    <div class="container client-strip-inner"><span>TRUSTED BY TEAMS INCLUDING</span><div class="client-logos">${clientLogos.map(([file, name]) => `<span class="client-logo"><img src="assets/media/clients/${file}" alt="${name}" loading="lazy"></span>`).join('')}</div></div>
+    <div class="client-strip" role="region" aria-label="Selected clients">
+      <div class="container client-strip-inner"><div class="client-strip-label"><span>TRUSTED BY TEAMS INCLUDING</span><button class="client-scroll-toggle" type="button" aria-label="Pause client logos" aria-pressed="false">Pause</button></div><div class="client-logos"><div class="client-logos-track">${clientLogoGroup()}${clientLogoGroup(true)}</div></div></div>
+    </div>
   </section>
 
   <section class="section about-section" id="about">
@@ -161,12 +180,9 @@ const home = `
 
   <section class="section services-section" id="services">
     <div class="container">
-      <div class="section-intro"><div><p class="section-label">02 / WHAT WE DO</p><h2 class="section-heading">Seven ways to bring<br>your brief to life.</h2></div><p>${esc(site.servicesIntro)}</p></div>
-      <div class="services-list">${site.services.map((service, index) => `<article class="service-item">
-        <span class="service-number">${String(index + 1).padStart(2, '0')}</span>
-        <div><h3>${esc(service.title)}</h3><p>${esc(service.summary)}</p><span class="service-detail">${esc(service.detail)}</span></div>
-        <span class="service-plus" aria-hidden="true">↗</span>
-      </article>`).join('')}</div>
+      <div class="section-intro"><div><p class="section-label">02 / WHAT WE DO</p><h2 class="section-heading">${serviceCountLabel} ways to bring<br>your brief to life.</h2></div><p>${esc(site.servicesIntro)}</p></div>
+      <div class="services-grid">${activeServices.map(serviceCard).join('')}
+      ${site.services.filter(service => service.enabled === false).map(service => `<!-- Deferred for later: ${esc(service.title)}\n${serviceCard(service, 6)}\n-->`).join('')}</div>
     </div>
   </section>
 
@@ -191,7 +207,7 @@ const home = `
 
   <section class="section contact-section" id="contact">
     <div class="container contact-grid"><div><p class="section-label">06 / LET'S TALK</p><h2 class="contact-heading">Tell us what<br>you <em>have in mind.</em></h2><p>Share the idea, challenge or event you are planning. We will start with a conversation.</p><div class="contact-direct"><a href="mailto:${attr(site.contact.email)}">${esc(site.contact.email)} <span aria-hidden="true">↗</span></a><div><a href="tel:+254758431170">${esc(site.contact.phones[0])}</a><a href="tel:+254724997041">${esc(site.contact.phones[1])}</a></div><span>${esc(site.contact.address)}</span></div></div>
-    <form class="contact-form" action="https://formsubmit.co/${attr(site.contact.email)}" method="post"><input type="hidden" name="_subject" value="New enquiry from GDC website"><input type="hidden" name="_captcha" value="false"><input type="text" name="_honey" tabindex="-1" autocomplete="off" class="visually-hidden" aria-hidden="true"><div class="form-row"><label>Your name<input name="name" autocomplete="name" required></label><label>Email address<input type="email" name="email" autocomplete="email" required></label></div><label>What can we help with?<select name="service" required><option value="" selected disabled>Select a service</option>${site.services.map(service => `<option>${esc(service.title)}</option>`).join('')}<option>Something else</option></select></label><label>Your message<textarea name="message" rows="5" placeholder="Tell us a little about your project..." required></textarea></label><button class="button button-dark" type="submit">Send enquiry ${arrow}</button></form></div>
+    <form class="contact-form" action="https://formsubmit.co/${attr(site.contact.email)}" method="post"><input type="hidden" name="_subject" value="New enquiry from GDC website"><input type="hidden" name="_captcha" value="false"><input type="text" name="_honey" tabindex="-1" autocomplete="off" class="visually-hidden" aria-hidden="true"><div class="form-row"><label>Your name<input name="name" autocomplete="name" required></label><label>Email address<input type="email" name="email" autocomplete="email" required></label></div><label>What can we help with?<select name="service" required><option value="" selected disabled>Select a service</option>${activeServices.map(service => `<option>${esc(service.title)}</option>`).join('')}<option>Something else</option></select></label><label>Your message<textarea name="message" rows="5" placeholder="Tell us a little about your project..." required></textarea></label><button class="button button-dark" type="submit">Send enquiry ${arrow}</button></form></div>
   </section>`;
 
 write('index.html', page({ title: 'Global Digital Centre', description: site.heroLead, body: home, bodyClass: 'home-page' }));

@@ -33,6 +33,7 @@
     },
     {
       "title": "Data Analysis & Visualization",
+      "enabled": false,
       "summary": "Turning research and data into clear stories that support decisions and reporting.",
       "detail": "Analysis, dashboards, infographics, monitoring and evaluation visuals, and data storytelling."
     },
