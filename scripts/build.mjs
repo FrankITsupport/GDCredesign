@@ -29,7 +29,7 @@ function header(prefix, active = '') {
   const nav = [
     ['About', `${prefix}index.html#about`, 'about'],
     ['Services', `${prefix}index.html#services`, 'services'],
-    ['Our Work', `${prefix}our-work/index.html`, 'work'],
+    ['Our Work', `${prefix}index.html#work`, 'work'],
     ['Careers', `${prefix}careers/index.html`, 'careers'],
     ['Contact', `${prefix}index.html#contact`, 'contact']
   ];
@@ -44,7 +44,7 @@ function header(prefix, active = '') {
           <span></span><span></span>
         </button>
         <nav class="main-nav" id="main-nav" aria-label="Main navigation">
-          ${nav.map(([label, href, key]) => `<a href="${href}" ${key === active ? 'aria-current="page"' : ''}>${label}</a>`).join('')}
+          ${nav.map(([label, href, key]) => `<a href="${href}" ${key === active && key !== 'work' ? 'aria-current="page"' : ''}>${label}</a>`).join('')}
           <a class="nav-cta" href="${prefix}index.html#contact">Let's talk ${arrow}</a>
         </nav>
       </div>
@@ -63,7 +63,7 @@ function footer(prefix) {
           <span>Explore</span>
           <a href="${prefix}index.html#about">About</a>
           <a href="${prefix}index.html#services">Services</a>
-          <a href="${prefix}our-work/index.html">Our Work</a>
+          <a href="${prefix}index.html#work">Our Work</a>
           <a href="${prefix}careers/index.html">Careers</a>
         </div>
         <div class="footer-links">
@@ -119,7 +119,7 @@ function groupFor(project) {
   return 'Conferences';
 }
 
-const featured = ['swift', 'iea', 'ariel', 'un-sacco'].map(id => projects.find(project => project.id === id));
+const featured = ['swift', 'iea', 'ariel', 'un-sacco', 'shanila', 'safeschools', 'nssf', 'migaa'].map(id => projects.find(project => project.id === id));
 const clientLogos = [
   ['iea.png', 'International Energy Agency'],
   ['nssf.png', 'NSSF'],
@@ -155,7 +155,7 @@ const home = `
         <p class="hero-lead">${esc(site.heroLead)}</p>
         <div class="hero-actions">
           <a class="button button-dark" href="#services">Explore our services ${arrow}</a>
-          <a class="text-link" href="our-work/index.html">See our work <span aria-hidden="true">→</span></a>
+          <a class="text-link" href="#work">See our work <span aria-hidden="true">→</span></a>
         </div>
         <div class="hero-caption"><span class="tiny-red-line"></span> Strategy · Creativity · Delivery</div>
       </div>
@@ -196,8 +196,7 @@ const home = `
   <section class="section work-preview" id="work">
     <div class="container">
       <div class="section-intro work-intro"><div><p class="section-label">04 / SELECTED WORK</p><h2 class="section-heading">The work behind<br>the moments.</h2></div><div><p>Different briefs. One commitment to work that is thoughtful, visible and carefully delivered.</p><a class="button button-outline-light" href="our-work/index.html">View more work ${arrow}</a></div></div>
-      <div class="preview-grid">${featured.map((project, index) => card(project, '', index === 0 ? 'project-card-large' : '')).join('')}</div>
-      <div class="work-bottom-link"><a href="our-work/index.html">Explore all projects <span aria-hidden="true">↗</span></a></div>
+      <div class="preview-grid">${featured.map(project => card(project)).join('')}</div>
     </div>
   </section>
 

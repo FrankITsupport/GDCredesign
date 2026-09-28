@@ -1,6 +1,6 @@
 # GDC website redesign — plan and task tracker
 
-Status: landing-page viewport and service-card revision ready for review; content and final media remain pending
+Status: Selected Work layout and navigation revision ready for review; content and final media remain pending
 Last updated: 28 September 2026
 
 Update this file as work progresses: change `[ ]` to `[x]` only when the task is finished. Record major client decisions under **Decision log**.
@@ -25,7 +25,7 @@ Redesign [gdc-ltd.org](https://gdc-ltd.org/) as an elegant, easy-to-navigate sit
 - Each main landing-page section fills at least the screen height below the sticky navigation. Allow sections to grow when their content needs more space on smaller screens. Keep the client ribbon inside the hero at its bottom.
 - Scroll the client logos in a continuous loop, with a pause/resume control and a static, horizontally scrollable ribbon for reduced-motion preferences.
 - Remove Team from the new navigation and page plan.
-- Show selected projects on the home page with a **View More Work** link. The Our Work page opens individual, fuller case studies.
+- Show eight selected projects on the home page in two rows of four on desktop. The menu's **Our Work** link leads to this home section, whose **View More Work** button opens the full portfolio. Project cards open individual, fuller case studies.
 - Keep Careers as a public placeholder with clearly labelled sample posts in this phase. Discuss the simple job-posting admin and application flow in a later phase; do not direct candidates to email.
 - Use `info@gdc-ltd.org` and, for client review, both numbers found on the live website: visible contact number `0758 431 170` and structured-data number `+254 724 997 041`. The client will decide whether both remain.
 
@@ -42,7 +42,7 @@ Select only material that helps visitors understand GDC and take action. Edit do
 
 | Page | Initial content |
 | --- | --- |
-| Home | Header and hero; short company introduction; seven services; approach or reasons to choose GDC; selected client/project proof; selected work with View More Work; contact and footer. Confirm section order against the team's skeleton. |
+| Home | Header and hero with client ribbon; short company introduction; six active services; approach or reasons to choose GDC; eight selected projects with View More Work; contact and footer. Confirm section order against the team's skeleton. |
 | Our Work | Project-card grid. Each card opens a dedicated case study with a brief, GDC's role, execution, outcome where supported, and relevant images/video. |
 | Careers | Designed placeholder with three expandable sample posts. Clearly identify them as dummy content and keep applications closed. The posting editor is a later phase. |
 
@@ -135,6 +135,14 @@ Preview the current build with `node scripts/serve.mjs`, then open `http://local
 - [x] Add a seamless repeating client-logo track with pause/resume and reduced-motion handling.
 - [x] Check viewport boundaries, card count, loop continuity, responsive widths, and accessibility; update the home and Services previews.
 
+### Selected Work revision — 28 September 2026
+
+- [x] Expand the home selection to eight existing projects in two rows of four on desktop, two columns on tablet, and one on mobile.
+- [x] Keep compact thumbnails and a single View More Work button in the section.
+- [x] Point the shared Our Work navigation and hero work link to the home-page Selected Work section.
+- [x] Preserve project-card links to individual case studies and the section button's link to the full portfolio.
+- [x] Check responsive layouts and the navigation flow, including direct-file previews; update screenshots.
+
 ## Decision log
 
 | Date | Decision |
@@ -155,6 +163,7 @@ Preview the current build with `node scripts/serve.mjs`, then open `http://local
 | 28 Sep 2026 | Main home sections now fill the available screen height. The client ribbon belongs to the hero, so About does not appear in its initial screen. Sections can grow for readable content on smaller displays. |
 | 28 Sep 2026 | Services now use six cards. Data Analysis & Visualization is disabled in the content source and preserved in an HTML comment for later. |
 | 28 Sep 2026 | The client-logo ribbon scrolls continuously through two matching groups. Pause/resume preserves its position, and reduced-motion mode displays a static ribbon. |
+| 28 Sep 2026 | Expand Selected Work to eight projects in two desktop rows. Our Work in the menu leads to this landing-page section; its View More Work button opens the full portfolio. Footer and hero work links follow the same section flow. |
 
 ## Preview review notes
 
@@ -165,10 +174,11 @@ Preview the current build with `node scripts/serve.mjs`, then open `http://local
 - The compact revision has no horizontal overflow at the five tested widths. All 18 HTML files have valid local references. Gallery opening, image navigation, keyboard focus, Escape, backdrop close, mobile sizing, and returning focus were checked. Direct local-file navigation and the three expandable sample Careers posts also worked.
 - The viewport revision was checked at 1915×917, 1440×900, 1366×768, 1024×768, 768×1024, 390×844, and 320×568. About stays below the first screen, the ribbon ends with the hero, and no horizontal overflow or hero copy clipping was found. Very small screens allow the hero and longer sections to grow.
 - Six active service cards render, and the deferred service is absent from the dropdown. The matching logo groups line up at the animation wrap point with no measured jump. Pause/resume and reduced-motion handling work. The home-page automated accessibility checks found no violations at the tested mobile and desktop widths.
+- The eight-project Selected Work grid was checked at the same seven screen sizes. It uses two rows on desktop and fits the available height at 1915×917, 1440×900, and 1366×768. Images fill their cards while staying compact. Header links land below the sticky navigation, the section button opens all 13 projects, and project cards open their case studies. Return navigation, the mobile menu, and direct-file previews passed. All 18 HTML files have valid local references, with no browser script errors or horizontal overflow in the tested layouts. The home-page automated accessibility scan found no violations at 390 and 1440 px.
 
 ## Content review queue
 
-- **Featured work:** the home page currently highlights Swift Connect Africa, IEA Global Conference, ARIEL Product Launch, and UN SACCO Jubilee Celebration. Confirm the four projects and their order with the client.
+- **Featured work:** the home page currently highlights Swift Connect Africa, IEA Global Conference, ARIEL Product Launch, UN SACCO Jubilee Celebration, Midnight East Nairobi, 5th Safe Schools Declaration, 10th NSSF Annual General Meeting, and NSSF Migaa Golf Tournament. Confirm these eight projects and their order with the client.
 - **Specific claims to confirm:** KAIICO's attendance/exhibitor counts and named guests; Midnight East's audience size and four-city connection; and the IEA case study's broad impact statements. These are carried over from the live website and should be checked against client records before publication.
 - **Short case studies:** ISSA, Regional Climate Change Summit, NSSF AGM, APRA, ARIEL, YNBS, UN SACCO, and Migaa mainly describe the event and GDC's general role. Ask the client for concrete deliverables, GDC's exact scope, and approved outcomes. Avoid inventing results.
 - **Contact and identity:** confirm which of the two published phone numbers to show, plus approval for client logos and project media.

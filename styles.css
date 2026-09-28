@@ -137,13 +137,15 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .approach-step p { margin: 0; color: #b7b9b9; font-size: 13.5px; }
 
 /* Work cards */
-.work-preview { color: white; background: #1b1d1f; }
+.work-preview { padding-block: 40px; color: white; background: #1b1d1f; }
 .work-preview .section-label { color: #ee777e; }
 .work-preview .section-heading { color: white; }
 .work-preview .section-intro p { color: #aeb1b1; }
 .work-preview .work-intro > div > p:not(.section-label) { color: #b7b9b9; }
-.work-intro > div:last-child .button { margin-top: 20px; }
-.preview-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px 20px; }
+.work-intro { margin-bottom: 24px; }
+.work-intro > div:last-child .button { margin-top: 16px; }
+.preview-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px 20px; }
+.preview-grid .project-card-image { width: 100%; max-height: 180px; }
 .project-card { display: block; min-width: 0; }
 .project-card-image { position: relative; aspect-ratio: 1.65; max-height: 230px; overflow: hidden; background: #dadada; }
 .project-card-image::after { content: ''; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(0,0,0,.2), transparent 50%); pointer-events: none; }
@@ -155,11 +157,6 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .project-card-meta span:last-child { color: inherit; }
 .project-card-meta span:last-child span { margin-left: 8px; font-size: 14px; }
 .project-card h2, .project-card h3 { margin: 6px 0 0; font-family: var(--font-display); font-size: clamp(18px, 1.6vw, 23px); font-weight: 400; line-height: 1.28; letter-spacing: -.04em; }
-.project-card-large { grid-row: span 1; }
-.work-bottom-link { display: flex; justify-content: flex-end; margin-top: 28px; }
-.work-bottom-link a { border-bottom: 1px solid rgba(255,255,255,.6); padding-bottom: 7px; font-size: 12px; font-weight: 700; }
-.work-bottom-link a:hover { color: #ec888e; border-color: #ec888e; }
-.work-bottom-link span { margin-left: 50px; }
 
 /* Reasons and contact */
 .why-section { background: var(--white); }
@@ -299,6 +296,13 @@ body.gallery-open { overflow: hidden; }
 .career-post-body ul { padding-left: 20px; margin: 0 0 12px; }
 .career-post-body .career-post-status { margin: 0; font-size: 12px; color: var(--muted); }
 
+@media (min-width: 1101px) and (max-height: 800px) {
+  .work-preview { padding-block: 32px; }
+  .work-intro .section-heading { font-size: 36px; }
+  .preview-grid .project-card-image { max-height: 140px; }
+  .preview-grid .project-card h3 { font-size: 18px; }
+}
+
 @media (max-width: 1100px) {
   .container { width: min(100% - 64px, 1312px); }
   .main-nav { gap: 17px; }
@@ -375,7 +379,6 @@ body.gallery-open { overflow: hidden; }
   .preview-grid, .why-grid, .project-grid { grid-template-columns: 1fr; }
   .preview-grid, .project-grid { gap: 24px; }
   .project-card-image { max-height: 200px; }
-  .work-bottom-link { margin-top: 24px; }
   .why-grid { gap: 11px; }
   .why-grid article { min-height: 0; padding: 23px; }
   .why-grid article > span { margin-bottom: 20px; }

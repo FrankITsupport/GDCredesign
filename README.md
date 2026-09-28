@@ -21,6 +21,8 @@ Case-study gallery thumbnails open an image viewer with next/previous controls, 
 
 The main home sections fill at least the available screen height below the navigation and grow when needed for smaller screens. The hero ends with a continuously scrolling client ribbon, with pause/resume and reduced-motion support. Review the [hero viewport](previews/home-viewport.png) and [six service cards](previews/services-desktop.png).
 
+Selected Work shows eight projects in two rows of four on desktop, two columns on tablet, and one on mobile. The header and footer's Our Work links and the hero's See Our Work link lead to this home section. Its View More Work button opens the full portfolio. Review the [Selected Work desktop layout](previews/selected-work-desktop.png), [shorter laptop layout](previews/selected-work-laptop.png), and [mobile layout](previews/selected-work-mobile.png).
+
 ## Where to edit
 
 - `content/site.json`: home-page and shared copy.
