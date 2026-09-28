@@ -1,0 +1,35 @@
+[
+  {
+    "title": "Event Production Coordinator",
+    "location": "Nairobi",
+    "type": "Full time · Sample",
+    "description": "An example role supporting the planning and delivery of events, from preparation through on-site coordination.",
+    "responsibilities": [
+      "Coordinate schedules, suppliers, and event logistics.",
+      "Support the production team during setup and delivery.",
+      "Keep project information and checklists organised."
+    ]
+  },
+  {
+    "title": "Creative Designer",
+    "location": "Nairobi",
+    "type": "Full time · Sample",
+    "description": "An example creative role developing visual ideas for event environments, branding, and digital communications.",
+    "responsibilities": [
+      "Develop design concepts in response to a project brief.",
+      "Prepare artwork for print, presentations, and digital channels.",
+      "Collaborate with communications and production teams."
+    ]
+  },
+  {
+    "title": "Communications Assistant",
+    "location": "Nairobi",
+    "type": "Internship · Sample",
+    "description": "An example opportunity to support content preparation and day-to-day project communications.",
+    "responsibilities": [
+      "Assist with drafting and organising project content.",
+      "Support social media and communications planning.",
+      "Help document events and maintain project records."
+    ]
+  }
+]

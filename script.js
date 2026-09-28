@@ -49,4 +49,71 @@
       if (emptyMessage) emptyMessage.hidden = visible !== 0;
     });
   });
+
+  const galleryItems = [...document.querySelectorAll('[data-gallery-item]')];
+  const galleryModal = document.querySelector('.gallery-modal');
+
+  if (galleryItems.length && galleryModal && typeof galleryModal.showModal === 'function') {
+    const fullImage = galleryModal.querySelector('.gallery-full-image');
+    const caption = galleryModal.querySelector('#gallery-caption');
+    const count = galleryModal.querySelector('.gallery-count');
+    const closeButton = galleryModal.querySelector('.gallery-close');
+    let activeIndex = 0;
+    let returnFocus = null;
+
+    const showImage = (index) => {
+      activeIndex = (index + galleryItems.length) % galleryItems.length;
+      const item = galleryItems[activeIndex];
+      const thumbnail = item.querySelector('img');
+      fullImage.src = item.href;
+      fullImage.alt = thumbnail.alt;
+      caption.textContent = thumbnail.alt;
+      count.textContent = `${activeIndex + 1} of ${galleryItems.length}`;
+    };
+
+    galleryItems.forEach((item, index) => {
+      item.addEventListener('click', (event) => {
+        if (event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+        event.preventDefault();
+        returnFocus = item;
+        showImage(index);
+        galleryModal.showModal();
+        document.body.classList.add('gallery-open');
+        closeButton.focus();
+      });
+    });
+
+    closeButton.addEventListener('click', () => galleryModal.close());
+    galleryModal.querySelector('.gallery-previous').addEventListener('click', () => showImage(activeIndex - 1));
+    galleryModal.querySelector('.gallery-next').addEventListener('click', () => showImage(activeIndex + 1));
+    galleryModal.addEventListener('keydown', (event) => {
+      if (event.key === 'Tab') {
+        const controls = [...galleryModal.querySelectorAll('button')];
+        const firstControl = controls[0];
+        const lastControl = controls[controls.length - 1];
+        if (event.shiftKey && document.activeElement === firstControl) {
+          event.preventDefault();
+          lastControl.focus();
+        } else if (!event.shiftKey && document.activeElement === lastControl) {
+          event.preventDefault();
+          firstControl.focus();
+        }
+      }
+      if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+        event.preventDefault();
+        showImage(activeIndex + (event.key === 'ArrowRight' ? 1 : -1));
+      }
+    });
+    galleryModal.addEventListener('click', (event) => {
+      const bounds = galleryModal.getBoundingClientRect();
+      if (event.target === galleryModal && (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom)) {
+        galleryModal.close();
+      }
+    });
+    galleryModal.addEventListener('close', () => {
+      document.body.classList.remove('gallery-open');
+      fullImage.removeAttribute('src');
+      returnFocus?.focus({ preventScroll: true });
+    });
+  }
 })();

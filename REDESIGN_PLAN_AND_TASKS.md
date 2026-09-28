@@ -1,7 +1,7 @@
 # GDC website redesign — plan and task tracker
 
-Status: visual build complete; content and media review in progress
-Last updated: 26 September 2026
+Status: compact visual revision ready for review; content and final media remain pending
+Last updated: 28 September 2026
 
 Update this file as work progresses: change `[ ]` to `[x]` only when the task is finished. Record major client decisions under **Decision log**.
 
@@ -24,7 +24,7 @@ Redesign [gdc-ltd.org](https://gdc-ltd.org/) as an elegant, easy-to-navigate sit
   7. Consultancy & Research
 - Remove Team from the new navigation and page plan.
 - Show selected projects on the home page with a **View More Work** link. The Our Work page opens individual, fuller case studies.
-- Keep Careers as a public placeholder in this phase. Discuss the simple job-posting admin and application flow in a later phase; the current site uses email applications.
+- Keep Careers as a public placeholder with clearly labelled sample posts in this phase. Discuss the simple job-posting admin and application flow in a later phase; do not direct candidates to email.
 - Use `info@gdc-ltd.org` and, for client review, both numbers found on the live website: visible contact number `0758 431 170` and structured-data number `+254 724 997 041`. The client will decide whether both remain.
 
 ## Content and media sources
@@ -42,7 +42,7 @@ Select only material that helps visitors understand GDC and take action. Edit do
 | --- | --- |
 | Home | Header and hero; short company introduction; seven services; approach or reasons to choose GDC; selected client/project proof; selected work with View More Work; contact and footer. Confirm section order against the team's skeleton. |
 | Our Work | Project-card grid. Each card opens a dedicated case study with a brief, GDC's role, execution, outcome where supported, and relevant images/video. |
-| Careers | Designed placeholder with a short introduction and space for future openings. The posting editor is a later phase. |
+| Careers | Designed placeholder with three expandable sample posts. Clearly identify them as dummy content and keep applications closed. The posting editor is a later phase. |
 
 ## Tasks
 
@@ -108,6 +108,16 @@ Preview the current build with `node scripts/serve.mjs`, then open `http://local
 - [ ] Review page speed and search indexing in Google Search Console.
 - [ ] Verify the published site and monitor indexing after launch.
 
+### Requested compact revision — 28 September 2026
+
+- [x] Reduce spacing across home sections, page introductions, case studies, and the footer.
+- [x] Reduce project thumbnail, gallery, and video display sizes; show four project cards per row on wide screens.
+- [x] Add an image gallery modal to all case studies with next/previous controls, arrow keys, Escape, backdrop close, and focus return.
+- [x] Use explicit HTML links so home, work, case-study, and Careers navigation works through both the preview server and direct local files.
+- [x] Provide working `projects.html` and `careers.html` compatibility links.
+- [x] Add three expandable dummy Careers posts with no application or admin workflow.
+- [x] Check the revision at 320, 390, 768, 1440, and 1915 px widths; update review screenshots.
+
 ### Later scope — Careers posting editor
 
 - [ ] Agree on the admin workflow and access requirements.
@@ -128,6 +138,9 @@ Preview the current build with `node scripts/serve.mjs`, then open `http://local
 | 26 Sep 2026 | The Careers placeholder links to the work portfolio rather than inviting applications by email. |
 | 26 Sep 2026 | The first visual direction received positive initial feedback. Continue with functional, content, and media review before final client approval. |
 | 26 Sep 2026 | The 13 existing case videos are about 934 MB in total. Keep the live-site links for this review; prepare a compressed delivery plan before release. |
+| 28 Sep 2026 | Reduce unused vertical space throughout the site and make project imagery more compact. Case-study gallery images open in a modal; project cards continue to open full case studies. |
+| 28 Sep 2026 | Careers now shows three clearly labelled dummy posts with expandable details. Applications and admin access remain deferred. |
+| 28 Sep 2026 | Use explicit `index.html` page links for direct-file and server previews, plus compatibility links for `projects.html` and `careers.html`. Final search URL decisions remain deferred. |
 
 ## Preview review notes
 
@@ -135,6 +148,7 @@ Preview the current build with `node scripts/serve.mjs`, then open `http://local
 - The mobile menu and four Our Work filters worked. The selected project images loaded in the preview.
 - All 13 case-study cards open. The skip link, mobile menu keyboard controls, required form fields, and reduced-motion setting worked. An automated WCAG A/AA scan found no violations on the tested home, work, case-study, and Careers layouts at mobile and desktop widths; manual review remains important as content changes.
 - All 13 remote video URLs returned MP4 responses. The Swift case-study video loaded its metadata in the browser, and its local cover displayed as a poster. The contact enquiry form has not been submitted, and the full set of final videos has not been played through.
+- The compact revision has no horizontal overflow at the five tested widths. All 18 HTML files have valid local references. Gallery opening, image navigation, keyboard focus, Escape, backdrop close, mobile sizing, and returning focus were checked. Direct local-file navigation and the three expandable sample Careers posts also worked.
 
 ## Content review queue
 

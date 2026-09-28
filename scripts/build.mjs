@@ -5,13 +5,14 @@ import { fileURLToPath } from 'node:url';
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const site = JSON.parse(readFileSync(join(root, 'content/site.json'), 'utf8'));
 const projects = JSON.parse(readFileSync(join(root, 'content/projects.json'), 'utf8'));
+const careerPosts = JSON.parse(readFileSync(join(root, 'content/careers.json'), 'utf8'));
 
 const esc = (value = '') => String(value).replace(/[&<>"']/g, (char) => ({
   '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
 })[char]);
 const attr = esc;
 const slugify = (value) => value.toLowerCase().replace(/&/g, 'and').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
-const urlFor = (project, prefix = '') => `${prefix}our-work/${slugify(project.title)}/`;
+const urlFor = (project, prefix = '') => `${prefix}our-work/${slugify(project.title)}/index.html`;
 const asset = (path, prefix = '') => `${prefix}${path}`;
 const arrow = '<span aria-hidden="true">↗</span>';
 
@@ -25,8 +26,8 @@ function header(prefix, active = '') {
   const nav = [
     ['About', `${prefix}index.html#about`, 'about'],
     ['Services', `${prefix}index.html#services`, 'services'],
-    ['Our Work', `${prefix}our-work/`, 'work'],
-    ['Careers', `${prefix}careers/`, 'careers'],
+    ['Our Work', `${prefix}our-work/index.html`, 'work'],
+    ['Careers', `${prefix}careers/index.html`, 'careers'],
     ['Contact', `${prefix}index.html#contact`, 'contact']
   ];
   return `
@@ -59,8 +60,8 @@ function footer(prefix) {
           <span>Explore</span>
           <a href="${prefix}index.html#about">About</a>
           <a href="${prefix}index.html#services">Services</a>
-          <a href="${prefix}our-work/">Our Work</a>
-          <a href="${prefix}careers/">Careers</a>
+          <a href="${prefix}our-work/index.html">Our Work</a>
+          <a href="${prefix}careers/index.html">Careers</a>
         </div>
         <div class="footer-links">
           <span>Connect</span>
@@ -134,7 +135,7 @@ const home = `
         <p class="hero-lead">${esc(site.heroLead)}</p>
         <div class="hero-actions">
           <a class="button button-dark" href="#services">Explore our services ${arrow}</a>
-          <a class="text-link" href="our-work/">See our work <span aria-hidden="true">→</span></a>
+          <a class="text-link" href="our-work/index.html">See our work <span aria-hidden="true">→</span></a>
         </div>
         <div class="hero-caption"><span class="tiny-red-line"></span> Strategy · Creativity · Delivery</div>
       </div>
@@ -178,9 +179,9 @@ const home = `
 
   <section class="section work-preview" id="work">
     <div class="container">
-      <div class="section-intro work-intro"><div><p class="section-label">04 / SELECTED WORK</p><h2 class="section-heading">The work behind<br>the moments.</h2></div><div><p>Different briefs. One commitment to work that is thoughtful, visible and carefully delivered.</p><a class="button button-outline-light" href="our-work/">View more work ${arrow}</a></div></div>
+      <div class="section-intro work-intro"><div><p class="section-label">04 / SELECTED WORK</p><h2 class="section-heading">The work behind<br>the moments.</h2></div><div><p>Different briefs. One commitment to work that is thoughtful, visible and carefully delivered.</p><a class="button button-outline-light" href="our-work/index.html">View more work ${arrow}</a></div></div>
       <div class="preview-grid">${featured.map((project, index) => card(project, '', index === 0 ? 'project-card-large' : '')).join('')}</div>
-      <div class="work-bottom-link"><a href="our-work/">Explore all projects <span aria-hidden="true">↗</span></a></div>
+      <div class="work-bottom-link"><a href="our-work/index.html">Explore all projects <span aria-hidden="true">↗</span></a></div>
     </div>
   </section>
 
@@ -205,20 +206,26 @@ write('our-work/index.html', page({ title: 'Our Work | Global Digital Centre', d
 projects.forEach((project, index) => {
   const prefix = '../../';
   const next = projects[(index + 1) % projects.length];
-  const gallery = project.gallery.map((image, i) => `<figure><img src="${asset(image, prefix)}" alt="${attr(project.title)} project image ${i + 1}" loading="lazy" decoding="async"></figure>`).join('');
+  const gallery = project.gallery.map((image, i) => `<figure><a class="gallery-trigger" href="${asset(image, prefix)}" data-gallery-item aria-label="Open ${attr(project.title)} image ${i + 1}"><img src="${asset(image, prefix)}" alt="${attr(project.title)} project image ${i + 1}" loading="lazy" decoding="async"><span class="gallery-view" aria-hidden="true">View image ${arrow}</span></a></figure>`).join('');
+  const lightbox = `<dialog class="gallery-modal" aria-labelledby="gallery-caption"><div class="gallery-modal-content"><button class="gallery-close" type="button" aria-label="Close gallery">×</button><img class="gallery-full-image" alt=""><div class="gallery-modal-bar"><button class="gallery-previous" type="button" aria-label="Previous image">←</button><div><p id="gallery-caption">Project gallery</p><p class="gallery-count" aria-live="polite" aria-atomic="true"></p></div><button class="gallery-next" type="button" aria-label="Next image">→</button></div></div></dialog>`;
   const video = project.video ? `<section class="case-video-section"><div class="container"><div class="case-section-heading"><p class="section-label">PROJECT FILM</p><h2>See the work in motion.</h2></div><video controls preload="none" playsinline poster="${asset(project.cover, prefix)}"><source src="${attr(project.video)}" type="video/mp4">Your browser does not support video playback.</video></div></section>` : '';
   const body = `
-    <section class="case-hero"><div class="case-hero-image"><img src="${asset(project.cover, prefix)}" alt="${attr(project.title)}" fetchpriority="high"></div><div class="case-hero-shade"></div><div class="container case-hero-content"><a class="back-link" href="../">← All projects</a><p class="eyebrow">${esc(project.category)} / GDC PROJECT</p><h1>${esc(project.articleTitle)}</h1><p>${esc(project.lead)}</p></div></section>
+    <section class="case-hero"><div class="case-hero-image"><img src="${asset(project.cover, prefix)}" alt="${attr(project.title)}" fetchpriority="high"></div><div class="case-hero-shade"></div><div class="container case-hero-content"><a class="back-link" href="../index.html">← All projects</a><p class="eyebrow">${esc(project.category)} / GDC PROJECT</p><h1>${esc(project.articleTitle)}</h1><p>${esc(project.lead)}</p></div></section>
     <section class="section case-story"><div class="container case-layout"><aside><p class="section-label">THE PROJECT</p><span class="case-aside-line"></span><p>Global Digital Centre<br>Nairobi, Kenya</p></aside><div class="case-copy">${project.bodyHtml.replace(/<(\/?)h4>/g, '<$1h2>')}</div></div></section>
     <section class="section case-gallery"><div class="container"><div class="case-section-heading"><p class="section-label">PROJECT GALLERY</p><h2>A closer look.</h2></div><div class="gallery-grid">${gallery}</div></div></section>
     ${video}
-    <section class="next-project"><div class="container"><span>NEXT PROJECT</span><a href="../${slugify(next.title)}/">${esc(next.title)} <span aria-hidden="true">↗</span></a></div></section>`;
+    <section class="next-project"><div class="container"><span>NEXT PROJECT</span><a href="../${slugify(next.title)}/index.html">${esc(next.title)} <span aria-hidden="true">↗</span></a></div></section>
+    ${lightbox}`;
   write(`our-work/${slugify(project.title)}/index.html`, page({ title: `${project.title} | Global Digital Centre`, description: project.lead, prefix, active: 'work', body, bodyClass: 'case-page' }));
 });
 
 const careers = `
   <section class="inner-hero careers-hero"><div class="container"><p class="section-label">CAREERS / GLOBAL DIGITAL CENTRE</p><div class="inner-hero-row"><h1>Do work that<br><em>moves people.</em></h1><p>Our projects bring people, ideas and disciplines together. Explore opportunities to be part of the team.</p></div></div></section>
-  <section class="section careers-content"><div class="container careers-grid"><div><p class="section-label">JOIN GDC</p><h2>Bring your perspective<br>to the work.</h2><p>We work across events, communications, production, design, research and consultancy. This page will share new roles as they become available.</p></div><div class="careers-placeholder"><span class="careers-icon" aria-hidden="true">✳</span><p class="section-label">CURRENT OPENINGS</p><h3>New opportunities<br>coming soon.</h3><p>There are no roles listed in this design preview. Please check back for future openings.</p><a class="underlined-link" href="../our-work/">Explore our work ${arrow}</a></div></div></section>`;
+  <section class="section careers-content"><div class="container careers-grid"><div><p class="section-label">JOIN GDC</p><h2>Bring your perspective<br>to the work.</h2><p>We work across events, communications, production, design, research and consultancy.</p><p class="careers-demo-note">These are sample posts for design review. They are not current vacancies, and applications are not open.</p></div><div class="career-list"><h2 class="career-list-heading">Sample opportunities</h2>${careerPosts.map(post => `<details class="career-post"><summary><span class="career-summary"><span class="career-post-title">${esc(post.title)}</span><span class="career-post-meta">${esc(post.location)} · ${esc(post.type)}</span></span><span class="career-sample-tag">Sample</span><span class="career-toggle" aria-hidden="true">+</span></summary><div class="career-post-body"><p>${esc(post.description)}</p><h3>What the role could involve</h3><ul>${post.responsibilities.map(item => `<li>${esc(item)}</li>`).join('')}</ul><p class="career-post-status">Sample listing — applications are not open.</p></div></details>`).join('')}</div></div></section>`;
 write('careers/index.html', page({ title: 'Careers | Global Digital Centre', description: 'Explore careers at Global Digital Centre.', prefix: '../', active: 'careers', body: careers, bodyClass: 'careers-page' }));
 
-console.log(`Built home, work, careers, and ${projects.length} case-study pages.`);
+for (const [legacyPath, target, label] of [['projects.html', 'our-work/index.html', 'Our Work'], ['careers.html', 'careers/index.html', 'Careers']]) {
+  write(legacyPath, `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="refresh" content="0;url=${target}"><title>${label} | Global Digital Centre</title></head><body><p><a href="${target}">Continue to ${label}</a></p></body></html>`);
+}
+
+console.log(`Built home, work, careers, ${projects.length} case-study pages, and 2 compatibility pages.`);
