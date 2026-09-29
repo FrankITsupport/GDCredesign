@@ -3,9 +3,10 @@
   "tagline": "Your Vision. Our Strategy. Real Impact.",
   "heroLead": "Events, communications and consultancy shaped with purpose and delivered with precision.",
   "heroVideos": [
-    { "projectId": "swift", "src": "assets/media/hero/swift.mp4", "poster": "assets/media/hero/swift.jpg" },
-    { "projectId": "iea", "src": "assets/media/hero/iea.mp4", "poster": "assets/media/hero/iea.jpg" },
-    { "projectId": "un-sacco", "src": "assets/media/hero/un-sacco.mp4", "poster": "assets/media/hero/un-sacco.jpg" }
+    { "projectId": "nssf", "src": "assets/media/hero/nssf.mp4", "poster": "assets/media/hero/nssf.jpg" },
+    { "projectId": "shanila", "src": "assets/media/hero/midnight-east.mp4", "poster": "assets/media/hero/midnight-east.jpg" },
+    { "projectId": "ariel", "src": "assets/media/hero/ariel.mp4", "poster": "assets/media/hero/ariel.jpg" },
+    { "projectId": "swift", "src": "assets/media/hero/swift.mp4", "poster": "assets/media/hero/swift.jpg" }
   ],
   "aboutHeading": "Good work starts with",
   "aboutHeadingAccent": "a great partnership.",

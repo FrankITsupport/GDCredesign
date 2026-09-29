@@ -116,8 +116,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .client-logo-group { display: flex; flex: 0 0 auto; }
 .client-strip.is-paused .client-logos-track { animation-play-state: paused; }
 .client-logo { position: relative; display: block; flex: 0 0 185px; width: 185px; height: 64px; overflow: hidden; }
-.client-logos img { position: absolute; left: 50%; top: 50%; width: 170px; max-width: none; height: 170px; object-fit: contain; transform: translate(-50%, -50%); filter: grayscale(1); opacity: .72; transition: filter .2s ease, opacity .2s ease; }
-.client-logos img:hover { filter: grayscale(0); opacity: 1; }
+.client-logos img { position: absolute; left: 50%; top: 50%; width: 170px; max-width: none; height: 170px; object-fit: contain; transform: translate(-50%, -50%); }
 .client-logo-issa img { width: 100px; height: 100px; }
 @keyframes client-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 .about-section { position: relative; overflow: hidden; background: radial-gradient(ellipse at 0% 85%, #f3e7e1 0%, transparent 52%), linear-gradient(125deg, #fcfaf7, #fff 75%); }

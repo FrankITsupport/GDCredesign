@@ -19,9 +19,11 @@ Screenshots for quick review: [desktop home](previews/home-desktop.png), [mobile
 
 Case-study gallery thumbnails open an image viewer with next/previous controls, arrow-key navigation, and Escape to close. Project cards link to full case studies.
 
-The main home sections fill at least the available screen height below the navigation and grow when needed for smaller screens. The hero uses three full-width, silent video clips with a light overlay and a darker gradient behind the copy. The two buttons lead to Services and Selected Work. The client ribbon remains directly below the video, with its existing pause/resume control. Review the [hero viewport](previews/home-viewport.png), [mobile hero](previews/home-mobile-viewport.png), and [six service cards](previews/services-desktop.png).
+The main home sections fill at least the available screen height below the navigation and grow when needed for smaller screens. The hero uses four full-width, silent video clips with a light overlay and a darker gradient behind the copy. The two buttons lead to Services and Selected Work. The client ribbon remains directly below the video, with its existing pause/resume control. Review the [hero viewport](previews/home-viewport.png), [mobile hero](previews/home-mobile-viewport.png), and [six service cards](previews/services-desktop.png).
 
 Hero clips rotate at the end of each 12-second video. Visitors can select a video or pause playback; playback also pauses when the hero leaves the screen or the browser tab is hidden. Reduced-motion and data-saving preferences start with still images and an explicit Play button. A missing video keeps its poster and advances to the next selection. Without JavaScript, the first poster and both CTAs remain visible.
+
+The client ribbon displays all six existing logo assets in their original colours at full opacity, including while scrolling and in reduced-motion mode.
 
 About uses real GDC crew and event photography, a soft warm background, a welcoming introduction, and three short statements about collaboration and care. Its buttons lead to Contact and Services. The heading comes first on mobile, followed by the photos and company story. Review [About on desktop](previews/about-desktop.png) and [About on mobile](previews/about-mobile.png). Its copy is editable through the `aboutHeading`, `aboutHeadingAccent`, `aboutIntro`, `aboutText`, and `aboutValues` fields in `content/site.json`.
 
@@ -36,7 +38,7 @@ Selected Work shows eight projects in two rows of four on desktop, two columns o
 ## Where to edit
 
 - `content/site.json`: home-page and shared copy.
-- `content/site.json` → `heroVideos`: the three hero clips, their posters, and associated project IDs. Short, compressed clips and matching posters live in `assets/media/hero/`.
+- `content/site.json` → `heroVideos`: the four hero clips, their posters, and associated project IDs. Short, compressed clips and matching posters live in `assets/media/hero/`.
 - `content/projects.json`: project titles, summaries, case-study copy, and media references imported from the existing GDC website.
 - `content/careers.json`: three clearly labelled sample Careers posts for layout review.
 - `styles.css`: visual design and responsive layouts.
@@ -44,7 +46,7 @@ Selected Work shows eight projects in two rows of four on desktop, two columns o
 
 Data Analysis & Visualization is preserved in `content/site.json` with `enabled: false` and emitted as an HTML comment. Set it to `true` and rebuild when it is needed again; the cards, discipline count, and enquiry dropdown will update together.
 
-Selected GDC images and logos are stored in `assets/media/`. The three hero clips are compressed local assets, about 9.7 MB in total. The case-study video players currently reference files on the live GDC site. Those full videos should be copied and compressed for the final deployment after the visual selection is approved.
+Selected GDC images and logos are stored in `assets/media/`. The four hero clips play in this order: NSSF AGM, Midnight East Nairobi, ARIEL Product Launch, and Swift. They are compressed local assets, about 12.4 MB in total. The case-study video players currently reference files on the live GDC site. Those full videos should be copied and compressed for the final deployment after the visual selection is approved.
 
 The 13 source videos total about 934 MB, so they are not committed to this repository. The plan records the pending content checks and final media delivery decision.
 
