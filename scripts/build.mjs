@@ -197,7 +197,6 @@ const home = `
   <section class="section about-section" id="about" aria-labelledby="about-title">
     <div class="container about-layout">
       <div class="about-intro">
-        <p class="section-label">01 / ABOUT US</p>
         <h2 class="section-heading" id="about-title">${esc(site.aboutHeading)}<br><em>${esc(site.aboutHeadingAccent)}</em></h2>
         <p class="about-lead">${esc(site.aboutIntro)}</p>
       </div>
