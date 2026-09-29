@@ -130,7 +130,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .about-section { position: relative; overflow: hidden; background: radial-gradient(ellipse at 0% 85%, #f3e7e1 0%, transparent 52%), linear-gradient(125deg, #fcfaf7, #fff 75%); }
 .about-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.04fr); grid-template-areas: 'intro visual' 'story visual' 'actions values'; column-gap: 8%; row-gap: 22px; align-items: start; }
 .about-intro { grid-area: intro; align-self: end; }
-.about-intro .section-heading { font-size: clamp(36px, 3.35vw, 48px); line-height: 1.18; }
+.about-intro .section-heading { font-size: clamp(28px, 2.5vw, 36px); line-height: 1.18; }
+.about-intro .section-heading em { font-size: 0.9em; }
 .about-lead { max-width: 470px; margin: 20px 0 0; font-family: var(--font-display); font-size: clamp(18px, 1.6vw, 22px); line-height: 1.5; letter-spacing: -.03em; }
 .about-visual { grid-area: visual; position: relative; min-width: 0; margin: 0; }
 .about-photo-composition { position: relative; padding: 0 22px 40px 0; }
