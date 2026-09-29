@@ -8,10 +8,10 @@
     { "projectId": "ariel", "src": "assets/media/hero/ariel.mp4", "poster": "assets/media/hero/ariel.jpg" },
     { "projectId": "swift", "src": "assets/media/hero/swift.mp4", "poster": "assets/media/hero/swift.jpg" }
   ],
-  "aboutHeading": "Good work starts with",
-  "aboutHeadingAccent": "a great partnership.",
-  "aboutIntro": "Your idea deserves a team that cares as much as you do.",
-  "aboutText": "Global Digital Centre is a full-service Events, PR & Communications and Consultancy firm in Nairobi. We bring strategic thinking, creative design and technical expertise together for public institutions, development partners, corporates and communities.",
+  "aboutHeading": "About GDC",
+  "aboutHeadingAccent": "We bring ideas to life and help them reach the people who matter.",
+  "aboutIntro": "Global Digital Centre (GDC) is a Kenya-based creative and strategic partner. We bring together six areas of expertise: Events & Experiences, PR & Communications, Branding & Digital, Interpretation & Languages, Photography & Film, and Consultancy & Research.",
+  "aboutText": "We create conferences, exhibitions, galas, dinners and private events that are carefully planned and confidently delivered. We shape the story around each experience through communications, branding and digital content. Our language, photography and film teams help that story travel across audiences and beyond the day itself.\n\nWe begin by listening. What are you trying to achieve? Who needs to be in the room, hear the message or take action? Research and strategic thinking help us answer those questions before we build the right team and approach.\n\nFrom the first conversation to the final delivery, we connect the creative, technical and practical details around one goal: work that makes an impact for you and the people you want to reach.",
   "aboutValues": [
     { "title": "Listen first", "text": "Your goals guide the brief." },
     { "title": "Think together", "text": "Good ideas grow through collaboration." },
@@ -70,14 +70,14 @@
       "detail": "Manufacturing, climate and renewable energy, public sector advice, market intelligence and project support."
     }
   ],
-  "approachHeading": "From your first idea",
-  "approachHeadingAccent": "to what comes next.",
-  "approachIntro": "We bring you into the process, connect the right people and keep every stage moving towards your goal.",
+  "approachHeading": "One goal. The right people.",
+  "approachHeadingAccent": "Every detail connected.",
+  "approachIntro": "Great work starts with understanding what success means to you. Whether you need an event, a campaign, a film or strategic advice, we build our approach around your audience and the result you want to achieve.",
   "approach": [
-    {"step": "Understand", "description": "We listen to your ambitions, get to know your audience and agree on what success looks like.", "outcome": "A shared direction"},
-    {"step": "Shape", "description": "Together, we turn the brief into a creative direction and a practical plan for delivery.", "outcome": "A clear plan"},
-    {"step": "Deliver", "description": "Our team brings the plan to life, coordinating the people, production and details that matter.", "outcome": "Your vision, made real"},
-    {"step": "Learn", "description": "We reflect on the results with you and use what we learn to shape the next opportunity.", "outcome": "Insight for your next move"}
+    {"step": "We listen and learn", "description": "We start with your brief, your audience and your goals. We ask the questions that help us understand what matters most, what needs to happen and how we will measure success.", "outcome": "A shared direction"},
+    {"step": "We shape the approach", "description": "We develop a clear idea and a practical plan. Depending on the project, we bring together the right expertise across events, communications, branding, digital, languages, film and research.", "outcome": "A clear plan"},
+    {"step": "We bring it to life", "description": "Our teams manage the creative work, production and delivery together. You have clear points of contact, agreed milestones and visibility as the work progresses.", "outcome": "Your vision, made real"},
+    {"step": "We learn from the results", "description": "After delivery, we look at what reached people, how they responded and what could work harder next time. We share those insights with you so the value of the work continues beyond the project.", "outcome": "Insight for your next move"}
   ],
   "why": [
     {"title": "Connected Disciplines", "description": "Strategy, creative work, communications, and technical delivery work as one coordinated team—not siloed departments."},
