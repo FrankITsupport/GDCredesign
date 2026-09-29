@@ -37,7 +37,7 @@ function header(prefix, active = '') {
       <div class="header-inner container">
         <a class="brand" href="${prefix}index.html" aria-label="Global Digital Centre home">
           <span class="brand-mark"><img src="${prefix}assets/media/branding/gdc-logo-alt.png" alt="" width="83" height="43"></span>
-          <span class="brand-name">GLOBAL DIGITAL<br>CENTRE</span>
+          <span class="brand-name">GLOBAL DIGITAL CENTRE</span>
         </a>
         <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="main-nav">
           <span></span><span></span>

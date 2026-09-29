@@ -206,6 +206,7 @@ Preview the current build with `node scripts/serve.mjs`, then open `http://local
 | 29 Sep 2026 | Lighten the hero overlay on the right to reveal more video detail. Retain the darker left side for copy and the bottom gradient for controls; keep a gentler change on smaller screens where copy spans more of the video. |
 | 29 Sep 2026 | Redesign How We Work as a connected journey from Understand to Shape, Deliver and Learn. Use numbered nodes, lines and directional arrows, a clear outcome for each stage, a restrained charcoal gradient and a Contact action. Show the sequence horizontally on desktop and vertically at 850 px and below. |
 | 29 Sep 2026 | Change Selected Work to a warm stone gradient with dark headings, readable metadata and a dark portfolio button. Keep How We Work charcoal to give the neighbouring sections a clear visual transition. |
+| 29 Sep 2026 | Correct the header logo sizing so the complete GDC mark is visible. Display GLOBAL DIGITAL CENTRE on one line above 850 px; allow a compact wrap alongside the mobile menu. Apply the shared header fix to every page. |
 
 ## Preview review notes
 
