@@ -60,6 +60,17 @@
     });
   });
 
+  const whyStories = document.querySelector('[data-why-stories]');
+  if (whyStories) {
+    const reasons = [...whyStories.querySelectorAll('[data-why-reason]')];
+    const photos = [...whyStories.querySelectorAll('[data-why-photo]')];
+    reasons.forEach(reason => reason.addEventListener('toggle', () => {
+      if (!reason.open) return;
+      reasons.forEach(other => { if (other !== reason) other.open = false; });
+      photos.forEach(photo => { photo.hidden = photo.dataset.whyPhoto !== reason.dataset.whyReason; });
+    }));
+  }
+
   const heroPlayer = document.querySelector('[data-hero-player]');
   if (heroPlayer) {
     const videos = [...heroPlayer.querySelectorAll('.hero-video')];

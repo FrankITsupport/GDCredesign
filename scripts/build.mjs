@@ -124,6 +124,7 @@ function groupFor(project) {
 
 const featured = ['swift', 'iea', 'ariel', 'un-sacco', 'shanila', 'safeschools', 'nssf', 'migaa'].map(id => projects.find(project => project.id === id));
 const heroVideos = site.heroVideos.map(video => ({ ...video, project: projects.find(project => project.id === video.projectId) }));
+const whyStories = site.why.map(item => ({ ...item, project: projects.find(project => project.id === item.projectId) }));
 const clientLogos = [
   ['iea.png', 'International Energy Agency'],
   ['nssf.png', 'NSSF'],
@@ -254,20 +255,22 @@ const home = `
 
   <section class="section why-section" id="why" aria-labelledby="why-title">
     <div class="container">
-      <div class="section-intro why-intro">
+      <div class="why-intro">
         <div>
           <p class="section-label">05 / WHY GDC</p>
-          <h2 class="section-heading" id="why-title">Good ideas deserve<br><em>excellent execution.</em></h2>
+          <h2 class="section-heading" id="why-title">${esc(site.whyHeading)}<br><em>${esc(site.whyHeadingAccent)}</em></h2>
         </div>
-        <p>Our strength is bringing different disciplines together around one clear brief. We don't just deliver projects—we partner with you to shape outcomes that matter.</p>
+        <div class="why-intro-copy"><p>${esc(site.whyIntro)}</p><a class="underlined-link" href="#contact">Let's talk about your next project ${arrow}</a></div>
       </div>
-      <div class="why-content">
-        <div class="why-grid">
-          ${site.why.map((item, index) => `<article class="why-card">
-            <div class="why-card-icon">0${index + 1}</div>
-            <h3>${esc(item.title)}</h3>
-            <p>${esc(item.description)}</p>
-          </article>`).join('')}
+      <div class="why-layout" data-why-stories>
+        <div class="why-visual">
+          ${whyStories.map((item, index) => `<figure class="why-photo" data-why-photo="${index}"${index ? ' hidden' : ''}><img src="${attr(item.image)}" alt="${attr(item.imageAlt)}" loading="lazy" decoding="async"><figcaption><div><span>GDC AT WORK</span><strong>${esc(item.project.title)}</strong></div><a href="${urlFor(item.project)}" aria-label="Read the ${attr(item.project.title)} case study">See this project ${arrow}</a></figcaption></figure>`).join('')}
+          <span class="why-photo-note"><span aria-hidden="true"></span> People. Ideas. Delivery.</span>
+        </div>
+        <div class="why-reasons">
+          <p class="why-reasons-label">THE GDC DIFFERENCE</p>
+          ${whyStories.map((item, index) => `<details class="why-reason" name="why-reasons" data-why-reason="${index}"${index === 0 ? ' open' : ''}><summary><span class="why-reason-number" aria-hidden="true">${String(index + 1).padStart(2, '0')}</span><span class="why-reason-title">${esc(item.displayTitle)}</span><span class="why-reason-toggle" aria-hidden="true">+</span></summary><p>${esc(item.description)}</p><a class="why-inline-proof" href="${urlFor(item.project)}" aria-label="Read the ${attr(item.project.title)} case study"><img src="${attr(item.image)}" alt="${attr(item.imageAlt)}" loading="lazy" decoding="async"><span class="why-inline-caption">${esc(item.project.title)}<span>See this project ${arrow}</span></span></a></details>`).join('')}
+          <p class="why-reasons-note">Explore what working with GDC feels like.</p>
         </div>
       </div>
     </div>

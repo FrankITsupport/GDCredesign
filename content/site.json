@@ -79,13 +79,16 @@
     {"step": "We bring it to life", "description": "Our teams manage the creative work, production and delivery together. You have clear points of contact, agreed milestones and visibility as the work progresses.", "outcome": "Your vision, made real"},
     {"step": "We learn from the results", "description": "After delivery, we look at what reached people, how they responded and what could work harder next time. We share those insights with you so the value of the work continues beyond the project.", "outcome": "Insight for your next move"}
   ],
+  "whyHeading": "Big ideas need",
+  "whyHeadingAccent": "the right people.",
+  "whyIntro": "You bring the ambition. We bring the thinking, creativity and care to make it happen.",
   "why": [
-    {"title": "Connected Disciplines", "description": "Strategy, creative work, communications, and technical delivery work as one coordinated team—not siloed departments."},
-    {"title": "Built Around You", "description": "Every approach follows your client, your audience, and your unique purpose. We adapt our process to your needs, not the reverse."},
-    {"title": "Detail-Oriented Delivery", "description": "A coordinated team keeps your brief, your people, and your deadlines in constant view. Nothing slips through."},
-    {"title": "African Rooted, Globally Minded", "description": "We're based in Nairobi with deep African experience, working across the continent and understanding your regional context."},
-    {"title": "Proven Track Record", "description": "Trusted by leading institutions, development partners, and global brands. From small campaigns to large-scale events."},
-    {"title": "Creative Problem-Solving", "description": "We listen first, think collaboratively, and bring both strategic insight and creative innovation to every challenge."}
+    {"title": "Connected Disciplines", "displayTitle": "One team, every discipline", "description": "Strategy, design, communications and production work together, so your project moves with one clear direction.", "image": "assets/media/projects/issa/gallery-3.jpg", "imageAlt": "GDC production crew coordinating cameras, sound and live video at the ISSA Technical Seminar", "projectId": "issa"},
+    {"title": "Built Around You", "displayTitle": "Built around your ambitions", "description": "Your audience, priorities and goals shape the brief. We choose the right mix of expertise for the result you want.", "image": "assets/media/projects/swift/gallery-3.jpg", "imageAlt": "A branded Swift exhibition stand with screens and seating at Swift Connect Africa", "projectId": "swift"},
+    {"title": "Detail-Oriented Delivery", "displayTitle": "Care in every detail", "description": "We keep the creative idea, people, deadlines and technical details connected throughout delivery.", "image": "assets/media/projects/iea/gallery-1.jpg", "imageAlt": "A presentation monitor and conference seating prepared for the IEA Global Conference", "projectId": "iea"},
+    {"title": "African Rooted, Globally Minded", "displayTitle": "Nairobi roots. African reach.", "description": "Nairobi is our home. Our work with institutions and partners across Africa brings regional understanding to every brief.", "image": "assets/media/projects/iea/gallery-2.jpg", "imageAlt": "French and English interpretation booths at the IEA Global Conference in Nairobi", "projectId": "iea"},
+    {"title": "Proven Track Record", "displayTitle": "Experience you can see", "description": "Explore work for institutions, development partners and global brands, from conferences to campaigns and launches.", "image": "assets/media/projects/nssf/gallery-2.jpg", "imageAlt": "A production camera overlooking the illuminated stage at the NSSF Annual General Meeting", "projectId": "nssf"},
+    {"title": "Creative Problem-Solving", "displayTitle": "Ideas that move you forward", "description": "We combine practical thinking with creative ideas, turning a challenge into an experience, story or solution that fits your purpose.", "image": "assets/media/projects/shanila/gallery-3.jpg", "imageAlt": "The illuminated geometric entrance and branded walls at Midnight East Nairobi", "projectId": "shanila"}
   ],
   "clientsLogos": [
     {"name": "Agro-Chemical & Food Company Ltd", "logo": "agcfl.png"},

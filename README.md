@@ -37,6 +37,8 @@ How We Work is a connected four-stage journey: Understand → Shape → Deliver 
 
 Selected Work shows eight projects in two rows of four on desktop, two columns on tablet, and one on mobile. The header and footer's Our Work links and the hero's See Our Work link lead to this home section. Its View More Work button opens the full portfolio. Review the [Selected Work desktop layout](previews/selected-work-desktop.png), [shorter laptop layout](previews/selected-work-laptop.png), and [mobile layout](previews/selected-work-mobile.png).
 
+Why GDC uses the heading “Big ideas need the right people,” a soft sage background and six expandable reasons alongside real project photography. Opening a reason changes the large photo on desktop; on smaller screens, the photo appears within the open reason. Each photo links to its case study, and the introduction links to Contact. The descriptions work without JavaScript; desktop keeps the initial photograph in that mode. Edit `whyHeading`, `whyHeadingAccent`, `whyIntro` and the `why` items in `content/site.json`. Review [Why GDC on desktop](previews/why-desktop.png), [laptop](previews/why-laptop.png) and [mobile](previews/why-mobile.png).
+
 ## Where to edit
 
 - `content/site.json`: home-page and shared copy.
