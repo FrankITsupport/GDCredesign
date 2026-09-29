@@ -1,7 +1,7 @@
 # GDC website redesign — plan and task tracker
 
-Status: Selected Work layout and navigation revision ready for review; content and final media remain pending
-Last updated: 28 September 2026
+Status: Full-width video hero revision ready for review; content and final case-study media remain pending
+Last updated: 29 September 2026
 
 Update this file as work progresses: change `[ ]` to `[x]` only when the task is finished. Record major client decisions under **Decision log**.
 
@@ -24,6 +24,7 @@ Redesign [gdc-ltd.org](https://gdc-ltd.org/) as an elegant, easy-to-navigate sit
 - Retain Data Analysis & Visualization in the source with `enabled: false` and an HTML comment for later. Omit it from visible service cards and the enquiry dropdown.
 - Each main landing-page section fills at least the screen height below the sticky navigation. Allow sections to grow when their content needs more space on smaller screens. Keep the client ribbon inside the hero at its bottom.
 - Scroll the client logos in a continuous loop, with a pause/resume control and a static, horizontally scrollable ribbon for reduced-motion preferences.
+- Use a full-width hero with three short, silent GDC project videos, a light overlay, and a darker gradient on the left for readable copy. Keep two CTA buttons and the clients ribbon directly below the video.
 - Remove Team from the new navigation and page plan.
 - Show eight selected projects on the home page in two rows of four on desktop. The menu's **Our Work** link leads to this home section, whose **View More Work** button opens the full portfolio. Project cards open individual, fuller case studies.
 - Keep Careers as a public placeholder with clearly labelled sample posts in this phase. Discuss the simple job-posting admin and application flow in a later phase; do not direct candidates to email.
@@ -143,6 +144,16 @@ Preview the current build with `node scripts/serve.mjs`, then open `http://local
 - [x] Preserve project-card links to individual case studies and the section button's link to the full portfolio.
 - [x] Check responsive layouts and the navigation flow, including direct-file previews; update screenshots.
 
+### Full-width video hero revision — 29 September 2026
+
+- [x] Replace the split image hero with a full-width video background, light overlay, and darker left-side gradient for readable text.
+- [x] Prepare three local, silent, 12-second clips from Swift Connect Africa, IEA Global Conference, and UN SACCO Jubilee Celebration, with matching still-image posters.
+- [x] Keep two CTA buttons leading to Services and Selected Work, and preserve the client ribbon directly below the video.
+- [x] Rotate clips, add numbered selection and pause/play controls, and pause video when the hero is offscreen or the tab is hidden.
+- [x] Start with still images for reduced-motion and data-saving preferences; provide missing-video, blocked-autoplay, and no-JavaScript fallbacks.
+- [x] Keep the reduced-motion client ribbon accessible to keyboard scrolling.
+- [x] Check seven desktop, tablet, and mobile sizes, all three clips, CTA links, ribbon controls, fallbacks, local-file playback, and accessibility; update the home previews.
+
 ## Decision log
 
 | Date | Decision |
@@ -164,9 +175,11 @@ Preview the current build with `node scripts/serve.mjs`, then open `http://local
 | 28 Sep 2026 | Services now use six cards. Data Analysis & Visualization is disabled in the content source and preserved in an HTML comment for later. |
 | 28 Sep 2026 | The client-logo ribbon scrolls continuously through two matching groups. Pause/resume preserves its position, and reduced-motion mode displays a static ribbon. |
 | 28 Sep 2026 | Expand Selected Work to eight projects in two desktop rows. Our Work in the menu leads to this landing-page section; its View More Work button opens the full portfolio. Footer and hero work links follow the same section flow. |
+| 29 Sep 2026 | Use a full-width video hero with three initial GDC project clips, a light overlay and darker left gradient, two CTA buttons, and the clients ribbon below. The initial selection uses Swift, IEA, and UN SACCO; short compressed clips and posters are now local. |
 
 ## Preview review notes
 
+- The video hero was checked at 1915×917, 1440×900, 1366×768, 1024×768, 768×1024, 390×844, and 320×568. All three local clips play silently at 1280×720 and rotate correctly. The video spans the viewport, the ribbon sits directly underneath, and no horizontal overflow or overlapping copy/controls was found. Very small screens allow the hero to grow. Manual selection, pause/resume, offscreen pause, both CTAs, client controls, direct-file playback, reduced-motion preference changes, data-saving preferences, missing-video handling, blocked autoplay, and no-JavaScript fallbacks passed. Automated WCAG A/AA checks found no violations on the home page at 390 and 1440 px or on the reduced-motion hero. All 18 generated pages have valid local references, including hero clips and posters.
 - The preview was checked at 390 px, 768 px, and 1440 px widths. The tested pages returned successfully, had no horizontal overflow or browser script errors, and each had one main heading.
 - The mobile menu and four Our Work filters worked. The selected project images loaded in the preview.
 - All 13 case-study cards open. The skip link, mobile menu keyboard controls, required form fields, and reduced-motion setting worked. An automated WCAG A/AA scan found no violations on the tested home, work, case-study, and Careers layouts at mobile and desktop widths; manual review remains important as content changes.
@@ -189,4 +202,4 @@ Preview the current build with `node scripts/serve.mjs`, then open `http://local
 - Final home-page section order after reviewing the team's skeleton.
 - Which projects should appear in the home-page preview, and which case studies need fuller content.
 - Final choice of phone number(s) after client review.
-- Whether the first hero uses a still image or a short video.
+- Final hero clip selection if the client wants to replace the initial Swift, IEA, or UN SACCO excerpts.

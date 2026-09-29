@@ -50,9 +50,116 @@
     });
   });
 
+  const heroPlayer = document.querySelector('[data-hero-player]');
+  if (heroPlayer) {
+    const videos = [...heroPlayer.querySelectorAll('.hero-video')];
+    const choices = [...heroPlayer.querySelectorAll('.hero-video-choice')];
+    const toggle = heroPlayer.querySelector('.hero-video-toggle');
+    const title = heroPlayer.querySelector('.hero-video-title');
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let activeIndex = 0;
+    let paused = reducedMotion.matches || Boolean(navigator.connection?.saveData);
+    let inView = true;
+    let fallbackTimer;
+    let playRequest = 0;
+
+    heroPlayer.querySelector('.hero-controls').hidden = false;
+
+    const updateToggle = () => {
+      toggle.setAttribute('aria-pressed', String(paused));
+      toggle.setAttribute('aria-label', paused ? 'Play background videos' : 'Pause background videos');
+      toggle.innerHTML = paused ? 'Play <span aria-hidden="true">▷</span>' : 'Pause <span aria-hidden="true">Ⅱ</span>';
+    };
+
+    const canPlay = () => !paused && inView && !document.hidden;
+
+    const syncPlayback = () => {
+      clearTimeout(fallbackTimer);
+      const request = ++playRequest;
+      videos.forEach((video, index) => {
+        if (index !== activeIndex || !canPlay()) video.pause();
+      });
+      if (!canPlay()) return;
+      const video = videos[activeIndex];
+      if (video.dataset.failed) {
+        fallbackTimer = setTimeout(() => selectVideo((activeIndex + 1) % videos.length), 8000);
+        return;
+      }
+      if (!video.hasAttribute('src')) {
+        video.muted = true;
+        video.src = video.dataset.src;
+        video.load();
+      }
+      video.play().then(() => {
+        if (!canPlay() || video !== videos[activeIndex]) video.pause();
+      }).catch((error) => {
+        if (request !== playRequest || error.name === 'AbortError') return;
+        if (video.error) return; // The error handler keeps the poster visible and advances.
+        paused = true; // Autoplay can be blocked; offer a manual Play action.
+        updateToggle();
+      });
+    };
+
+    const selectVideo = (index) => {
+      videos[activeIndex].pause();
+      activeIndex = index;
+      videos.forEach((video, videoIndex) => {
+        video.classList.toggle('is-active', videoIndex === index);
+        if (videoIndex === index && video.readyState > 0) video.currentTime = 0;
+      });
+      choices.forEach((choice, choiceIndex) => {
+        choice.classList.toggle('is-active', choiceIndex === index);
+        choice.setAttribute('aria-pressed', String(choiceIndex === index));
+      });
+      title.textContent = choices[index].dataset.videoTitle;
+      syncPlayback();
+    };
+
+    videos.forEach((video, index) => {
+      video.addEventListener('ended', () => {
+        if (index === activeIndex && canPlay()) selectVideo((index + 1) % videos.length);
+      });
+      video.addEventListener('error', () => {
+        video.dataset.failed = 'true';
+        if (index === activeIndex) syncPlayback();
+      });
+    });
+    choices.forEach((choice, index) => choice.addEventListener('click', () => selectVideo(index)));
+    toggle.addEventListener('click', () => {
+      paused = !paused;
+      if (!paused && videos[activeIndex].ended) videos[activeIndex].currentTime = 0;
+      updateToggle();
+      syncPlayback();
+    });
+    document.addEventListener('visibilitychange', syncPlayback);
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(([entry]) => {
+        inView = entry.isIntersecting;
+        syncPlayback();
+      }).observe(heroPlayer);
+    }
+    reducedMotion.addEventListener('change', (event) => {
+      if (event.matches) {
+        paused = true;
+        updateToggle();
+        syncPlayback();
+      }
+    });
+    updateToggle();
+    syncPlayback();
+  }
+
   const clientRibbon = document.querySelector('.client-strip');
   const clientToggle = document.querySelector('.client-scroll-toggle');
   if (clientRibbon && clientToggle) {
+    const clientLogos = clientRibbon.querySelector('.client-logos');
+    const ribbonMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const updateRibbonFocus = () => {
+      if (ribbonMotion.matches) clientLogos.setAttribute('tabindex', '0');
+      else clientLogos.removeAttribute('tabindex');
+    };
+    updateRibbonFocus();
+    ribbonMotion.addEventListener('change', updateRibbonFocus);
     clientToggle.addEventListener('click', () => {
       const paused = clientRibbon.classList.toggle('is-paused');
       clientToggle.setAttribute('aria-pressed', String(paused));

@@ -32,26 +32,36 @@
     </header>
   <main id="main">
   <section class="hero" aria-labelledby="hero-title">
-    <div class="container hero-grid">
+    <div class="hero-stage" data-hero-player>
+      <div class="hero-backdrop" aria-hidden="true">
+        <video class="hero-video is-active" muted playsinline preload="none" poster="assets/media/hero/swift.jpg" data-src="assets/media/hero/swift.mp4" tabindex="-1"></video><video class="hero-video" muted playsinline preload="none" poster="assets/media/hero/iea.jpg" data-src="assets/media/hero/iea.mp4" tabindex="-1"></video><video class="hero-video" muted playsinline preload="none" poster="assets/media/hero/un-sacco.jpg" data-src="assets/media/hero/un-sacco.mp4" tabindex="-1"></video>
+      </div>
+      <div class="hero-overlay" aria-hidden="true"></div>
+      <div class="container hero-content">
       <div class="hero-copy">
         <p class="eyebrow"><span class="eyebrow-line"></span> NAIROBI · WORKING ACROSS AFRICA</p>
         <h1 id="hero-title">Your vision.<br>Our strategy.<br><em>Real impact.</em></h1>
         <p class="hero-lead">Events, communications and consultancy shaped with purpose and delivered with precision.</p>
         <div class="hero-actions">
-          <a class="button button-dark" href="#services">Explore our services <span aria-hidden="true">↗</span></a>
-          <a class="text-link" href="#work">See our work <span aria-hidden="true">→</span></a>
+          <a class="button hero-primary" href="#services">Explore our services <span aria-hidden="true">↗</span></a>
+          <a class="button button-outline-light" href="#work">See our work <span aria-hidden="true">↗</span></a>
         </div>
         <div class="hero-caption"><span class="tiny-red-line"></span> Strategy · Creativity · Delivery</div>
       </div>
-      <div class="hero-media">
-        <div class="hero-image-main"><img src="assets/media/projects/un-sacco/cover.jpg" alt="A GDC-produced celebration venue ready for guests" fetchpriority="high"></div>
-        <div class="hero-image-inset"><img src="assets/media/projects/issa/cover.jpg" alt="GDC production crew at work" loading="lazy"></div>
-        <div class="hero-media-label">BEHIND EVERY MOMENT IS A PLAN</div>
+      </div>
+      <div class="hero-bottom container">
+        <a href="#about" aria-label="Scroll to about GDC">Scroll to explore <span aria-hidden="true">↓</span></a>
+        <div class="hero-controls" hidden>
+          <span class="hero-video-title">Swift Connect Africa 2024</span>
+          <div class="hero-video-selector" role="group" aria-label="Choose a background video">
+            <button class="hero-video-choice is-active" type="button" aria-label="Show Swift Connect Africa 2024 video" aria-pressed="true" data-video-index="0" data-video-title="Swift Connect Africa 2024">01</button><button class="hero-video-choice" type="button" aria-label="Show IEA Global Conference video" aria-pressed="false" data-video-index="1" data-video-title="IEA Global Conference">02</button><button class="hero-video-choice" type="button" aria-label="Show UN SACCO Jubilee Celebration video" aria-pressed="false" data-video-index="2" data-video-title="UN SACCO Jubilee Celebration">03</button>
+          </div>
+          <button class="hero-video-toggle" type="button" aria-label="Pause background videos" aria-pressed="false">Pause <span aria-hidden="true">Ⅱ</span></button>
+        </div>
       </div>
     </div>
-    <div class="hero-bottom container"><span>01 / DISCOVER GDC</span><a href="#about" aria-label="Scroll to about GDC">Scroll to explore <span aria-hidden="true">↓</span></a></div>
     <div class="client-strip" role="region" aria-label="Selected clients">
-      <div class="container client-strip-inner"><div class="client-strip-label"><span>TRUSTED BY TEAMS INCLUDING</span><button class="client-scroll-toggle" type="button" aria-label="Pause client logos" aria-pressed="false">Pause</button></div><div class="client-logos"><div class="client-logos-track"><div class="client-logo-group"><span class="client-logo"><img src="assets/media/clients/iea.png" alt="International Energy Agency" loading="eager" decoding="async"></span><span class="client-logo"><img src="assets/media/clients/nssf.png" alt="NSSF" loading="eager" decoding="async"></span><span class="client-logo"><img src="assets/media/clients/swift.png" alt="SWIFT" loading="eager" decoding="async"></span><span class="client-logo"><img src="assets/media/clients/pandg.png" alt="P&G" loading="eager" decoding="async"></span><span class="client-logo client-logo-issa"><img src="assets/media/clients/issa.png" alt="ISSA" loading="eager" decoding="async"></span><span class="client-logo"><img src="assets/media/clients/kentraco.png" alt="KETRACO" loading="eager" decoding="async"></span></div><div class="client-logo-group" aria-hidden="true"><span class="client-logo"><img src="assets/media/clients/iea.png" alt="" loading="eager" decoding="async"></span><span class="client-logo"><img src="assets/media/clients/nssf.png" alt="" loading="eager" decoding="async"></span><span class="client-logo"><img src="assets/media/clients/swift.png" alt="" loading="eager" decoding="async"></span><span class="client-logo"><img src="assets/media/clients/pandg.png" alt="" loading="eager" decoding="async"></span><span class="client-logo client-logo-issa"><img src="assets/media/clients/issa.png" alt="" loading="eager" decoding="async"></span><span class="client-logo"><img src="assets/media/clients/kentraco.png" alt="" loading="eager" decoding="async"></span></div></div></div></div>
+      <div class="container client-strip-inner"><div class="client-strip-label"><span>TRUSTED BY TEAMS INCLUDING</span><button class="client-scroll-toggle" type="button" aria-label="Pause client logos" aria-pressed="false">Pause</button></div><div class="client-logos" tabindex="0" role="group" aria-label="Client logos"><div class="client-logos-track"><div class="client-logo-group"><span class="client-logo"><img src="assets/media/clients/iea.png" alt="International Energy Agency" loading="eager" decoding="async"></span><span class="client-logo"><img src="assets/media/clients/nssf.png" alt="NSSF" loading="eager" decoding="async"></span><span class="client-logo"><img src="assets/media/clients/swift.png" alt="SWIFT" loading="eager" decoding="async"></span><span class="client-logo"><img src="assets/media/clients/pandg.png" alt="P&G" loading="eager" decoding="async"></span><span class="client-logo client-logo-issa"><img src="assets/media/clients/issa.png" alt="ISSA" loading="eager" decoding="async"></span><span class="client-logo"><img src="assets/media/clients/kentraco.png" alt="KETRACO" loading="eager" decoding="async"></span></div><div class="client-logo-group" aria-hidden="true"><span class="client-logo"><img src="assets/media/clients/iea.png" alt="" loading="eager" decoding="async"></span><span class="client-logo"><img src="assets/media/clients/nssf.png" alt="" loading="eager" decoding="async"></span><span class="client-logo"><img src="assets/media/clients/swift.png" alt="" loading="eager" decoding="async"></span><span class="client-logo"><img src="assets/media/clients/pandg.png" alt="" loading="eager" decoding="async"></span><span class="client-logo client-logo-issa"><img src="assets/media/clients/issa.png" alt="" loading="eager" decoding="async"></span><span class="client-logo"><img src="assets/media/clients/kentraco.png" alt="" loading="eager" decoding="async"></span></div></div></div></div>
     </div>
   </section>
 

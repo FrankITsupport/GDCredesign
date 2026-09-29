@@ -120,6 +120,7 @@ function groupFor(project) {
 }
 
 const featured = ['swift', 'iea', 'ariel', 'un-sacco', 'shanila', 'safeschools', 'nssf', 'migaa'].map(id => projects.find(project => project.id === id));
+const heroVideos = site.heroVideos.map(video => ({ ...video, project: projects.find(project => project.id === video.projectId) }));
 const clientLogos = [
   ['iea.png', 'International Energy Agency'],
   ['nssf.png', 'NSSF'],
@@ -148,26 +149,36 @@ function serviceCard(service, index) {
 
 const home = `
   <section class="hero" aria-labelledby="hero-title">
-    <div class="container hero-grid">
+    <div class="hero-stage" data-hero-player>
+      <div class="hero-backdrop" aria-hidden="true">
+        ${heroVideos.map((video, index) => `<video class="hero-video${index === 0 ? ' is-active' : ''}" muted playsinline preload="none" poster="${attr(video.poster)}" data-src="${attr(video.src)}" tabindex="-1"></video>`).join('')}
+      </div>
+      <div class="hero-overlay" aria-hidden="true"></div>
+      <div class="container hero-content">
       <div class="hero-copy">
         <p class="eyebrow"><span class="eyebrow-line"></span> NAIROBI · WORKING ACROSS AFRICA</p>
         <h1 id="hero-title">Your vision.<br>Our strategy.<br><em>Real impact.</em></h1>
         <p class="hero-lead">${esc(site.heroLead)}</p>
         <div class="hero-actions">
-          <a class="button button-dark" href="#services">Explore our services ${arrow}</a>
-          <a class="text-link" href="#work">See our work <span aria-hidden="true">→</span></a>
+          <a class="button hero-primary" href="#services">Explore our services ${arrow}</a>
+          <a class="button button-outline-light" href="#work">See our work ${arrow}</a>
         </div>
         <div class="hero-caption"><span class="tiny-red-line"></span> Strategy · Creativity · Delivery</div>
       </div>
-      <div class="hero-media">
-        <div class="hero-image-main"><img src="assets/media/projects/un-sacco/cover.jpg" alt="A GDC-produced celebration venue ready for guests" fetchpriority="high"></div>
-        <div class="hero-image-inset"><img src="assets/media/projects/issa/cover.jpg" alt="GDC production crew at work" loading="lazy"></div>
-        <div class="hero-media-label">BEHIND EVERY MOMENT IS A PLAN</div>
+      </div>
+      <div class="hero-bottom container">
+        <a href="#about" aria-label="Scroll to about GDC">Scroll to explore <span aria-hidden="true">↓</span></a>
+        <div class="hero-controls" hidden>
+          <span class="hero-video-title">${esc(heroVideos[0].project.title)}</span>
+          <div class="hero-video-selector" role="group" aria-label="Choose a background video">
+            ${heroVideos.map((video, index) => `<button class="hero-video-choice${index === 0 ? ' is-active' : ''}" type="button" aria-label="Show ${attr(video.project.title)} video" aria-pressed="${index === 0}" data-video-index="${index}" data-video-title="${attr(video.project.title)}">${String(index + 1).padStart(2, '0')}</button>`).join('')}
+          </div>
+          <button class="hero-video-toggle" type="button" aria-label="Pause background videos" aria-pressed="false">Pause <span aria-hidden="true">Ⅱ</span></button>
+        </div>
       </div>
     </div>
-    <div class="hero-bottom container"><span>01 / DISCOVER GDC</span><a href="#about" aria-label="Scroll to about GDC">Scroll to explore <span aria-hidden="true">↓</span></a></div>
     <div class="client-strip" role="region" aria-label="Selected clients">
-      <div class="container client-strip-inner"><div class="client-strip-label"><span>TRUSTED BY TEAMS INCLUDING</span><button class="client-scroll-toggle" type="button" aria-label="Pause client logos" aria-pressed="false">Pause</button></div><div class="client-logos"><div class="client-logos-track">${clientLogoGroup()}${clientLogoGroup(true)}</div></div></div>
+      <div class="container client-strip-inner"><div class="client-strip-label"><span>TRUSTED BY TEAMS INCLUDING</span><button class="client-scroll-toggle" type="button" aria-label="Pause client logos" aria-pressed="false">Pause</button></div><div class="client-logos" tabindex="0" role="group" aria-label="Client logos"><div class="client-logos-track">${clientLogoGroup()}${clientLogoGroup(true)}</div></div></div>
     </div>
   </section>
 

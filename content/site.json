@@ -2,6 +2,11 @@
   "brand": "Global Digital Centre",
   "tagline": "Your Vision. Our Strategy. Real Impact.",
   "heroLead": "Events, communications and consultancy shaped with purpose and delivered with precision.",
+  "heroVideos": [
+    { "projectId": "swift", "src": "assets/media/hero/swift.mp4", "poster": "assets/media/hero/swift.jpg" },
+    { "projectId": "iea", "src": "assets/media/hero/iea.mp4", "poster": "assets/media/hero/iea.jpg" },
+    { "projectId": "un-sacco", "src": "assets/media/hero/un-sacco.mp4", "poster": "assets/media/hero/un-sacco.jpg" }
+  ],
   "aboutHeading": "One partner, many ways to move an idea forward.",
   "aboutText": "Global Digital Centre is a full-service Events, PR & Communications and Consultancy firm in Nairobi. We bring strategic thinking, creative design and technical expertise together for public institutions, development partners, corporates and communities.",
   "servicesIntro": "From the first conversation to the final detail, our teams connect strategy, creative work and delivery around what matters to you.",
