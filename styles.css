@@ -123,10 +123,10 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .clients-intro { grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr); column-gap: 8%; margin-bottom: 42px; }
 .clients-intro .section-heading { font-size: clamp(36px, 3.35vw, 48px); line-height: 1.18; }
 .clients-intro > p { max-width: 360px; margin: 0; color: var(--ink-soft); font-size: 15px; line-height: 1.75; }
-.clients-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px 24px; align-items: center; justify-items: center; }
-.client-item { display: flex; align-items: center; justify-content: center; width: 100%; height: 120px; padding: 16px; background: #fff; border: 1px solid rgba(31,32,33,.08); border-radius: 8px; transition: all .3s ease; }
-.client-item:hover { border-color: rgba(31,32,33,.15); background: linear-gradient(135deg, rgba(255,255,255,.95), rgba(248,250,252,.8)); box-shadow: 0 6px 20px rgba(37,24,18,.06); transform: translateY(-2px); }
-.client-item img { max-width: 90%; max-height: 100%; width: auto; height: auto; object-fit: contain; }
+.clients-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 36px; align-items: center; justify-items: center; padding: 40px 0; }
+.client-item { display: flex; align-items: center; justify-content: center; transition: all .3s ease; }
+.client-item:hover img { transform: scale(1.15) translateY(-6px); filter: drop-shadow(0 12px 24px rgba(0,0,0,0.12)); }
+.client-item img { width: 100%; max-width: 200px; height: auto; object-fit: contain; transition: all .3s ease; }
 .about-section { position: relative; overflow: hidden; background: radial-gradient(ellipse at 0% 85%, #f3e7e1 0%, transparent 52%), linear-gradient(125deg, #fcfaf7, #fff 75%); }
 .about-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.04fr); grid-template-areas: 'visual intro' 'visual story'; column-gap: 8%; row-gap: 22px; align-items: center; }
 .about-intro { grid-area: intro; align-self: end; }
@@ -557,10 +557,10 @@ body.gallery-open { overflow: hidden; }
   .why-card-icon { width: 42px; height: 42px; font-size: 16px; margin-bottom: 14px; }
   .why-card h3 { font-size: 16px; margin-bottom: 10px; }
   .why-card p { font-size: 13px; }
-  .clients-intro { grid-template-columns: 1fr; column-gap: 0; margin-bottom: 32px; }
+  .clients-intro { grid-template-columns: 1fr; column-gap: 0; margin-bottom: 28px; }
   .clients-intro > p { max-width: 100%; margin-top: 14px; }
-  .clients-grid { grid-template-columns: repeat(2, 1fr); gap: 16px 14px; }
-  .client-item { height: 100px; padding: 12px; border-radius: 6px; }
+  .clients-grid { grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 24px; padding: 28px 0; }
+  .client-item img { max-width: 160px; }
   .contact-heading { font-size: 40px; }
   .contact-grid { gap: 26px; }
   .contact-direct { margin-top: 24px; }
