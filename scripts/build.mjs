@@ -229,16 +229,22 @@ const home = `
     </div>
   </section>
 
-  <section class="section approach-section" id="approach">
+  <section class="section approach-section" id="approach" aria-labelledby="approach-title">
     <div class="container approach-layout">
-      <div class="approach-heading"><p class="section-label">03 / HOW WE WORK</p><h2 class="section-heading">Thought through.<br><em>Well delivered.</em></h2><p>One connected approach, shaped around your objective and carried through every stage.</p></div>
-      <div class="approach-steps">${site.approach.map((step, index) => `<div class="approach-step"><span>${String(index + 1).padStart(2, '0')}</span><div><h3>${esc(step.step)}</h3><p>${esc(step.description)}</p></div></div>`).join('')}</div>
+      <div class="approach-heading">
+        <div><p class="section-label">03 / HOW WE WORK</p><h2 class="section-heading" id="approach-title">${esc(site.approachHeading)}<br><em>${esc(site.approachHeadingAccent)}</em></h2></div>
+        <div class="approach-intro"><p>${esc(site.approachIntro)}</p><span><span aria-hidden="true"></span> Your brief. One connected team.</span></div>
+      </div>
+      <div class="approach-journey">
+        <ol class="approach-steps" role="list" aria-label="Our process, from your brief to your next opportunity">${site.approach.map((step, index) => `<li class="approach-step"><span class="approach-node" aria-hidden="true">${String(index + 1).padStart(2, '0')}</span><div class="approach-step-copy"><h3>${esc(step.step)}</h3><p>${esc(step.description)}</p><div class="approach-outcome"><span>THE OUTCOME</span><strong>${esc(step.outcome)}</strong></div></div></li>`).join('')}</ol>
+      </div>
+      <div class="approach-footer"><p><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 8a8 8 0 0 0-14-2L3 9m0-5v5h5M4 16a8 8 0 0 0 14 2l3-3m0 5v-5h-5"/></svg><span>In conversation at every stage.<span> Each project makes the next one better.</span></span></p><a class="button button-light" href="#contact">Let's start with your idea ${arrow}</a></div>
     </div>
   </section>
 
   <section class="section work-preview" id="work">
     <div class="container">
-      <div class="section-intro work-intro"><div><p class="section-label">04 / SELECTED WORK</p><h2 class="section-heading">The work behind<br>the moments.</h2></div><div><p>Different briefs. One commitment to work that is thoughtful, visible and carefully delivered.</p><a class="button button-outline-light" href="our-work/index.html">View more work ${arrow}</a></div></div>
+      <div class="section-intro work-intro"><div><p class="section-label">04 / SELECTED WORK</p><h2 class="section-heading">The work behind<br>the moments.</h2></div><div><p>Different briefs. One commitment to work that is thoughtful, visible and carefully delivered.</p><a class="button button-dark" href="our-work/index.html">View more work ${arrow}</a></div></div>
       <div class="preview-grid">${featured.map(project => card(project)).join('')}</div>
     </div>
   </section>

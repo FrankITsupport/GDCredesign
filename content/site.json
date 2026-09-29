@@ -70,11 +70,14 @@
       "detail": "Manufacturing, climate and renewable energy, public sector advice, market intelligence and project support."
     }
   ],
+  "approachHeading": "From your first idea",
+  "approachHeadingAccent": "to what comes next.",
+  "approachIntro": "We bring you into the process, connect the right people and keep every stage moving towards your goal.",
   "approach": [
-    {"step": "Understand", "description": "We start with your objectives, audience and the result you need."},
-    {"step": "Shape", "description": "Our team develops a clear creative, strategic and delivery plan."},
-    {"step": "Deliver", "description": "The right people and technical detail bring the plan to life."},
-    {"step": "Learn", "description": "We review what worked and what should come next."}
+    {"step": "Understand", "description": "We listen to your ambitions, get to know your audience and agree on what success looks like.", "outcome": "A shared direction"},
+    {"step": "Shape", "description": "Together, we turn the brief into a creative direction and a practical plan for delivery.", "outcome": "A clear plan"},
+    {"step": "Deliver", "description": "Our team brings the plan to life, coordinating the people, production and details that matter.", "outcome": "Your vision, made real"},
+    {"step": "Learn", "description": "We reflect on the results with you and use what we learn to shape the next opportunity.", "outcome": "Insight for your next move"}
   ],
   "why": [
     {"title": "Connected thinking", "description": "Strategy, creative work, communications and technical delivery work together."},
