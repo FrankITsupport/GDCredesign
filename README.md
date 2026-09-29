@@ -52,6 +52,8 @@ Selected GDC images and logos are stored in `assets/media/`. The four hero clips
 
 The 13 source videos total about 934 MB, so they are not committed to this repository. The plan records the pending content checks and final media delivery decision.
 
+Contact sits in a centered panel capped at 1200 px, with text and the map in its first row and the contact details and enquiry form in its second row. The cards share a height on desktop, and all four elements stack on smaller screens. Review [Contact on desktop](previews/contact-desktop.png), [laptop](previews/contact-laptop.png), and [mobile](previews/contact-mobile.png).
+
 The contact form is a preview of an email enquiry flow. A live submission has not been tested. The Careers posts are dummy content with expandable descriptions. They do not accept applications or direct candidates to email; the posting and application workflow will be planned later.
 
 SEO work remains in the later phase of the task tracker, after the client finalises content.
