@@ -203,6 +203,7 @@ Preview the current build with `node scripts/serve.mjs`, then open `http://local
 | 29 Sep 2026 | Replace the third hero selection, UN SACCO, with ARIEL Product Launch footage highlighting the stage, screen, branded reveal, and venue. Keep the approved Midnight East Nairobi clip second and provide a matching ARIEL poster. |
 | 29 Sep 2026 | Add a fourth hero selection from the NSSF AGM reel, highlighting the completed stage, screens, lighting, and conference layout. Supply a matching poster and extend the numbered controls and rotation to four videos. |
 | 29 Sep 2026 | Move NSSF to the first hero position and Swift to the last. The order is NSSF, Midnight East Nairobi, ARIEL, Swift; NSSF also supplies the initial still-image fallback. |
+| 29 Sep 2026 | Lighten the hero overlay on the right to reveal more video detail. Retain the darker left side for copy and the bottom gradient for controls; keep a gentler change on smaller screens where copy spans more of the video. |
 
 ## Preview review notes
 

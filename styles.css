@@ -75,7 +75,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .hero-backdrop, .hero-overlay { position: absolute; inset: 0; z-index: -1; overflow: hidden; }
 .hero-video { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: cover; object-position: center; opacity: 0; transition: opacity .7s ease; }
 .hero-video.is-active { opacity: 1; }
-.hero-overlay { background: linear-gradient(0deg, rgba(255,255,255,.04), rgba(255,255,255,.04)), linear-gradient(90deg, rgba(9,15,19,.88) 0%, rgba(9,15,19,.77) 34%, rgba(9,15,19,.3) 70%, rgba(9,15,19,.14) 100%), linear-gradient(0deg, rgba(9,15,19,.5), transparent 28%); }
+.hero-overlay { background: linear-gradient(0deg, rgba(255,255,255,.04), rgba(255,255,255,.04)), linear-gradient(90deg, rgba(9,15,19,.88) 0%, rgba(9,15,19,.77) 34%, rgba(9,15,19,.08) 70%, rgba(9,15,19,.03) 100%), linear-gradient(0deg, rgba(9,15,19,.5), transparent 28%); }
 .hero-content { display: flex; align-items: center; }
 .hero-copy { width: min(100%, 660px); padding: 48px 0 32px; }
 .hero .eyebrow { display: flex; align-items: center; gap: 13px; margin-bottom: 24px; color: #fff; }
@@ -419,7 +419,7 @@ body.gallery-open { overflow: hidden; }
   .hero-stage { min-height: 580px; }
   .hero-copy { padding: 40px 0 28px; }
   .hero h1 { font-size: clamp(48px, 7vw, 60px); }
-  .hero-overlay { background: linear-gradient(90deg, rgba(9,15,19,.86), rgba(9,15,19,.53)), linear-gradient(0deg, rgba(9,15,19,.45), transparent 35%); }
+  .hero-overlay { background: linear-gradient(90deg, rgba(9,15,19,.86) 0%, rgba(9,15,19,.7) 50%, rgba(9,15,19,.38) 100%), linear-gradient(0deg, rgba(9,15,19,.45), transparent 35%); }
   .hero-bottom { align-items: flex-start; }
   .hero-controls { flex-wrap: wrap; justify-content: flex-end; gap: 10px; }
   .hero-video-title { flex-basis: 100%; max-width: none; text-align: right; }
