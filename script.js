@@ -244,4 +244,56 @@
       returnFocus?.focus({ preventScroll: true });
     });
   }
+
+  if (document.body.classList.contains('home-page') && 'IntersectionObserver' in window) {
+    const navLinks = document.querySelectorAll('.main-nav > a:not(.nav-cta)');
+    const sections = [
+      { id: 'about', element: document.querySelector('#about') },
+      { id: 'services', element: document.querySelector('#services') },
+      { id: 'work', element: document.querySelector('#work') },
+      { id: 'contact', element: document.querySelector('#contact') }
+    ];
+
+    const updateActiveLink = (activeSection) => {
+      navLinks.forEach((link) => {
+        const href = link.getAttribute('href');
+        const isHome = href === 'index.html' || href === './index.html';
+        const isCurrent = activeSection ? href.endsWith(`#${activeSection}`) : isHome;
+
+        if (isCurrent) {
+          link.setAttribute('aria-current', 'page');
+        } else {
+          link.removeAttribute('aria-current');
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      let activeSection = null;
+
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          activeSection = entry.target.id;
+        }
+      });
+
+      if (!activeSection) {
+        const pageTop = window.scrollY;
+        if (pageTop < 100) {
+          activeSection = null;
+        }
+      }
+
+      updateActiveLink(activeSection);
+    }, {
+      rootMargin: '-50% 0px -50% 0px',
+      threshold: 0
+    });
+
+    sections.forEach(({ element }) => {
+      if (element) observer.observe(element);
+    });
+
+    updateActiveLink(null);
+  }
 })();

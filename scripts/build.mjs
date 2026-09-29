@@ -26,6 +26,7 @@ function write(relativePath, html) {
 
 function header(prefix, active = '') {
   const nav = [
+    ['Home', `${prefix}index.html`, 'home'],
     ['About', `${prefix}index.html#about`, 'about'],
     ['Services', `${prefix}index.html#services`, 'services'],
     ['Our Work', `${prefix}index.html#work`, 'work'],
