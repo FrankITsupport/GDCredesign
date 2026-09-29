@@ -281,8 +281,8 @@ const home = `
         <p>We've had the privilege of working with institutions, development partners, global brands, and organizations that are shaping the continent.</p>
       </div>
       <div class="clients-grid">
-        ${clientLogos.map(([file, name]) => `<div class="client-item">
-          <img src="assets/media/clients/${file}" alt="${name}" loading="lazy" decoding="async">
+        ${site.clientsLogos.map(client => `<div class="client-item">
+          <img src="assets/media/clients/${client.logo}" alt="${client.name}" loading="lazy" decoding="async">
         </div>`).join('')}
       </div>
     </div>
