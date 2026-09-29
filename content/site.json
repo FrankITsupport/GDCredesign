@@ -80,9 +80,12 @@
     {"step": "Learn", "description": "We reflect on the results with you and use what we learn to shape the next opportunity.", "outcome": "Insight for your next move"}
   ],
   "why": [
-    {"title": "Connected thinking", "description": "Strategy, creative work, communications and technical delivery work together."},
-    {"title": "Care in execution", "description": "A coordinated team keeps the details, people and deadlines in view."},
-    {"title": "Built around the brief", "description": "The approach follows the client, audience and purpose of each project."}
+    {"title": "Connected Disciplines", "description": "Strategy, creative work, communications, and technical delivery work as one coordinated team—not siloed departments."},
+    {"title": "Built Around You", "description": "Every approach follows your client, your audience, and your unique purpose. We adapt our process to your needs, not the reverse."},
+    {"title": "Detail-Oriented Delivery", "description": "A coordinated team keeps your brief, your people, and your deadlines in constant view. Nothing slips through."},
+    {"title": "African Rooted, Globally Minded", "description": "We're based in Nairobi with deep African experience, working across the continent and understanding your regional context."},
+    {"title": "Proven Track Record", "description": "Trusted by leading institutions, development partners, and global brands. From small campaigns to large-scale events."},
+    {"title": "Creative Problem-Solving", "description": "We listen first, think collaboratively, and bring both strategic insight and creative innovation to every challenge."}
   ],
   "contact": {
     "email": "info@gdc-ltd.org",

@@ -250,8 +250,25 @@ const home = `
     </div>
   </section>
 
-  <section class="section why-section">
-    <div class="container"><div class="section-intro"><div><p class="section-label">05 / WHY GDC</p><h2 class="section-heading">Good ideas deserve<br>excellent execution.</h2></div><p>Our strength is bringing different disciplines together around one clear brief.</p></div><div class="why-grid">${site.why.map((item, index) => `<article><span>0${index + 1}</span><h3>${esc(item.title)}</h3><p>${esc(item.description)}</p></article>`).join('')}</div></div>
+  <section class="section why-section" id="why" aria-labelledby="why-title">
+    <div class="container">
+      <div class="section-intro why-intro">
+        <div>
+          <p class="section-label">05 / WHY GDC</p>
+          <h2 class="section-heading" id="why-title">Good ideas deserve<br><em>excellent execution.</em></h2>
+        </div>
+        <p>Our strength is bringing different disciplines together around one clear brief. We don't just deliver projects—we partner with you to shape outcomes that matter.</p>
+      </div>
+      <div class="why-content">
+        <div class="why-grid">
+          ${site.why.map((item, index) => `<article class="why-card">
+            <div class="why-card-icon">0${index + 1}</div>
+            <h3>${esc(item.title)}</h3>
+            <p>${esc(item.description)}</p>
+          </article>`).join('')}
+        </div>
+      </div>
+    </div>
   </section>
 
   <section class="section contact-section" id="contact">
