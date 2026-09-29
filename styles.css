@@ -128,7 +128,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .client-item:hover img { transform: scale(1.12) translateY(-4px); filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1)); }
 .client-item img { width: 100%; max-width: 180px; height: auto; object-fit: contain; transition: all .3s ease; }
 .about-section { position: relative; overflow: hidden; background: radial-gradient(ellipse at 0% 85%, #f3e7e1 0%, transparent 52%), linear-gradient(125deg, #fcfaf7, #fff 75%); }
-.about-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.04fr); grid-template-areas: 'visual intro' 'visual story'; column-gap: 8%; row-gap: 22px; align-items: center; }
+.about-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.04fr); grid-template-areas: 'intro visual' 'story visual' 'values values'; column-gap: 8%; row-gap: 22px; align-items: start; }
 .about-intro { grid-area: intro; align-self: end; }
 .about-intro .section-heading { font-size: clamp(36px, 3.35vw, 48px); line-height: 1.18; }
 .about-lead { max-width: 470px; margin: 20px 0 0; font-family: var(--font-display); font-size: clamp(18px, 1.6vw, 22px); line-height: 1.5; letter-spacing: -.03em; }
@@ -146,7 +146,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .about-visual figcaption > span { color: var(--red); font-size: 18px; line-height: 1; }
 .about-story { grid-area: story; align-self: start; }
 .about-description { margin: 0; color: var(--ink-soft); font-size: 15px; line-height: 1.8; }
-.about-values { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; margin: 26px 0 28px; padding: 22px 0 0; border-top: 1px solid #e4dad4; list-style: none; }
+.about-values-section { grid-area: values; display: flex; flex-direction: column; gap: 24px; margin-top: 12px; }
+.about-values { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; margin: 0; padding: 0; border-top: none; list-style: none; }
 .about-values h3 { margin: 0 0 7px; font-family: var(--font-display); font-size: 13px; font-weight: 600; line-height: 1.4; letter-spacing: -.025em; }
 .about-values h3::before { content: ''; display: block; width: 16px; height: 2px; margin-bottom: 12px; background: var(--red); }
 .about-values p { margin: 0; color: var(--ink-soft); font-size: 12px; line-height: 1.6; }

@@ -212,6 +212,8 @@ const home = `
       </figure>
       <div class="about-story">
         <p class="about-description">${esc(site.aboutText)}</p>
+      </div>
+      <div class="about-values-section">
         <ul class="about-values" aria-label="Our way of working">${site.aboutValues.map(value => `<li><h3>${esc(value.title)}</h3><p>${esc(value.text)}</p></li>`).join('')}</ul>
         <div class="about-actions">
           <a class="button button-dark" href="#contact">Let's talk about your idea ${arrow}</a>
