@@ -1,6 +1,6 @@
 # GDC website redesign — plan and task tracker
 
-Status: Full-width video hero revision ready for review; content and final case-study media remain pending
+Status: Premium Services redesign and restrained section gradients ready for review; content and final case-study media remain pending
 Last updated: 29 September 2026
 
 Update this file as work progresses: change `[ ]` to `[x]` only when the task is finished. Record major client decisions under **Decision log**.
@@ -14,6 +14,7 @@ Redesign [gdc-ltd.org](https://gdc-ltd.org/) as an elegant, easy-to-navigate sit
 - Use HTML and CSS with light JavaScript. PHP can provide shared templates and later power the Careers posting editor.
 - Use a visible, simple navigation and a natural vertical page flow inspired by [KClassique Event Rentals](https://kclassiqueventrentals.co.ke/).
 - Use white or warm neutral space, charcoal/black text, slim modern typography, restrained red accents, and subtle gradients. Avoid large solid-red page sections.
+- Give each home section a restrained gradient variation: warm ivory, cool blue-grey, charcoal, soft sage, and warm rose/stone. Keep brand red as the shared accent and preserve clear text contrast.
 - Present six active services from GDC's [About page](https://gdc-ltd.org/about.html) in a responsive card grid:
   1. Event Design, Management & Technical Support
   2. Public Relations & Communications
@@ -154,6 +155,24 @@ Preview the current build with `node scripts/serve.mjs`, then open `http://local
 - [x] Keep the reduced-motion client ribbon accessible to keyboard scrolling.
 - [x] Check seven desktop, tablet, and mobile sizes, all three clips, CTA links, ribbon controls, fallbacks, local-file playback, and accessibility; update the home previews.
 
+### GDC favicon and About redesign — 29 September 2026
+
+- [x] Use the existing logo's G symbol and black arrow as a legible tab icon; provide 16/32/48 px ICO, 32 px PNG, and 180 px Apple touch assets.
+- [x] Include favicon links on all pages, including nested case studies and compatibility pages; serve the ICO with its image MIME type.
+- [x] Redesign About with real crew photography, inset event imagery, warm gradients, a welcoming heading, and concise statements about listening, collaboration, and care.
+- [x] Keep company copy editable in the content file and add working Contact and Services actions.
+- [x] Optimise About photos as local WebP assets and arrange the heading, imagery, and story in a readable mobile order.
+- [x] Check eight responsive sizes, all 18 pages' favicon references, icon sizes and responses, keyboard navigation, CTA destinations, direct-file previews, and accessibility; refresh About and full-home screenshots.
+
+### Premium Services and section backgrounds — 29 September 2026
+
+- [x] Redesign the six service cards with concise display titles, approachable summaries, refined icon treatment, soft corners, and distinct GDC project photos with matching dark overlays on every card.
+- [x] Preserve the official service titles and complete descriptions in accessible, expandable disclosures; keep Data Analysis & Visualization disabled and commented out.
+- [x] Add service-specific enquiry links that select the matching official service in the contact form, plus a section-level conversation CTA.
+- [x] Add restrained gradient variations to Services, Approach, Selected Work, Why GDC, and Contact while retaining the accepted About design.
+- [x] Keep the three-video hero, clients ribbon, favicon, About layout, selected-work navigation, and contact form destinations intact.
+- [x] Check eight responsive sizes, all six enquiry selections, keyboard and no-JavaScript disclosures, direct-file previews, expanded/collapsed accessibility, and local references; update Services and full-home previews.
+
 ## Decision log
 
 | Date | Decision |
@@ -176,9 +195,15 @@ Preview the current build with `node scripts/serve.mjs`, then open `http://local
 | 28 Sep 2026 | The client-logo ribbon scrolls continuously through two matching groups. Pause/resume preserves its position, and reduced-motion mode displays a static ribbon. |
 | 28 Sep 2026 | Expand Selected Work to eight projects in two desktop rows. Our Work in the menu leads to this landing-page section; its View More Work button opens the full portfolio. Footer and hero work links follow the same section flow. |
 | 29 Sep 2026 | Use a full-width video hero with three initial GDC project clips, a light overlay and darker left gradient, two CTA buttons, and the clients ribbon below. The initial selection uses Swift, IEA, and UN SACCO; short compressed clips and posters are now local. |
+| 29 Sep 2026 | Add a GDC tab icon across the site. Give About a warmer, more inviting design using real GDC crew and event photographs, the heading “Good work starts with a great partnership,” and Contact/Services actions. |
+| 29 Sep 2026 | Give Services a more premium presentation with shorter visible titles, expandable full descriptions, a featured GDC event image, and service-specific enquiry links. Use restrained gradient variations across the home sections. |
+| 29 Sep 2026 | Extend the photo background treatment to all six service cards. Use distinct GDC images with consistent overlays and white text for a cohesive presentation. |
 
 ## Preview review notes
 
+- The six-card photo treatment was checked at 1440×900, 1366×768, 390×844, and 320×568. All six distinct 900×506 images loaded, each card uses readable white headings and a dark fallback background, and no horizontal overflow was found. Automated WCAG A/AA checks found no home-page violations at 390 and 1440 px with all disclosures collapsed or expanded. Services and full-home previews were refreshed.
+- The Services revision was checked at 1915×917, 1440×900, 1366×768, 1024×768, 768×1024, 600×900, 390×844, and 320×568. All six cards and the featured photo render with no horizontal overflow, using three/two/one columns. The collapsed section fits the desktop viewport at the three tested desktop sizes and grows as needed on smaller screens or when details open. All six enquiry links select the correct official service, the section CTA reaches Contact, and native disclosures work with Enter and without JavaScript. Direct-file previews and all 18 pages' local references passed. Automated WCAG A/AA checks found no home-page violations at 390 and 1440 px with descriptions both collapsed and expanded; no browser script errors were reported. All main home sections use restrained gradients, and the hero/ribbon counts remain three videos and six clients.
+- The About redesign was checked at 1915×917, 1440×900, 1366×768, 1024×768, 768×1024, 600×900, 390×844, and 320×568. Photos loaded, content stayed within its section, and no horizontal overflow was found. About navigation lands below the sticky header; both new actions work through server and direct-file previews. All 18 generated pages have valid local references and favicon links, including nested pages. ICO entries contain 16/32/48 px images, and icon files return the correct image MIME types. Automated WCAG A/AA checks found no home-page violations at 390 and 1440 px; no browser script errors were reported.
 - The video hero was checked at 1915×917, 1440×900, 1366×768, 1024×768, 768×1024, 390×844, and 320×568. All three local clips play silently at 1280×720 and rotate correctly. The video spans the viewport, the ribbon sits directly underneath, and no horizontal overflow or overlapping copy/controls was found. Very small screens allow the hero to grow. Manual selection, pause/resume, offscreen pause, both CTAs, client controls, direct-file playback, reduced-motion preference changes, data-saving preferences, missing-video handling, blocked autoplay, and no-JavaScript fallbacks passed. Automated WCAG A/AA checks found no violations on the home page at 390 and 1440 px or on the reduced-motion hero. All 18 generated pages have valid local references, including hero clips and posters.
 - The preview was checked at 390 px, 768 px, and 1440 px widths. The tested pages returned successfully, had no horizontal overflow or browser script errors, and each had one main heading.
 - The mobile menu and four Our Work filters worked. The selected project images loaded in the preview.

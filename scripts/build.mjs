@@ -8,7 +8,6 @@ const projects = JSON.parse(readFileSync(join(root, 'content/projects.json'), 'u
 const careerPosts = JSON.parse(readFileSync(join(root, 'content/careers.json'), 'utf8'));
 // Data Analysis & Visualization stays in the content file for later, but is commented out in the page.
 const activeServices = site.services.filter(service => service.enabled !== false);
-const serviceCountLabel = ({ 6: 'Six', 7: 'Seven' })[activeServices.length] || String(activeServices.length);
 
 const esc = (value = '') => String(value).replace(/[&<>"']/g, (char) => ({
   '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
@@ -90,6 +89,9 @@ function page({ title, description, prefix = '', active = '', body, bodyClass = 
   <meta name="theme-color" content="#f8f7f5">
   <title>${esc(title)}</title>
   <meta name="description" content="${attr(description)}">
+  <link rel="icon" href="${prefix}favicon.ico" sizes="16x16 32x32 48x48" type="image/x-icon">
+  <link rel="icon" href="${prefix}assets/media/branding/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="${prefix}assets/media/branding/apple-touch-icon.png" sizes="180x180">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -144,7 +146,16 @@ const serviceIcons = [
 ];
 
 function serviceCard(service, index) {
-  return `<article class="service-card"><div class="service-card-top"><span class="service-number">${String(index + 1).padStart(2, '0')}</span><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${serviceIcons[index] || serviceIcons[5]}</svg></div><h3>${esc(service.title)}</h3><p>${esc(service.summary)}</p><span class="service-detail">${esc(service.detail)}</span></article>`;
+  return `<article class="service-card${service.image ? ' service-card-with-image' : ''}" aria-labelledby="service-title-${index + 1}">
+    ${service.image ? `<img class="service-card-photo" src="${attr(service.image)}" alt="" aria-hidden="true" width="900" height="506" loading="lazy" decoding="async">` : ''}
+    <div class="service-card-top"><span class="service-icon"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${serviceIcons[index] || serviceIcons[5]}</svg></span><span class="service-number" aria-hidden="true">${String(index + 1).padStart(2, '0')}</span></div>
+    <h3 id="service-title-${index + 1}">${esc(service.displayTitle || service.title)}</h3>
+    <p class="service-summary">${esc(service.summary)}</p>
+    <details class="service-details">
+      <summary>Explore this service<span class="visually-hidden">: ${esc(service.displayTitle || service.title)}</span><span class="service-expand" aria-hidden="true">+</span></summary>
+      <div class="service-details-body"><p class="service-full-title">${esc(service.title)}</p><p>${esc(service.detail)}</p><a class="service-enquiry" href="#contact" data-service="${attr(service.title)}">Discuss your brief ${arrow}</a></div>
+    </details>
+  </article>`;
 }
 
 const home = `
@@ -182,18 +193,39 @@ const home = `
     </div>
   </section>
 
-  <section class="section about-section" id="about">
+  <section class="section about-section" id="about" aria-labelledby="about-title">
     <div class="container about-layout">
-      <div><p class="section-label">01 / ABOUT US</p><h2 class="section-heading">${esc(site.aboutHeading)}</h2></div>
-      <div class="about-content"><p class="large-copy">${esc(site.aboutText)}</p><p class="muted-copy">We shape experiences, tell stories and build the systems that help organisations connect with the people who matter.</p><a class="underlined-link" href="#services">Discover what we do <span aria-hidden="true">↗</span></a></div>
+      <div class="about-intro">
+        <p class="section-label">01 / ABOUT US</p>
+        <h2 class="section-heading" id="about-title">${esc(site.aboutHeading)}<br><em>${esc(site.aboutHeadingAccent)}</em></h2>
+        <p class="about-lead">${esc(site.aboutIntro)}</p>
+      </div>
+      <figure class="about-visual">
+        <div class="about-photo-composition">
+          <img class="about-photo-main" src="assets/media/about/crew.webp" alt="A smiling GDC production crew member at the controls during the ISSA Technical Seminar" width="1200" height="800" loading="lazy" decoding="async">
+          <span class="about-location"><span aria-hidden="true"></span> Nairobi roots. African outlook.</span>
+          <div class="about-photo-detail"><img src="assets/media/about/celebration.webp" alt="Flowers and table settings prepared for the UN SACCO Jubilee Celebration" width="900" height="600" loading="lazy" decoding="async"></div>
+          <div class="about-photo-note"><span class="tiny-red-line" aria-hidden="true"></span><span>People who care.<br>Details that matter.</span></div>
+        </div>
+        <figcaption><span aria-hidden="true">↗</span> Behind the scenes, bringing your vision to life.</figcaption>
+      </figure>
+      <div class="about-story">
+        <p class="about-description">${esc(site.aboutText)}</p>
+        <ul class="about-values" aria-label="Our way of working">${site.aboutValues.map(value => `<li><h3>${esc(value.title)}</h3><p>${esc(value.text)}</p></li>`).join('')}</ul>
+        <div class="about-actions">
+          <a class="button button-dark" href="#contact">Let's talk about your idea ${arrow}</a>
+          <a class="underlined-link" href="#services">Explore our services ${arrow}</a>
+        </div>
+      </div>
     </div>
   </section>
 
-  <section class="section services-section" id="services">
+  <section class="section services-section" id="services" aria-labelledby="services-title">
     <div class="container">
-      <div class="section-intro"><div><p class="section-label">02 / WHAT WE DO</p><h2 class="section-heading">${serviceCountLabel} ways to bring<br>your brief to life.</h2></div><p>${esc(site.servicesIntro)}</p></div>
+      <div class="section-intro services-intro"><div><p class="section-label">02 / WHAT WE DO</p><h2 class="section-heading" id="services-title">${esc(site.servicesHeading)}<br><em>${esc(site.servicesHeadingAccent)}</em></h2></div><div class="services-intro-copy"><p>${esc(site.servicesIntro)}</p><span class="services-team-note"><span aria-hidden="true"></span> ${activeServices.length} disciplines. One connected team.</span></div></div>
       <div class="services-grid">${activeServices.map(serviceCard).join('')}
       ${site.services.filter(service => service.enabled === false).map(service => `<!-- Deferred for later: ${esc(service.title)}\n${serviceCard(service, 6)}\n-->`).join('')}</div>
+      <div class="services-footer"><p>One service or a complete solution.<span> Let’s shape the right mix for your brief.</span></p><a class="underlined-link" href="#contact">Start a conversation ${arrow}</a></div>
     </div>
   </section>
 
@@ -251,7 +283,7 @@ const careers = `
 write('careers/index.html', page({ title: 'Careers | Global Digital Centre', description: 'Explore careers at Global Digital Centre.', prefix: '../', active: 'careers', body: careers, bodyClass: 'careers-page' }));
 
 for (const [legacyPath, target, label] of [['projects.html', 'our-work/index.html', 'Our Work'], ['careers.html', 'careers/index.html', 'Careers']]) {
-  write(legacyPath, `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="refresh" content="0;url=${target}"><title>${label} | Global Digital Centre</title></head><body><p><a href="${target}">Continue to ${label}</a></p></body></html>`);
+  write(legacyPath, `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="refresh" content="0;url=${target}"><link rel="icon" href="favicon.ico" sizes="16x16 32x32 48x48" type="image/x-icon"><link rel="icon" href="assets/media/branding/favicon-32.png" sizes="32x32" type="image/png"><link rel="apple-touch-icon" href="assets/media/branding/apple-touch-icon.png" sizes="180x180"><title>${label} | Global Digital Centre</title></head><body><p><a href="${target}">Continue to ${label}</a></p></body></html>`);
 }
 
 console.log(`Built home, work, careers, ${projects.length} case-study pages, and 2 compatibility pages.`);

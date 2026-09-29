@@ -23,6 +23,14 @@ The main home sections fill at least the available screen height below the navig
 
 Hero clips rotate at the end of each 12-second video. Visitors can select a video or pause playback; playback also pauses when the hero leaves the screen or the browser tab is hidden. Reduced-motion and data-saving preferences start with still images and an explicit Play button. A missing video keeps its poster and advances to the next selection. Without JavaScript, the first poster and both CTAs remain visible.
 
+About uses real GDC crew and event photography, a soft warm background, a welcoming introduction, and three short statements about collaboration and care. Its buttons lead to Contact and Services. The heading comes first on mobile, followed by the photos and company story. Review [About on desktop](previews/about-desktop.png) and [About on mobile](previews/about-mobile.png). Its copy is editable through the `aboutHeading`, `aboutHeadingAccent`, `aboutIntro`, `aboutText`, and `aboutValues` fields in `content/site.json`.
+
+All pages use the original logo's red G and black arrow as the tab icon. `favicon.ico` includes 16, 32, and 48 px versions; the branding folder contains a 32 px PNG fallback and a 180 px Apple touch icon.
+
+Services uses a premium six-card layout with a distinct GDC project photo behind every card, consistent dark overlays, concise titles and summaries, and expandable full descriptions. “Discuss your brief” takes visitors to Contact and selects the matching service in the enquiry form. Disclosures work with the keyboard and without JavaScript; without JavaScript, visitors select their service in the form themselves. Review [Services on desktop](previews/services-desktop.png), [laptop](previews/services-laptop.png), and [mobile](previews/services-mobile.png). Edit `servicesHeading`, `servicesHeadingAccent`, `servicesIntro`, and the service `displayTitle`, `summary`, `detail`, and optional `image` fields in `content/site.json`.
+
+Home sections have distinct, subtle backgrounds: warm ivory for About, cool blue-grey for Services, muted charcoal gradients for Approach and Work, soft sage for Why GDC, and warm rose/stone for Contact. Brand red remains the shared accent.
+
 Selected Work shows eight projects in two rows of four on desktop, two columns on tablet, and one on mobile. The header and footer's Our Work links and the hero's See Our Work link lead to this home section. Its View More Work button opens the full portfolio. Review the [Selected Work desktop layout](previews/selected-work-desktop.png), [shorter laptop layout](previews/selected-work-laptop.png), and [mobile layout](previews/selected-work-mobile.png).
 
 ## Where to edit
@@ -34,7 +42,7 @@ Selected Work shows eight projects in two rows of four on desktop, two columns o
 - `styles.css`: visual design and responsive layouts.
 - `scripts/build.mjs`: page templates. Run this script after changing content or templates.
 
-Data Analysis & Visualization is preserved in `content/site.json` with `enabled: false` and emitted as an HTML comment. Set it to `true` and rebuild when it is needed again; the cards, heading count, and enquiry dropdown will update together.
+Data Analysis & Visualization is preserved in `content/site.json` with `enabled: false` and emitted as an HTML comment. Set it to `true` and rebuild when it is needed again; the cards, discipline count, and enquiry dropdown will update together.
 
 Selected GDC images and logos are stored in `assets/media/`. The three hero clips are compressed local assets, about 9.7 MB in total. The case-study video players currently reference files on the live GDC site. Those full videos should be copied and compressed for the final deployment after the visual selection is approved.
 

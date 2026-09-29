@@ -7,33 +7,52 @@
     { "projectId": "iea", "src": "assets/media/hero/iea.mp4", "poster": "assets/media/hero/iea.jpg" },
     { "projectId": "un-sacco", "src": "assets/media/hero/un-sacco.mp4", "poster": "assets/media/hero/un-sacco.jpg" }
   ],
-  "aboutHeading": "One partner, many ways to move an idea forward.",
+  "aboutHeading": "Good work starts with",
+  "aboutHeadingAccent": "a great partnership.",
+  "aboutIntro": "Your idea deserves a team that cares as much as you do.",
   "aboutText": "Global Digital Centre is a full-service Events, PR & Communications and Consultancy firm in Nairobi. We bring strategic thinking, creative design and technical expertise together for public institutions, development partners, corporates and communities.",
-  "servicesIntro": "From the first conversation to the final detail, our teams connect strategy, creative work and delivery around what matters to you.",
+  "aboutValues": [
+    { "title": "Listen first", "text": "Your goals guide the brief." },
+    { "title": "Think together", "text": "Good ideas grow through collaboration." },
+    { "title": "Care in every detail", "text": "From the first plan to the final moment." }
+  ],
+  "servicesHeading": "The expertise behind",
+  "servicesHeadingAccent": "your next big idea.",
+  "servicesIntro": "An event, a story, a new direction. Bring us your brief and we’ll bring the right mix of strategy, creativity and care.",
   "services": [
     {
       "title": "Event Design, Management & Technical Support",
-      "summary": "Complete event planning and production, from concept and set-up to guest experience and on-site delivery.",
+      "displayTitle": "Events & experiences",
+      "image": "assets/media/services/events.webp",
+      "summary": "Thoughtful events, from the first idea to a seamless experience on the day.",
       "detail": "Event design, stages, exhibition booths, audio-visual production, coordination, logistics and vendor management."
     },
     {
       "title": "Public Relations & Communications",
-      "summary": "Communication strategies that help organisations speak clearly, build trust and engage the right audiences.",
+      "displayTitle": "PR & communications",
+      "image": "assets/media/services/communications.webp",
+      "summary": "Clear communication that builds trust and connects you with the right people.",
       "detail": "Media relations, campaigns, stakeholder engagement, crisis communication, digital strategy and editorial content."
     },
     {
       "title": "Creative Design, Branding & Digital Solutions",
-      "summary": "Distinct visual identities and digital experiences that make stories easier to see and remember.",
+      "displayTitle": "Branding & digital",
+      "image": "assets/media/services/branding.webp",
+      "summary": "Distinct brands and digital experiences that make your story stand out.",
       "detail": "Brand identity, campaign and event graphics, motion creative, publications and website design."
     },
     {
       "title": "Simultaneous Interpretation Equipment & Services",
-      "summary": "Multilingual conference support that makes important conversations accessible across languages.",
+      "displayTitle": "Interpretation & languages",
+      "image": "assets/media/services/interpretation.webp",
+      "summary": "Language support and conference technology that bring everyone into the conversation.",
       "detail": "Interpreter booths, multi-channel audio systems, interpreters and technical integration."
     },
     {
       "title": "Photography, Videography & Livestreaming",
-      "summary": "Visual content that captures an event and extends its story beyond the room.",
+      "displayTitle": "Photography & film",
+      "image": "assets/media/services/film.webp",
+      "summary": "Photography, films and livestreams that let your story travel beyond the room.",
       "detail": "Event coverage, documentary and corporate video, live streams, photography and post-production."
     },
     {
@@ -44,7 +63,9 @@
     },
     {
       "title": "Consultancy & Research",
-      "summary": "Research-led advice for organisations planning growth, transformation and sustainable impact.",
+      "displayTitle": "Consultancy & research",
+      "image": "assets/media/services/consultancy.webp",
+      "summary": "Practical advice, grounded in research, to help you move forward with confidence.",
       "detail": "Manufacturing, climate and renewable energy, public sector advice, market intelligence and project support."
     }
   ],

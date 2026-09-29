@@ -50,6 +50,16 @@
     });
   });
 
+  const enquiryService = document.querySelector('.contact-form select[name="service"]');
+  document.querySelectorAll('[data-service]').forEach((link) => {
+    link.addEventListener('click', () => {
+      if (enquiryService) {
+        enquiryService.value = link.dataset.service;
+        enquiryService.dispatchEvent(new Event('change', { bubbles: true }));
+      }
+    });
+  });
+
   const heroPlayer = document.querySelector('[data-hero-player]');
   if (heroPlayer) {
     const videos = [...heroPlayer.querySelectorAll('.hero-video')];
