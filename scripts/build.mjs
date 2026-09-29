@@ -194,23 +194,6 @@ const home = `
     </div>
   </section>
 
-  <section class="section clients-section" id="clients" aria-labelledby="clients-title">
-    <div class="container">
-      <div class="section-intro clients-intro">
-        <div>
-          <p class="section-label">TRUSTED BY</p>
-          <h2 class="section-heading" id="clients-title">Leading organizations<br><em>working across Africa.</em></h2>
-        </div>
-        <p>We've had the privilege of working with institutions, development partners, global brands, and organizations that are shaping the continent.</p>
-      </div>
-      <div class="clients-grid">
-        ${clientLogos.map(([file, name]) => `<div class="client-item">
-          <img src="assets/media/clients/${file}" alt="${name}" loading="lazy" decoding="async">
-        </div>`).join('')}
-      </div>
-    </div>
-  </section>
-
   <section class="section about-section" id="about" aria-labelledby="about-title">
     <div class="container about-layout">
       <div class="about-intro">
@@ -284,6 +267,23 @@ const home = `
             <p>${esc(item.description)}</p>
           </article>`).join('')}
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section clients-section" id="clients" aria-labelledby="clients-title">
+    <div class="container">
+      <div class="section-intro clients-intro">
+        <div>
+          <p class="section-label">TRUSTED BY</p>
+          <h2 class="section-heading" id="clients-title">Leading organizations<br><em>working across Africa.</em></h2>
+        </div>
+        <p>We've had the privilege of working with institutions, development partners, global brands, and organizations that are shaping the continent.</p>
+      </div>
+      <div class="clients-grid">
+        ${clientLogos.map(([file, name]) => `<div class="client-item">
+          <img src="assets/media/clients/${file}" alt="${name}" loading="lazy" decoding="async">
+        </div>`).join('')}
       </div>
     </div>
   </section>
