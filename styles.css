@@ -119,8 +119,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .client-logos img { position: absolute; left: 50%; top: 50%; width: 170px; max-width: none; height: 170px; object-fit: contain; transform: translate(-50%, -50%); }
 .client-logo-issa img { width: 100px; height: 100px; }
 @keyframes client-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-.clients-section { min-height: calc(100svh - var(--header-height)); display: flex; align-items: center; background: radial-gradient(ellipse at 90% 15%, rgba(216,229,237,.5), transparent 50%), linear-gradient(130deg, #f9fbfc, #f5f8fa); padding: 20px 0; }
-.clients-section > .container { width: 100%; }
+.clients-section { background: radial-gradient(ellipse at 90% 15%, rgba(216,229,237,.5), transparent 50%), linear-gradient(130deg, #f9fbfc, #f5f8fa); }
 .clients-intro { grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr); column-gap: 8%; margin-bottom: 28px; }
 .clients-intro .section-heading { font-size: clamp(32px, 3vw, 44px); line-height: 1.18; }
 .clients-intro > p { max-width: 360px; margin: 0; color: var(--ink-soft); font-size: 14px; line-height: 1.7; }
