@@ -1,0 +1,6 @@
+DirectoryIndex index.php
+Options -Indexes
+RedirectMatch 301 ^/careers/index\.html$ /careers/index.php
+<Files "lib.php">
+  Require all denied
+</Files>

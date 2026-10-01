@@ -5,7 +5,8 @@ import { fileURLToPath } from 'node:url';
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const site = JSON.parse(readFileSync(join(root, 'content/site.json'), 'utf8'));
 const projects = JSON.parse(readFileSync(join(root, 'content/projects.json'), 'utf8'));
-const careerPosts = JSON.parse(readFileSync(join(root, 'content/careers.json'), 'utf8'));
+const seo = JSON.parse(readFileSync(join(root, 'content/seo.json'), 'utf8'));
+const baseUrl = seo.baseUrl.replace(/\/$/, '');
 // Data Analysis & Visualization stays in the content file for later, but is commented out in the page.
 const activeServices = site.services.filter(service => service.enabled !== false);
 
@@ -16,7 +17,45 @@ const attr = esc;
 const slugify = (value) => value.toLowerCase().replace(/&/g, 'and').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 const urlFor = (project, prefix = '') => `${prefix}our-work/${slugify(project.title)}/index.html`;
 const asset = (path, prefix = '') => `${prefix}${path}`;
+const absoluteUrl = (path = '') => new URL(path, `${baseUrl}/`).href;
+const jsonLd = (data) => `<script type="application/ld+json">${JSON.stringify(data).replace(/</g, '\\u003c')}</script>`;
 const arrow = '<span aria-hidden="true">↗</span>';
+
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebSite', '@id': `${baseUrl}/#website`, name: site.brand,
+      alternateName: 'GDC', url: `${baseUrl}/`, publisher: { '@id': `${baseUrl}/#organization` }
+    },
+    {
+      '@type': 'Organization', '@id': `${baseUrl}/#organization`, name: site.brand,
+      alternateName: 'GDC', url: `${baseUrl}/`, logo: absoluteUrl('assets/media/branding/gdc-logo-main.png'),
+      email: site.contact.email, address: { '@type': 'PostalAddress', addressLocality: 'Nairobi', addressCountry: 'KE' },
+      sameAs: Object.values(site.social),
+      hasOfferCatalog: {
+        '@type': 'OfferCatalog', name: 'Services',
+        itemListElement: activeServices.map(service => ({
+          '@type': 'Offer', itemOffered: {
+            '@type': 'Service', name: service.title,
+            description: `${service.summary} ${service.detail}`,
+            url: `${baseUrl}/#service-${slugify(service.title)}`,
+            provider: { '@id': `${baseUrl}/#organization` }
+          }
+        }))
+      }
+    }
+  ]
+};
+
+function breadcrumbs(items) {
+  return {
+    '@context': 'https://schema.org', '@type': 'BreadcrumbList',
+    itemListElement: items.map(([name, path], index) => ({
+      '@type': 'ListItem', position: index + 1, name, item: absoluteUrl(path)
+    }))
+  };
+}
 
 function write(relativePath, html) {
   const fullPath = join(root, relativePath);
@@ -30,7 +69,7 @@ function header(prefix, active = '') {
     ['About', `${prefix}index.html#about`, 'about'],
     ['Services', `${prefix}index.html#services`, 'services'],
     ['Our Work', `${prefix}index.html#work`, 'work'],
-    ['Careers', `${prefix}careers/index.html`, 'careers'],
+    ['Careers', `${prefix}careers/index.php`, 'careers'],
     ['Contact', `${prefix}index.html#contact`, 'contact']
   ];
   return `
@@ -64,7 +103,6 @@ function footer(prefix) {
           <a href="${prefix}index.html#about">About</a>
           <a href="${prefix}index.html#services">Services</a>
           <a href="${prefix}index.html#work">Our Work</a>
-          <a href="${prefix}careers/index.html">Careers</a>
         </div>
         <div class="footer-links">
           <span>Connect</span>
@@ -81,7 +119,8 @@ function footer(prefix) {
     </footer>`;
 }
 
-function page({ title, description, prefix = '', active = '', body, bodyClass = '' }) {
+function page({ title, description, path, image = 'assets/media/hero/nssf.jpg', imageAlt = 'GDC event production in Nairobi', robots, structuredData, prefix = '', active = '', body, bodyClass = '' }) {
+  const canonical = absoluteUrl(path);
   return `<!doctype html>
 <html lang="en">
 <head>
@@ -90,12 +129,24 @@ function page({ title, description, prefix = '', active = '', body, bodyClass = 
   <meta name="theme-color" content="#f8f7f5">
   <title>${esc(title)}</title>
   <meta name="description" content="${attr(description)}">
+  ${robots ? `<meta name="robots" content="${attr(robots)}">` : ''}
+  <link rel="canonical" href="${attr(canonical)}">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="${attr(site.brand)}">
+  <meta property="og:title" content="${attr(title)}">
+  <meta property="og:description" content="${attr(description)}">
+  <meta property="og:url" content="${attr(canonical)}">
+  <meta property="og:image" content="${attr(absoluteUrl(image))}">
+  <meta property="og:image:alt" content="${attr(imageAlt)}">
+  <meta name="twitter:card" content="summary_large_image">
+  ${structuredData ? jsonLd(structuredData) : ''}
   <link rel="icon" href="${prefix}favicon.ico" sizes="16x16 32x32 48x48" type="image/x-icon">
   <link rel="icon" href="${prefix}assets/media/branding/favicon-32.png" sizes="32x32" type="image/png">
   <link rel="apple-touch-icon" href="${prefix}assets/media/branding/apple-touch-icon.png" sizes="180x180">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet"></noscript>
   <link rel="stylesheet" href="${prefix}styles.css">
   <script src="${prefix}script.js" defer></script>
 </head>
@@ -109,8 +160,9 @@ function page({ title, description, prefix = '', active = '', body, bodyClass = 
 }
 
 function card(project, prefix = '', size = '', headingLevel = 3) {
+  const imageAlt = seo.projects[project.id]?.imageAlt || `${project.title} project photo`;
   return `<a class="project-card ${size}" href="${urlFor(project, prefix)}" data-category="${attr(groupFor(project))}">
-    <div class="project-card-image"><img src="${asset(project.cover, prefix)}" alt="${attr(project.title)} project" loading="lazy" decoding="async"><span class="card-arrow" aria-hidden="true">↗</span></div>
+    <div class="project-card-image"><img src="${asset(project.cover, prefix)}" alt="${attr(imageAlt)}" loading="lazy" decoding="async"><span class="card-arrow" aria-hidden="true">↗</span></div>
     <div class="project-card-meta"><span>${esc(project.category)}</span><span>View project ${arrow}</span></div>
     <h${headingLevel}>${esc(project.title)}</h${headingLevel}>
   </a>`;
@@ -125,6 +177,7 @@ function groupFor(project) {
 const featured = ['swift', 'iea', 'ariel', 'un-sacco', 'shanila', 'safeschools', 'nssf', 'migaa'].map(id => projects.find(project => project.id === id));
 const heroVideos = site.heroVideos.map(video => ({ ...video, project: projects.find(project => project.id === video.projectId) }));
 const whyStories = site.why.map(item => ({ ...item, project: projects.find(project => project.id === item.projectId) }));
+const mapQuery = encodeURIComponent(`${site.brand}, ${site.contact.address}`);
 const clientLogos = [
   ['iea.png', 'International Energy Agency'],
   ['nssf.png', 'NSSF'],
@@ -135,7 +188,7 @@ const clientLogos = [
 ];
 
 function clientLogoGroup(duplicate = false) {
-  return `<div class="client-logo-group"${duplicate ? ' aria-hidden="true"' : ''}>${clientLogos.map(([file, name]) => `<span class="client-logo${file === 'issa.png' ? ' client-logo-issa' : ''}"><img src="assets/media/clients/${file}" alt="${duplicate ? '' : name}" loading="eager" decoding="async"></span>`).join('')}</div>`;
+  return `<div class="client-logo-group"${duplicate ? ' aria-hidden="true"' : ''}>${clientLogos.map(([file, name]) => `<span class="client-logo${file === 'issa.png' ? ' client-logo-issa' : ''}"><img src="assets/media/clients/${file}" alt="${duplicate ? '' : name}" width="2363" height="2363" loading="eager" decoding="async"></span>`).join('')}</div>`;
 }
 
 const serviceIcons = [
@@ -148,7 +201,7 @@ const serviceIcons = [
 ];
 
 function serviceCard(service, index) {
-  return `<article class="service-card${service.image ? ' service-card-with-image' : ''}" aria-labelledby="service-title-${index + 1}">
+  return `<article class="service-card${service.image ? ' service-card-with-image' : ''}" id="service-${slugify(service.title)}" aria-labelledby="service-title-${index + 1}">
     ${service.image ? `<img class="service-card-photo" src="${attr(service.image)}" alt="" aria-hidden="true" width="900" height="506" loading="lazy" decoding="async">` : ''}
     <div class="service-card-top"><span class="service-icon"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${serviceIcons[index] || serviceIcons[5]}</svg></span><span class="service-number" aria-hidden="true">${String(index + 1).padStart(2, '0')}</span></div>
     <h3 id="service-title-${index + 1}">${esc(service.displayTitle || service.title)}</h3>
@@ -287,7 +340,7 @@ const home = `
       </div>
       <div class="clients-grid">
         ${site.clientsLogos.map(client => `<div class="client-item">
-          <img src="assets/media/clients/${client.logo}" alt="${client.name}" loading="lazy" decoding="async">
+          <img src="assets/media/clients/${client.logo}" alt="${client.name}" width="2363" height="2363" loading="lazy" decoding="async">
         </div>`).join('')}
       </div>
     </div>
@@ -303,7 +356,8 @@ const home = `
             <p class="contact-intro">Share the idea, challenge or event you are planning. We will start with a conversation.</p>
           </div>
           <div class="contact-hero-map">
-            <iframe class="contact-map-embed" title="Map of the GDC office area in South C, Nairobi" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.8048194428707!2d36.8037!3d-1.3196!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f1c8c8c8c8c8d%3A0x8c8c8c8c8c8c8c8c!2sReal%20Estate%2C%20South%20C%2C%20Nairobi%2C%20Kenya!5e0!3m2!1sen!2ske!4v1234567890" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <iframe class="contact-map-embed" title="Map search for Global Digital Centre in South C, Nairobi" src="https://www.google.com/maps?q=${mapQuery}&amp;output=embed" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <a class="contact-map-link" href="https://www.google.com/maps/search/?api=1&amp;query=${mapQuery}" target="_blank" rel="noopener noreferrer">Open in Maps ${arrow}</a>
           </div>
         </div>
     </div>
@@ -355,38 +409,42 @@ const home = `
     </div>
   </section>`;
 
-write('index.html', page({ title: 'Global Digital Centre', description: site.heroLead, body: home, bodyClass: 'home-page' }));
+write('index.html', page({ title: seo.home.title, description: seo.home.description, path: '', structuredData: organizationSchema, body: home, bodyClass: 'home-page' }));
 
 const categories = [['All projects', 'all'], ['Conferences & forums', 'Conferences'], ['Experiences', 'Experiences'], ['Corporate', 'Corporate']];
 const work = `
   <section class="inner-hero work-hero"><div class="container"><p class="section-label">OUR WORK / GLOBAL DIGITAL CENTRE</p><div class="inner-hero-row"><h1>Work made<br><em>to matter.</em></h1><p>Explore the experiences and platforms we have helped bring to life. Open any project to see more of the story.</p></div></div></section>
   <section class="section projects-section"><div class="container"><div class="filter-bar" role="group" aria-label="Filter projects">${categories.map(([label, value], index) => `<button type="button" class="filter-button ${index === 0 ? 'is-active' : ''}" data-filter="${value}" aria-pressed="${index === 0}">${label}</button>`).join('')}</div><div class="project-grid">${projects.map(project => card(project, '../', '', 2)).join('')}</div><p class="empty-filter" hidden>No projects in this category yet.</p></div></section>
   <section class="work-cta"><div class="container"><p>Have a project in mind?</p><h2>Let's make it happen.</h2><a class="button button-light" href="../index.html#contact">Start a conversation ${arrow}</a></div></section>`;
-write('our-work/index.html', page({ title: 'Our Work | Global Digital Centre', description: 'Explore selected GDC projects and case studies.', prefix: '../', active: 'work', body: work, bodyClass: 'work-page' }));
+write('our-work/index.html', page({ title: seo.work.title, description: seo.work.description, path: 'our-work/index.html', image: 'assets/media/projects/swift/cover.jpg', imageAlt: seo.projects.swift.imageAlt, structuredData: breadcrumbs([['Home', ''], ['Our Work', 'our-work/index.html']]), prefix: '../', active: 'work', body: work, bodyClass: 'work-page' }));
 
 projects.forEach((project, index) => {
   const prefix = '../../';
+  const path = urlFor(project);
+  const projectSeo = seo.projects[project.id];
+  if (!projectSeo) throw new Error(`Missing SEO metadata for ${project.id}`);
   const next = projects[(index + 1) % projects.length];
-  const gallery = project.gallery.map((image, i) => `<figure><a class="gallery-trigger" href="${asset(image, prefix)}" data-gallery-item aria-label="Open ${attr(project.title)} image ${i + 1}"><img src="${asset(image, prefix)}" alt="${attr(project.title)} project image ${i + 1}" loading="lazy" decoding="async"><span class="gallery-view" aria-hidden="true">View image ${arrow}</span></a></figure>`).join('');
+  const gallery = project.gallery.map((image, i) => `<figure><a class="gallery-trigger" href="${asset(image, prefix)}" data-gallery-item aria-label="Open ${attr(project.title)} image ${i + 1}"><img src="${asset(image, prefix)}" alt="${attr(projectSeo.galleryAlt[i])}" loading="lazy" decoding="async"><span class="gallery-view" aria-hidden="true">View image ${arrow}</span></a></figure>`).join('');
   const lightbox = `<dialog class="gallery-modal" aria-labelledby="gallery-caption"><div class="gallery-modal-content"><button class="gallery-close" type="button" aria-label="Close gallery">×</button><img class="gallery-full-image" alt=""><div class="gallery-modal-bar"><button class="gallery-previous" type="button" aria-label="Previous image">←</button><div><p id="gallery-caption">Project gallery</p><p class="gallery-count" aria-live="polite" aria-atomic="true"></p></div><button class="gallery-next" type="button" aria-label="Next image">→</button></div></div></dialog>`;
   const video = project.video ? `<section class="case-video-section"><div class="container"><div class="case-section-heading"><p class="section-label">PROJECT FILM</p><h2>See the work in motion.</h2></div><video controls preload="none" playsinline poster="${asset(project.cover, prefix)}"><source src="${attr(project.video)}" type="video/mp4">Your browser does not support video playback.</video></div></section>` : '';
   const body = `
-    <section class="case-hero"><div class="case-hero-image"><img src="${asset(project.cover, prefix)}" alt="${attr(project.title)}" fetchpriority="high"></div><div class="case-hero-shade"></div><div class="container case-hero-content"><a class="back-link" href="../index.html">← All projects</a><p class="eyebrow">${esc(project.category)} / GDC PROJECT</p><h1>${esc(project.articleTitle)}</h1><p>${esc(project.lead)}</p></div></section>
+    <section class="case-hero"><div class="case-hero-image"><img src="${asset(project.cover, prefix)}" alt="${attr(projectSeo.imageAlt)}" fetchpriority="high"></div><div class="case-hero-shade"></div><div class="container case-hero-content"><a class="back-link" href="../index.html">← All projects</a><p class="eyebrow">${esc(project.category)} / GDC PROJECT</p><h1>${esc(project.articleTitle)}</h1><p>${esc(project.lead)}</p></div></section>
     <section class="section case-story"><div class="container case-layout"><aside><p class="section-label">THE PROJECT</p><span class="case-aside-line"></span><p>Global Digital Centre<br>Nairobi, Kenya</p></aside><div class="case-copy">${project.bodyHtml.replace(/<(\/?)h4>/g, '<$1h2>')}</div></div></section>
     <section class="section case-gallery"><div class="container"><div class="case-section-heading"><p class="section-label">PROJECT GALLERY</p><h2>A closer look.</h2></div><div class="gallery-grid">${gallery}</div></div></section>
     ${video}
     <section class="next-project"><div class="container"><span>NEXT PROJECT</span><a href="../${slugify(next.title)}/index.html">${esc(next.title)} <span aria-hidden="true">↗</span></a></div></section>
     ${lightbox}`;
-  write(`our-work/${slugify(project.title)}/index.html`, page({ title: `${project.title} | Global Digital Centre`, description: project.lead, prefix, active: 'work', body, bodyClass: 'case-page' }));
+  write(path, page({ title: projectSeo.title, description: projectSeo.description, path, image: project.cover, imageAlt: projectSeo.imageAlt, structuredData: breadcrumbs([['Home', ''], ['Our Work', 'our-work/index.html'], [project.title, path]]), prefix, active: 'work', body, bodyClass: 'case-page' }));
 });
 
-const careers = `
-  <section class="inner-hero careers-hero"><div class="container"><p class="section-label">CAREERS / GLOBAL DIGITAL CENTRE</p><div class="inner-hero-row"><h1>Do work that<br><em>moves people.</em></h1><p>Our projects bring people, ideas and disciplines together. Explore opportunities to be part of the team.</p></div></div></section>
-  <section class="section careers-content"><div class="container careers-grid"><div><p class="section-label">JOIN GDC</p><h2>Bring your perspective<br>to the work.</h2><p>We work across events, communications, production, design, research and consultancy.</p><p class="careers-demo-note">These are sample posts for design review. They are not current vacancies, and applications are not open.</p></div><div class="career-list"><h2 class="career-list-heading">Sample opportunities</h2>${careerPosts.map(post => `<details class="career-post"><summary><span class="career-summary"><span class="career-post-title">${esc(post.title)}</span><span class="career-post-meta">${esc(post.location)} · ${esc(post.type)}</span></span><span class="career-sample-tag">Sample</span><span class="career-toggle" aria-hidden="true">+</span></summary><div class="career-post-body"><p>${esc(post.description)}</p><h3>What the role could involve</h3><ul>${post.responsibilities.map(item => `<li>${esc(item)}</li>`).join('')}</ul><p class="career-post-status">Sample listing — applications are not open.</p></div></details>`).join('')}</div></div></section>`;
-write('careers/index.html', page({ title: 'Careers | Global Digital Centre', description: 'Explore careers at Global Digital Centre.', prefix: '../', active: 'careers', body: careers, bodyClass: 'careers-page' }));
+write('careers/index.html', "<!doctype html><html lang=\"en\"><head><meta charset=\"utf-8\"><meta name=\"robots\" content=\"noindex,follow\"><link rel=\"canonical\" href=\"https://gdc-ltd.org/careers/index.php\"><meta http-equiv=\"refresh\" content=\"0;url=index.php\"><title>Careers | Global Digital Centre</title></head><body><p><a href=\"index.php\">Continue to Careers</a></p></body></html>");
 
-for (const [legacyPath, target, label] of [['projects.html', 'our-work/index.html', 'Our Work'], ['careers.html', 'careers/index.html', 'Careers']]) {
-  write(legacyPath, `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="refresh" content="0;url=${target}"><link rel="icon" href="favicon.ico" sizes="16x16 32x32 48x48" type="image/x-icon"><link rel="icon" href="assets/media/branding/favicon-32.png" sizes="32x32" type="image/png"><link rel="apple-touch-icon" href="assets/media/branding/apple-touch-icon.png" sizes="180x180"><title>${label} | Global Digital Centre</title></head><body><p><a href="${target}">Continue to ${label}</a></p></body></html>`);
+for (const [legacyPath, target, label] of [['projects.html', 'our-work/index.html', 'Our Work'], ['careers.html', 'careers/index.php', 'Careers']]) {
+  write(legacyPath, `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex,follow"><link rel="canonical" href="${absoluteUrl(target)}"><meta http-equiv="refresh" content="0;url=${target}"><link rel="icon" href="favicon.ico" sizes="16x16 32x32 48x48" type="image/x-icon"><link rel="icon" href="assets/media/branding/favicon-32.png" sizes="32x32" type="image/png"><link rel="apple-touch-icon" href="assets/media/branding/apple-touch-icon.png" sizes="180x180"><title>${label} | Global Digital Centre</title></head><body><p><a href="${target}">Continue to ${label}</a></p></body></html>`);
 }
+
+const sitemapPaths = ['', 'our-work/index.html', ...projects.map(project => urlFor(project))];
+write('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${sitemapPaths.map(path => `  <url><loc>${absoluteUrl(path)}</loc></url>`).join('\n')}\n</urlset>\n`);
+write('robots.txt', `User-agent: *\nAllow: /\nDisallow: /admin/\nDisallow: /includes/\nDisallow: /careers-data/\n\nSitemap: ${absoluteUrl('sitemap.xml')}\nSitemap: ${absoluteUrl('careers/sitemap.php')}\n`);
 
 console.log(`Built home, work, careers, ${projects.length} case-study pages, and 2 compatibility pages.`);

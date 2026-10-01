@@ -4,22 +4,22 @@ This folder contains a first visual build of the GDC website redesign. The worki
 
 ## Preview locally
 
-Requires Node.js 18 or later. No package installation is needed.
+Requires Node.js 18 or later for the static pages and PHP 8.1 or later for Careers. No package installation is needed.
 
 ```powershell
 node scripts/build.mjs
-node scripts/serve.mjs
+php -S 127.0.0.1:4174 -t .
 ```
 
-Open `http://localhost:4173/` in a browser. The preview includes the home page, Our Work, 13 case studies, and a Careers placeholder.
+Open http://127.0.0.1:4174/ in a browser. The PHP preview includes Home, Our Work, 13 case studies and the live Careers page. The Node preview server still works for static pages but cannot execute PHP.
 
-You can also open `index.html` directly. Internal page links include the HTML filename, so Our Work, case studies, and Careers work in direct-file previews too. `projects.html` and `careers.html` forward to their current pages.
+You can also open index.html directly to review static pages. Careers and its admin require the PHP server. The old projects.html and careers.html files forward to their current pages.
 
 Screenshots for quick review: [desktop home](previews/home-desktop.png), [mobile home](previews/home-mobile.png), [Our Work](previews/our-work-viewport.png), [case study](previews/case-study-desktop.png), [image gallery](previews/gallery-modal-desktop.png), and [Careers](previews/careers-desktop.png).
 
 Case-study gallery thumbnails open an image viewer with next/previous controls, arrow-key navigation, and Escape to close. Project cards link to full case studies.
 
-The main home sections fill at least the available screen height below the navigation and grow when needed for smaller screens. The hero uses four full-width, silent video clips with a light overlay and a darker gradient behind the copy. The two buttons lead to Services and Selected Work. The client ribbon remains directly below the video, with its existing pause/resume control. Review the [hero viewport](previews/home-viewport.png), [mobile hero](previews/home-mobile-viewport.png), and [six service cards](previews/services-desktop.png).
+The main home sections fill at least the available screen height below the navigation and grow when needed for smaller screens. The hero uses four full-width, silent video clips with a darker gradient behind the left-side copy and an unobscured right half on desktop. The mobile overlay remains stronger where copy spans the video. The two buttons lead to Services and Selected Work. The client ribbon remains directly below the video, with its existing pause/resume control. Review the [hero viewport](previews/home-viewport.png), [mobile hero](previews/home-mobile-viewport.png), and [six service cards](previews/services-desktop.png).
 
 Hero clips rotate at the end of each 12-second video. Visitors can select a video or pause playback; playback also pauses when the hero leaves the screen or the browser tab is hidden. Reduced-motion and data-saving preferences start with still images and an explicit Play button. A missing video keeps its poster and advances to the next selection. Without JavaScript, the first poster and both CTAs remain visible.
 
@@ -44,18 +44,45 @@ Why GDC uses the heading “Big ideas need the right people,” a soft sage back
 - `content/site.json`: home-page and shared copy.
 - `content/site.json` → `heroVideos`: the four hero clips, their posters, and associated project IDs. Short, compressed clips and matching posters live in `assets/media/hero/`.
 - `content/projects.json`: project titles, summaries, case-study copy, and media references imported from the existing GDC website.
-- `content/careers.json`: three clearly labelled sample Careers posts for layout review.
+- `content/seo.json`: canonical domain, page titles, search descriptions, and project cover/gallery image descriptions. Rebuild after editing it.
+- careers/index.php and careers/job.php: public roles created through the HR admin.
+- admin/index.php: HR login and position editor.
 - `styles.css`: visual design and responsive layouts.
 - `scripts/build.mjs`: page templates. Run this script after changing content or templates.
 
 Data Analysis & Visualization is preserved in `content/site.json` with `enabled: false` and emitted as an HTML comment. Set it to `true` and rebuild when it is needed again; the cards, discipline count, and enquiry dropdown will update together.
 
-Selected GDC images and logos are stored in `assets/media/`. The four hero clips play in this order: NSSF AGM, Midnight East Nairobi, ARIEL Product Launch, and Swift. They are compressed local assets, about 12.4 MB in total. The case-study video players currently reference files on the live GDC site. Those full videos should be copied and compressed for the final deployment after the visual selection is approved.
+Selected GDC images and logos are stored in `assets/media/`. The four hero clips play in this order: NSSF AGM, Midnight East Nairobi, ARIEL Product Launch, and Swift. They are compressed local assets, about 12.4 MB in total. The case-study video players reference existing compressed files on the live GDC site. The selected media is approved; check those video URLs during final deployment.
 
-The 13 source videos total about 934 MB, so they are not committed to this repository. The plan records the pending content checks and final media delivery decision.
+The 13 case-study videos are not committed to this repository. The plan records the remaining content checks and final URL verification.
 
 Contact sits in a centered panel capped at 1200 px, with text and the map in its first row and the contact details and enquiry form in its second row. The cards share a height on desktop, and all four elements stack on smaller screens. Review [Contact on desktop](previews/contact-desktop.png), [laptop](previews/contact-laptop.png), and [mobile](previews/contact-mobile.png).
 
-The contact form is a preview of an email enquiry flow. A live submission has not been tested. The Careers posts are dummy content with expandable descriptions. They do not accept applications or direct candidates to email; the posting and application workflow will be planned later.
+The contact form sends enquiries through FormSubmit to info@gdc-ltd.org. FormSubmit requires the receiving inbox to confirm activation; a live submission and inbox delivery have not been tested. The map searches the listed South C address and includes a direct Google Maps link; replace the search with the exact office pin when available.
 
-SEO work remains in the later phase of the task tracker, after the client finalises content.
+## Careers admin
+
+Careers is a separate PHP page reached from the main navigation. It is not a home-page section. Only published roles with an open closing date appear publicly. Each role has its own page, application email or HTTPS link, and job structured data. Drafts and closed roles stay in the admin; expired roles disappear automatically from the public listing and Careers sitemap.
+
+Set up one HR username and password once on the PHP host. By default, job records and the password hash live in a sibling folder named gdc-careers-data, outside the public website folder. If needed, set GDC_CAREERS_DATA_DIR to a different private writable folder for both setup and the PHP server. No default password is shipped.
+
+    $env:GDC_ADMIN_USER = 'hr'
+    $secure = Read-Host 'Choose a password of at least 12 characters' -AsSecureString
+    $env:GDC_ADMIN_PASSWORD = (New-Object System.Net.NetworkCredential('', $secure)).Password
+    php scripts/setup-careers-admin.php
+    Remove-Item Env:\GDC_ADMIN_PASSWORD
+    Remove-Item Env:\GDC_ADMIN_USER
+
+Visit /admin/ to sign in. HR can create a draft, edit it, choose Published, and later choose Closed. Publishing requires a description, at least one responsibility and qualification, and an application email or HTTPS link. Running the setup script again rotates the password and ends existing admin sessions. The editor uses PHP sessions, a password hash, CSRF protection, login throttling, and escaped output. Keep the private data directory outside the website document root.
+
+For an end-to-end local test, run `node scripts/run-careers-tests.mjs`. It starts an isolated PHP server, creates temporary test credentials, checks the admin and public Careers flow, then removes its temporary data.
+
+## SEO and launch
+
+Run node scripts/check-seo.mjs after each build. It checks the 15 generated indexable pages, all 52 gallery image descriptions, and the six active service anchors. The old HTML compatibility pages are noindex. The PHP Careers listing and open job pages are listed in the dynamic Careers sitemap.
+
+The build writes sitemap.xml and robots.txt; Careers serves careers/sitemap.php dynamically. Publish these with all .htaccess files, including the access rules for admin, careers, content and scripts. Merge the root rules with any existing server rules. Confirm the redirects, both sitemaps, robots file, canonical URLs, PHP execution, private data path, and cache headers on the published host. Submit both sitemaps in Google Search Console and inspect the pages after deployment.
+
+The Careers page now shows live HR posts. The old Careers HTML preview is noindex and redirects to the PHP page.
+
+On 1 October, local Lighthouse measured SEO 100 on Home and mobile performance 75 (desktop 83). The mobile audit identified the autoplay hero video and oversized original client logos as the largest remaining transfer costs. The local preview server does not apply the Apache cache and compression rules, so check speed again on the published host. The approved original media files have not been changed.

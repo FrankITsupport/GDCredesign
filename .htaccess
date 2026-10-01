@@ -1,0 +1,35 @@
+# Consolidate the public domain on the canonical HTTPS, non-www host.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{HTTP_HOST} ^www\.gdc-ltd\.org$ [NC]
+  RewriteRule ^ https://gdc-ltd.org%{REQUEST_URI} [R=301,L]
+  RewriteCond %{HTTP_HOST} ^gdc-ltd\.org$ [NC]
+  RewriteCond %{HTTPS} !=on
+  RewriteRule ^ https://gdc-ltd.org%{REQUEST_URI} [R=301,L]
+</IfModule>
+
+# Keep old indexed URLs useful after the redesign replaces their pages.
+RedirectMatch 301 ^/about\.html$ /#about
+RedirectMatch 301 ^/contact\.html$ /#contact
+RedirectMatch 301 ^/projects\.html$ /our-work/index.html
+RedirectMatch 301 ^/careers\.html$ /careers/index.php
+
+# The team page was intentionally removed and has no equivalent replacement.
+RedirectMatch gone ^/team\.html$
+
+# Cache static assets on the Apache host. HTML keeps its normal freshness checks.
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/jpeg "access plus 1 month"
+  ExpiresByType image/png "access plus 1 month"
+  ExpiresByType image/webp "access plus 1 month"
+  ExpiresByType image/svg+xml "access plus 1 month"
+  ExpiresByType image/x-icon "access plus 1 month"
+  ExpiresByType video/mp4 "access plus 1 month"
+  ExpiresByType text/css "access plus 1 week"
+  ExpiresByType application/javascript "access plus 1 week"
+</IfModule>
+
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css application/javascript application/json application/xml text/plain image/svg+xml
+</IfModule>

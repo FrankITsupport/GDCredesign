@@ -1,0 +1,91 @@
+{
+  "baseUrl": "https://gdc-ltd.org",
+  "home": {
+    "title": "Event Management & Communications in Nairobi | GDC",
+    "description": "GDC in Nairobi delivers event management, PR and communications, branding and digital work, interpretation, photography and film, and consultancy across Africa."
+  },
+  "work": {
+    "title": "Our Work: Events, Conferences & Campaigns | GDC",
+    "description": "Explore Global Digital Centre's event, conference, launch and communications projects. See the work, GDC's role and the stories behind each brief."
+  },
+  "projects": {
+    "iea": {
+      "title": "IEA Energy Efficiency Conference | GDC",
+      "description": "See GDC's conference design, production and technical support for the IEA 9th Annual Conference on Energy Efficiency in Nairobi.",
+      "imageAlt": "Audio and video control equipment overlooking seating and stage at the IEA Energy Efficiency Conference",
+      "galleryAlt": ["IEA conference screen and delegate seating in the venue", "Interpretation booths beside the IEA conference seating", "Camera positioned toward the IEA conference stage", "Audio and interpretation equipment at the IEA conference"]
+    },
+    "swift": {
+      "title": "Swift Connect Africa 2024 | GDC",
+      "description": "Explore GDC's conference management and production support for Swift Connect Africa 2024 at Safari Park Hotel in Nairobi.",
+      "imageAlt": "Swift Connect Africa conference stage, projection screen and delegate seating in Nairobi",
+      "galleryAlt": ["Swift Connect Africa conference hall with stage and seating", "Rows of seats facing the Swift Connect Africa stage", "Branded Swift exhibition stand with seating and screen", "Illuminated Swift exhibition stand with meeting tables"]
+    },
+    "shanila": {
+      "title": "Midnight East Nairobi Event | GDC",
+      "description": "See GDC's technical build and event environment for Midnight East Nairobi, the New Year's Eve celebration at Simba Corp Aspire Centre.",
+      "imageAlt": "Illuminated Midnight East Nairobi entrance walkway at dusk",
+      "galleryAlt": ["Midnight East Nairobi entrance installation in daylight", "Lit event walkway between Midnight East branded walls", "Illuminated Midnight East entrance structure at dusk", "Glowing Midnight East and Buzz Fest entrance displays"]
+    },
+    "ssd": {
+      "title": "KAIICO 2024 Conference | GDC",
+      "description": "See GDC's conference environment and event execution for KAIICO 2024, the Kakamega International Investment Conference.",
+      "imageAlt": "KAIICO 2024 conference marquee and branded entrance in Kakamega",
+      "galleryAlt": ["Aerial view of KAIICO conference marquees on the grounds", "KAIICO conference seating and stage inside a marquee", "Exterior of a KAIICO conference marquee", "Lounge seating and display panels inside a KAIICO marquee"]
+    },
+    "safeschools": {
+      "title": "5th Safe Schools Declaration Conference | GDC",
+      "description": "Explore GDC's conference environment and event delivery for the 5th Safe Schools Declaration Conference in Nairobi.",
+      "imageAlt": "Stage and branded backdrop for the 5th Safe Schools Declaration Conference",
+      "galleryAlt": ["Safe Schools Declaration conference stage and seating", "Stage lighting beside a Safe Education for All display", "Production monitors and mixing console at the conference", "Interpretation booths beside the conference seating"]
+    },
+    "issa": {
+      "title": "ISSA Technical Seminar | GDC",
+      "description": "Explore GDC's event management and technical support for the ISSA Technical Seminar at Serena Hotel in Nairobi.",
+      "imageAlt": "GDC production crew operating audio and video equipment at the ISSA Technical Seminar",
+      "galleryAlt": ["ISSA Technical Seminar signs at the venue entrance", "ISSA Technical Seminar stage and roundtable seating", "Production crew at the ISSA Technical Seminar control desk", "Interpretation booths at the ISSA Technical Seminar"]
+    },
+    "climate": {
+      "title": "Regional Climate Change Summit | GDC",
+      "description": "See GDC's role in the Regional Climate Change Summit, a forum on climate adaptation and agricultural innovation.",
+      "imageAlt": "Outdoor event marquee and setup for the Regional Climate Change Summit",
+      "galleryAlt": ["Open grounds prepared for the Climate Change Summit marquees", "Crew erecting a large summit marquee outdoors", "Crew preparing the marquee framework on the grounds", "Summit marquee with stage and rows of white chairs"]
+    },
+    "nssf": {
+      "title": "10th NSSF Annual General Meeting | GDC",
+      "description": "Explore GDC's event management and technical production for the 10th NSSF Annual General Meeting in Nairobi.",
+      "imageAlt": "Green NSSF letters and event banner outside the AGM venue",
+      "galleryAlt": ["Large NSSF letters outside the AGM venue", "Video camera recording the NSSF AGM stage", "NSSF AGM stage with presenters and audience seating", "Branded NSSF conference stage and screen"]
+    },
+    "apra": {
+      "title": "Renewables in Africa Partnership Forum | GDC",
+      "description": "See GDC's event management and production for the APRA Investment Forum in Nairobi, focused on renewable energy partnerships across Africa.",
+      "imageAlt": "APRA Investment Forum stage with branded screen, podium and seating",
+      "galleryAlt": ["APRA Investment Forum podium and presentation screen", "APRA and IRENA branded meeting area with table", "APRA wayfinding sign outside a meeting room", "Meeting tables and screens prepared for the APRA forum"]
+    },
+    "ariel": {
+      "title": "ARIEL Product Launch | GDC",
+      "description": "Explore GDC's event production and management for the ARIEL Product Launch at Ole Sereni Hotel in Nairobi.",
+      "imageAlt": "Camera and seating prepared for the ARIEL Product Launch",
+      "galleryAlt": ["ARIEL product launch venue with stage and round tables", "Green and white balloon arch at the ARIEL launch", "ARIEL product display beside a balloon arch", "ARIEL product launch presentation on the main screen"]
+    },
+    "ynbs": {
+      "title": "YNBS Global Summit | GDC",
+      "description": "Explore GDC's event management and production for the YNBS Global Summit at Villa Rosa Kempinski.",
+      "imageAlt": "Red carpet and branded backdrop for the YNBS Global Summit",
+      "galleryAlt": ["Red carpet and photo backdrop at the YNBS Global Summit", "YNBS Global Summit stage and roundtable seating", "YNBS Global Summit screen on the conference stage", "Production desk overlooking delegates at the YNBS summit"]
+    },
+    "un-sacco": {
+      "title": "UN SACCO Jubilee Celebration | GDC",
+      "description": "Explore GDC's event management and production for the UN SACCO Jubilee Celebration at Safari Park Hotel.",
+      "imageAlt": "Decorated tables and UN SACCO 50th anniversary display beneath a marquee",
+      "galleryAlt": ["Blue and white tables set for the UN SACCO Jubilee Celebration", "UN SACCO Jubilee stage with lectern and floral arrangements", "Decorated UN SACCO stage inside the event marquee", "UN SACCO Jubilee table settings and stage under lights"]
+    },
+    "migaa": {
+      "title": "NSSF Migaa Golf Tournament | GDC",
+      "description": "See GDC's event management and coordination for the NSSF Migaa Golf Tournament at Migaa Golf Club in Kiambu.",
+      "imageAlt": "Golfers crossing a green at the NSSF Migaa Golf Tournament",
+      "galleryAlt": ["Golfers walking across a green at the NSSF Migaa tournament", "Golf ball and putter on the Migaa course", "Branded welcome tent beside the NSSF Migaa golf course", "Event marquees and branded flags at the golf tournament"]
+    }
+  }
+}

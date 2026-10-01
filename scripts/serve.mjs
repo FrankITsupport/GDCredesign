@@ -10,6 +10,8 @@ const contentTypes = {
   '.css': 'text/css; charset=utf-8',
   '.js': 'text/javascript; charset=utf-8',
   '.json': 'application/json; charset=utf-8',
+  '.xml': 'application/xml; charset=utf-8',
+  '.txt': 'text/plain; charset=utf-8',
   '.jpg': 'image/jpeg',
   '.jpeg': 'image/jpeg',
   '.png': 'image/png',
@@ -22,6 +24,10 @@ const contentTypes = {
 createServer(async (request, response) => {
   try {
     const pathname = decodeURIComponent(new URL(request.url, 'http://localhost').pathname);
+    if (pathname.endsWith('.php') || pathname.split('/').some(part => part.startsWith('.')) || /^\/(?:admin|content|scripts)\//.test(pathname)) {
+      response.writeHead(404).end('Not found');
+      return;
+    }
     let file = resolve(root, `.${pathname}`);
     if (file !== root && !file.startsWith(root + sep)) {
       response.writeHead(403).end('Forbidden');

@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /includes/
+Disallow: /careers-data/
+
+Sitemap: https://gdc-ltd.org/sitemap.xml
+Sitemap: https://gdc-ltd.org/careers/sitemap.php

@@ -1,17 +1,17 @@
 # GDC website redesign — plan and task tracker
 
-Status: Premium Services redesign and restrained section gradients ready for review; content and final case-study media remain pending
-Last updated: 29 September 2026
+Status: Static SEO and the PHP Careers admin are built and tested locally; content updates, contact delivery, deployment and production indexing checks remain.
+Last updated: 1 October 2026
 
 Update this file as work progresses: change `[ ]` to `[x]` only when the task is finished. Record major client decisions under **Decision log**.
 
 ## Goal
 
-Redesign [gdc-ltd.org](https://gdc-ltd.org/) as an elegant, easy-to-navigate site with a single-flow home page, a dedicated **Our Work** page with full case studies, and a **Careers** placeholder. The first delivery focuses on appearance, layout, media, and working navigation. SEO work follows final client content edits.
+Redesign gdc-ltd.org as a single-flow home page, a dedicated Our Work portfolio, and a separate Careers page managed by HR through /admin/. SEO is prepared for current content and should be reviewed when that content changes.
 
 ## Agreed direction
 
-- Use HTML and CSS with light JavaScript. PHP can provide shared templates and later power the Careers posting editor.
+- Use HTML and CSS with light JavaScript for the main site, and PHP for public Careers pages and the protected HR editor.
 - Use a visible, simple navigation and a natural vertical page flow inspired by [KClassique Event Rentals](https://kclassiqueventrentals.co.ke/).
 - Use white or warm neutral space, charcoal/black text, slim modern typography, restrained red accents, and subtle gradients. Avoid large solid-red page sections.
 - Give each home section a restrained gradient variation: warm ivory, cool blue-grey, charcoal, soft sage, and warm rose/stone. Keep brand red as the shared accent and preserve clear text contrast.
@@ -25,10 +25,10 @@ Redesign [gdc-ltd.org](https://gdc-ltd.org/) as an elegant, easy-to-navigate sit
 - Retain Data Analysis & Visualization in the source with `enabled: false` and an HTML comment for later. Omit it from visible service cards and the enquiry dropdown.
 - Each main landing-page section fills at least the screen height below the sticky navigation. Allow sections to grow when their content needs more space on smaller screens. Keep the client ribbon inside the hero at its bottom.
 - Scroll the client logos in a continuous loop, with a pause/resume control and a static, horizontally scrollable ribbon for reduced-motion preferences.
-- Use a full-width hero with four short, silent GDC project videos, a light overlay, and a darker gradient on the left for readable copy. Keep two CTA buttons and the clients ribbon directly below the video.
+- Use a full-width hero with four short, silent GDC project videos. Keep the darker gradient behind the left-side copy and leave the right half clear on desktop so the footage is visible. Keep two CTA buttons and the clients ribbon directly below the video.
 - Remove Team from the new navigation and page plan.
 - Show eight selected projects on the home page in two rows of four on desktop. The menu's **Our Work** link leads to this home section, whose **View More Work** button opens the full portfolio. Project cards open individual, fuller case studies.
-- Keep Careers as a public placeholder with clearly labelled sample posts in this phase. Discuss the simple job-posting admin and application flow in a later phase; do not direct candidates to email.
+- Keep Careers out of the home-page sections and link to it from the main navigation. HR manages published roles through a password-protected admin.
 - Use `info@gdc-ltd.org` and, for client review, both numbers found on the live website: visible contact number `0758 431 170` and structured-data number `+254 724 997 041`. The client will decide whether both remain.
 
 ## Content and media sources
@@ -46,16 +46,16 @@ Select only material that helps visitors understand GDC and take action. Edit do
 | --- | --- |
 | Home | Header and hero with client ribbon; short company introduction; six active services; approach or reasons to choose GDC; eight selected projects with View More Work; contact and footer. Confirm section order against the team's skeleton. |
 | Our Work | Project-card grid. Each card opens a dedicated case study with a brief, GDC's role, execution, outcome where supported, and relevant images/video. |
-| Careers | Designed placeholder with three expandable sample posts. Clearly identify them as dummy content and keep applications closed. The posting editor is a later phase. |
+| Careers | PHP listing of open roles, individual job pages, and a password-protected HR editor for drafts, publishing, editing and closing. |
 
 ## Tasks
 
-Preview the current build with `node scripts/serve.mjs`, then open `http://localhost:4173/`. The build contains the home page, Our Work, 13 case studies, and the Careers placeholder.
+Preview the current build with node scripts/build.mjs and php -S 127.0.0.1:4174 -t . The PHP preview includes the home page, Our Work, 13 case studies, and live Careers.
 
 ### 1. Discovery and alignment
 
 - [x] Confirm target website and visual inspiration.
-- [x] Confirm single-flow home page, separate Our Work page, and Careers placeholder.
+- [x] Confirm single-flow home page, separate Our Work page, and Careers linked only through navigation.
 - [x] Confirm the initial seven-service inventory; defer Data Analysis & Visualization as requested on 28 September.
 - [x] Confirm Team removal, restrained red, selective document content, and deferred SEO.
 - [x] Locate and review both supplied PDFs at a high level.
@@ -68,7 +68,7 @@ Preview the current build with `node scripts/serve.mjs`, then open `http://local
 - [x] Create a compact style direction: colours, typography, spacing, buttons, cards, imagery, and gradient use.
 - [x] Design desktop and mobile layouts for the home page.
 - [x] Design the Our Work grid and a reusable case-study layout.
-- [x] Design the Careers placeholder and shared header/footer.
+- [x] Design the Careers page and shared header/footer.
 - [ ] Review the design with the client/team and record changes here.
 
 ### 3. Content and asset preparation
@@ -81,16 +81,17 @@ Preview the current build with `node scripts/serve.mjs`, then open `http://local
 - [ ] Review other existing site assets and download any additional approved selections.
 - [x] Audit case-study text and flag missing outcomes or unclear claims for client review.
 - [ ] Edit and confirm final case-study text with the client.
-- [ ] Verify displayed contact details and client-logo/project permissions with the client.
+- [x] Confirm selected project media and client-logo permissions with the client.
+- [ ] Verify displayed contact details and the exact office map location with the client.
 
 ### 4. Build the visual site
 
 - [x] Build the responsive home page and navigation.
 - [x] Build the six active service cards and the selected-work section; preserve the seventh service in a comment for later.
 - [x] Build the Our Work grid and individual case-study pages.
-- [x] Build the Careers placeholder.
+- [x] Build the PHP Careers listing, individual job pages, and HR admin.
 - [x] Wire contact actions and the existing email enquiry flow in the preview.
-- [ ] Copy or optimise final video selections and images for the finished site.
+- [ ] Confirm the approved, already-compressed case-study videos remain reachable at their final hosting URLs.
 
 ### 5. Review and finish the first design release
 
@@ -100,33 +101,39 @@ Preview the current build with `node scripts/serve.mjs`, then open `http://local
 - [x] Check readable type, keyboard access, colour contrast, and reduced-motion behaviour on the main page types.
 - [ ] Verify the live contact form submission and all final media files before launch.
 - [ ] Apply team/client visual and content feedback.
-- [ ] Obtain final approval of copy, project facts, media choices, and contact numbers.
+- [ ] Obtain final approval of remaining copy, project facts, and contact numbers.
 
-### 6. After final content approval — SEO and launch preparation
+### 6. SEO and launch preparation
 
-**Deferred until client edits and content choices are final.**
-
-- [ ] Write final page titles, descriptions, headings, image descriptions, and search-focused service copy.
-- [ ] Finalise case-study URLs, canonical links, structured data, and sitemap.
-- [ ] Map existing URLs to the redesign and add redirects where content moves.
-- [ ] Review page speed and search indexing in Google Search Console.
-- [ ] Verify the published site and monitor indexing after launch.
+- [x] Write unique page titles and descriptions for the home, Our Work, and all 13 case studies; add descriptive cover-image text and validate one H1 per page.
+- [x] Keep all six active services visible in page copy, give them stable anchors, and describe them in the Organization service catalog.
+- [x] Set canonical links, social previews, structured data, and an XML sitemap for the 15 indexable pages.
+- [x] Keep old Careers HTML and compatibility pages noindex; publish open Careers roles through a dynamic sitemap and individual JobPosting pages.
+- [x] Map the known legacy About, Contact, Projects and Team URLs, and prepare Apache redirects to one HTTPS non-`www` host.
+- [x] Review local page speed and add font loading, intrinsic client-image dimensions, and Apache cache/compression rules.
+- [x] Replace generic descriptions on all 52 case-study gallery images after visually reviewing them.
+- [ ] Recheck SEO copy and image descriptions when ongoing content edits are approved.
+- [ ] Merge `.htaccess` with production server rules, publish, and verify live redirects, robots, sitemap, canonical URLs, compression and caching.
+- [ ] Submit both static and Careers sitemaps in Google Search Console, inspect important pages, and monitor indexing after launch.
 
 ### Requested compact revision — 28 September 2026
 
 - [x] Reduce spacing across home sections, page introductions, case studies, and the footer.
 - [x] Reduce project thumbnail, gallery, and video display sizes; show four project cards per row on wide screens.
 - [x] Add an image gallery modal to all case studies with next/previous controls, arrow keys, Escape, backdrop close, and focus return.
-- [x] Use explicit HTML links so home, work, case-study, and Careers navigation works through both the preview server and direct local files.
+- [x] Keep explicit HTML links for static page previews. Careers navigation opens PHP and requires a PHP server.
 - [x] Provide working `projects.html` and `careers.html` compatibility links.
-- [x] Add three expandable dummy Careers posts with no application or admin workflow.
+- [x] Retire the three dummy Careers posts and replace them with admin-managed roles.
 - [x] Check the revision at 320, 390, 768, 1440, and 1915 px widths; update review screenshots.
 
-### Later scope — Careers posting editor
+### Careers posting editor — 1 October 2026
 
-- [ ] Agree on the admin workflow and access requirements.
-- [ ] Build or adapt the job-posting editor for creating, editing, publishing, and closing roles.
-- [ ] Confirm the application destination and verify expired roles no longer appear open.
+- [x] Use one HR username/password with drafts, publishing, editing and closing. Applications use the email or HTTPS link entered for each role.
+- [x] Build the PHP job-posting editor, public listing, job detail pages and dynamic sitemap.
+- [x] Require an application destination on publish and hide closed or expired roles from public pages and the careers sitemap.
+- [x] Verify local login, CSRF, draft, publish, escaping, public listing, job sitemap, close and logout.
+- [ ] Set the production HR credentials and private writable data directory; confirm PHP execution and permissions on the live host.
+- [ ] Confirm the HR application email or link for each real role before publishing it.
 
 ### Landing-page viewport revision — 28 September 2026
 
@@ -208,6 +215,11 @@ Preview the current build with `node scripts/serve.mjs`, then open `http://local
 | 29 Sep 2026 | Change Selected Work to a warm stone gradient with dark headings, readable metadata and a dark portfolio button. Keep How We Work charcoal to give the neighbouring sections a clear visual transition. |
 | 29 Sep 2026 | Correct the header logo sizing so the complete GDC mark is visible. Display GLOBAL DIGITAL CENTRE on one line above 850 px; allow a compact wrap alongside the mobile menu. Apply the shared header fix to every page. |
 | 29 Sep 2026 | Redesign Why GDC as a visual story with the heading “Big ideas need the right people,” six expandable reasons, real project photographs and case-study links. On desktop, selecting a reason changes the adjacent photograph; on smaller screens, its photograph sits within the open reason. Use a subtle sage background and a Contact action. |
+| 1 Oct 2026 | Most site content is approved, with updates continuing. Selected media and client logos are approved; the existing videos are already compressed, so no further compression is planned. SEO remains the final phase. |
+| 1 Oct 2026 | Replace the hardcoded map embed with a search generated from the listed office address and provide a direct Maps link. FormSubmit activation and successful inbox delivery still require a live submission check. |
+| 1 Oct 2026 | Fade the desktop hero overlay out by the midpoint so the right half of each video is unobscured. Retain the left copy treatment and the mobile overlay, where text covers more of the video. |
+| 1 Oct 2026 | Prepare SEO for Home, Our Work, and 13 case studies, with all six active services represented in page copy and structured data. Keep the deferred Careers placeholder out of search indexing. Production indexing checks follow deployment. |
+| 1 Oct 2026 | Replace the Careers placeholder with an independent PHP listing and password-protected HR editor. Keep Careers in the main navigation only. Show published, unexpired jobs with per-post application destinations; keep credentials and records outside the public website folder. |
 
 ## Preview review notes
 
@@ -236,12 +248,11 @@ Preview the current build with `node scripts/serve.mjs`, then open `http://local
 - **Featured work:** the home page currently highlights Swift Connect Africa, IEA Global Conference, ARIEL Product Launch, UN SACCO Jubilee Celebration, Midnight East Nairobi, 5th Safe Schools Declaration, 10th NSSF Annual General Meeting, and NSSF Migaa Golf Tournament. Confirm these eight projects and their order with the client.
 - **Specific claims to confirm:** KAIICO's attendance/exhibitor counts and named guests; Midnight East's audience size and four-city connection; and the IEA case study's broad impact statements. These are carried over from the live website and should be checked against client records before publication.
 - **Short case studies:** ISSA, Regional Climate Change Summit, NSSF AGM, APRA, ARIEL, YNBS, UN SACCO, and Migaa mainly describe the event and GDC's general role. Ask the client for concrete deliverables, GDC's exact scope, and approved outcomes. Avoid inventing results.
-- **Contact and identity:** confirm which of the two published phone numbers to show, plus approval for client logos and project media.
-- **Media delivery:** keep the local photo galleries; choose compression and hosting for the 13 case videos before launch. The original files total about 934 MB and are not in the Git repository.
+- **Contact and identity:** confirm which of the two published phone numbers to show and the exact office map location. Client logos and project media are approved.
+- **Media delivery:** keep the local photo galleries and existing compressed videos. The 13 case-study players reference existing GDC-hosted files; verify those URLs at final deployment. No further compression is planned.
 
 ## Open decisions
 
 - Final home-page section order after reviewing the team's skeleton.
 - Which projects should appear in the home-page preview, and which case studies need fuller content.
 - Final choice of phone number(s) after client review.
-- Final hero clip selection if the client wants to replace the current Swift, Midnight East Nairobi, ARIEL, or NSSF excerpts.
