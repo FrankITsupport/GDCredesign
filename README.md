@@ -25,7 +25,7 @@ Hero clips rotate at the end of each 12-second video. Visitors can select a vide
 
 The client ribbon displays all six existing logo assets in their original colours at full opacity, including while scrolling and in reduced-motion mode.
 
-About uses real GDC crew and event photography, a soft warm background, a welcoming introduction, and three short statements about collaboration and care. Its buttons lead to Contact and Services. The heading comes first on mobile, followed by the photos and company story. Review [About on desktop](previews/about-desktop.png) and [About on mobile](previews/about-mobile.png). Its copy is editable through the `aboutHeading`, `aboutHeadingAccent`, `aboutIntro`, `aboutText`, and `aboutValues` fields in `content/site.json`.
+About uses real GDC crew and event photography on a soft warm background. Its heading, intro and body contain only the approved About passage, split across the `aboutHeading`, `aboutIntro` and `aboutText` fields in `content/site.json`. On mobile, the photos sit between the intro and body.
 
 All pages use the original logo's red G and black arrow as the tab icon. `favicon.ico` includes 16, 32, and 48 px versions; the branding folder contains a 32 px PNG fallback and a 180 px Apple touch icon.
 
