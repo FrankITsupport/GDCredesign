@@ -170,11 +170,11 @@ function card(project, prefix = '', size = '', headingLevel = 3) {
 
 function groupFor(project) {
   if (['shanila', 'ariel', 'un-sacco'].includes(project.id)) return 'Experiences';
-  if (['nssf', 'migaa'].includes(project.id)) return 'Corporate';
+  if (project.id === 'nssf') return 'Corporate';
   return 'Conferences';
 }
 
-const featured = ['swift', 'iea', 'ariel', 'un-sacco', 'shanila', 'safeschools', 'nssf', 'migaa'].map(id => projects.find(project => project.id === id));
+const featured = ['swift', 'iea', 'ariel', 'un-sacco', 'shanila', 'safeschools', 'nssf', 'blt'].map(id => projects.find(project => project.id === id));
 const heroVideos = site.heroVideos.map(video => ({ ...video, project: projects.find(project => project.id === video.projectId) }));
 const whyStories = site.why.map(item => ({ ...item, project: projects.find(project => project.id === item.projectId) }));
 const mapQuery = encodeURIComponent(`${site.brand}, ${site.contact.address}`);

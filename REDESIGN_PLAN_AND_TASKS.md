@@ -245,9 +245,9 @@ Preview the current build with node scripts/build.mjs and php -S 127.0.0.1:4174 
 
 ## Content review queue
 
-- **Featured work:** the home page currently highlights Swift Connect Africa, IEA Global Conference, ARIEL Product Launch, UN SACCO Jubilee Celebration, Midnight East Nairobi, 5th Safe Schools Declaration, 10th NSSF Annual General Meeting, and NSSF Migaa Golf Tournament. Confirm these eight projects and their order with the client.
+- **Featured work:** the home page currently highlights Swift Connect Africa, IEA Global Conference, ARIEL Product Launch, UN SACCO Jubilee Celebration, Midnight East Nairobi, 5th Safe Schools Declaration, 10th NSSF Annual General Meeting, and BLT Stage Production. Confirm these eight projects and their order with the client.
 - **Specific claims to confirm:** KAIICO's attendance/exhibitor counts and named guests; Midnight East's audience size and four-city connection; and the IEA case study's broad impact statements. These are carried over from the live website and should be checked against client records before publication.
-- **Short case studies:** ISSA, Regional Climate Change Summit, NSSF AGM, APRA, ARIEL, YNBS, UN SACCO, and Migaa mainly describe the event and GDC's general role. Ask the client for concrete deliverables, GDC's exact scope, and approved outcomes. Avoid inventing results.
+- **Short case studies:** ISSA, Regional Climate Change Summit, NSSF AGM, APRA, ARIEL, YNBS, UN SACCO, and BLT mainly describe the event and GDC's general role. Ask the client for concrete deliverables, GDC's exact scope, and approved outcomes. Avoid inventing results.
 - **Contact and identity:** confirm which of the two published phone numbers to show and the exact office map location. Client logos and project media are approved.
 - **Media delivery:** keep the local photo galleries and existing compressed videos. The 13 case-study players reference existing GDC-hosted files; verify those URLs at final deployment. No further compression is planned.
 

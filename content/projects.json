@@ -216,21 +216,21 @@
     "sourceUrl": "https://gdc-ltd.org/projects.html"
   },
   {
-    "id": "migaa",
-    "slug": "migaa",
-    "title": "NSSF Migaa Golf Tournament",
-    "articleTitle": "NSSF Migaa Golf Tournament",
-    "category": "Golf Tournament",
-    "lead": "A prestigious golf tournament bringing together golf enthusiasts and stakeholders for a day of sport and networking.",
-    "bodyHtml": "<h4>NSSF Migaa Golf Tournament</h4>\n                    <p><strong>Venue:</strong> Migaa Golf Club, Kiambu</p>\n                    <p><strong>Date:</strong> August 8, 2025</p>\n                    <p>A prestigious golf tournament bringing together golf enthusiasts and stakeholders for a day of sport and networking.</p>\n                    <p>GDC delivered comprehensive event management and coordination services for this successful golf tournament.</p>",
-    "cover": "assets/media/projects/migaa/cover.jpg",
+    "id": "blt",
+    "slug": "blt",
+    "title": "BLT Stage Production",
+    "articleTitle": "BLT Stage Production for Your Next Best Self Summit",
+    "category": "Events Production",
+    "lead": "A branded stage and conference setting for Breakthrough Leadership Transformation at Your Next Best Self Global Summit 9.0.",
+    "bodyHtml": "<h4>BLT Stage Production</h4>\n                    <p>For Your Next Best Self Global Summit 9.0, GDC brought Breakthrough Leadership Transformation's event branding into the conference space.</p>\n                    <p>The stage paired a central screen and side panels with a branded lectern, while roundtable seating completed the setting for speakers and delegates.</p>",
+    "cover": "assets/media/projects/blt/cover.jpg",
     "gallery": [
-      "assets/media/projects/migaa/gallery-1.jpg",
-      "assets/media/projects/migaa/gallery-2.jpg",
-      "assets/media/projects/migaa/gallery-3.jpg",
-      "assets/media/projects/migaa/gallery-4.jpg"
+      "assets/media/projects/blt/gallery-1.jpg",
+      "assets/media/projects/blt/gallery-2.jpg",
+      "assets/media/projects/blt/gallery-3.jpg",
+      "assets/media/projects/blt/gallery-4.jpg"
     ],
-    "video": "https://gdc-ltd.org/assets/projects%20media/MIGAA/NSSF%20MIGAA%20SET%20UP%20GDC.mp4",
-    "sourceUrl": "https://gdc-ltd.org/projects.html"
+    "video": null,
+    "sourceUrl": null
   }
 ]

@@ -54,7 +54,7 @@ Data Analysis & Visualization is preserved in `content/site.json` with `enabled:
 
 Selected GDC images and logos are stored in `assets/media/`. The four hero clips play in this order: NSSF AGM, Midnight East Nairobi, ARIEL Product Launch, and Swift. They are compressed local assets, about 12.4 MB in total. The case-study video players reference existing compressed files on the live GDC site. The selected media is approved; check those video URLs during final deployment.
 
-The 13 case-study videos are not committed to this repository. The plan records the remaining content checks and final URL verification.
+Case-study videos, where provided, are not committed to this repository. The BLT case study uses client photos and has no video. The plan records the remaining content checks and final URL verification.
 
 Contact sits in a centered panel capped at 1200 px, with text and the map in its first row and the contact details and enquiry form in its second row. The cards share a height on desktop, and all four elements stack on smaller screens. Review [Contact on desktop](previews/contact-desktop.png), [laptop](previews/contact-laptop.png), and [mobile](previews/contact-mobile.png).
 
