@@ -248,31 +248,16 @@ const home = `
     </div>
   </section>
 
-  <section class="section about-section" id="about" aria-labelledby="about-title">
+  <section class="section about-section" id="about" aria-label="About Global Digital Centre">
     <div class="container about-layout">
-      <div class="about-intro">
-        <p class="section-label">01 / ABOUT US</p>
-        <h2 class="section-heading" id="about-title"><em>${esc(site.aboutHeadingAccent)}</em></h2>
-        <p class="about-lead">${esc(site.aboutIntro)}</p>
-      </div>
-      <figure class="about-visual">
-        <div class="about-photo-composition">
-          <img class="about-photo-main" src="assets/media/about/crew.webp" alt="A smiling GDC production crew member at the controls during the ISSA Technical Seminar" width="1200" height="800" loading="lazy" decoding="async">
-          <span class="about-location"><span aria-hidden="true"></span> Nairobi roots. African outlook.</span>
-          <div class="about-photo-detail"><img src="assets/media/about/celebration.webp" alt="Flowers and table settings prepared for the UN SACCO Jubilee Celebration" width="900" height="600" loading="lazy" decoding="async"></div>
-          <div class="about-photo-note"><span class="tiny-red-line" aria-hidden="true"></span><span>People who care.<br>Details that matter.</span></div>
-        </div>
-        <figcaption><span aria-hidden="true">↗</span> Behind the scenes, bringing your vision to life.</figcaption>
-      </figure>
       <div class="about-story">
         <p class="about-description">${esc(site.aboutText)}</p>
       </div>
-      <div class="about-actions-section">
-        <a class="button button-dark" href="#contact">Let's talk about your idea ${arrow}</a>
-        <a class="underlined-link" href="#services">Explore our services ${arrow}</a>
-      </div>
-      <div class="about-values-section">
-        <ul class="about-values" aria-label="Our way of working">${site.aboutValues.map(value => `<li><h3>${esc(value.title)}</h3><p>${esc(value.text)}</p></li>`).join('')}</ul>
+      <div class="about-visual" aria-hidden="true">
+        <div class="about-photo-composition">
+          <img class="about-photo-main" src="assets/media/about/crew.webp" alt="" width="1200" height="800" loading="lazy" decoding="async">
+          <div class="about-photo-detail"><img src="assets/media/about/celebration.webp" alt="" width="900" height="600" loading="lazy" decoding="async"></div>
+        </div>
       </div>
     </div>
   </section>
