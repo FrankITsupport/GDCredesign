@@ -258,7 +258,7 @@ const home = `
         <div class="about-photo-composition">
           <img class="about-photo-main" src="assets/media/about/crew.webp" alt="A smiling GDC production crew member at the controls during the ISSA Technical Seminar" width="1200" height="800" loading="lazy" decoding="async">
           <span class="about-location"><span aria-hidden="true"></span> Nairobi roots. African outlook.</span>
-          <div class="about-photo-detail"><img src="assets/media/about/celebration.webp" alt="Flowers and table settings prepared for the UN SACCO Jubilee Celebration" width="900" height="600" loading="lazy" decoding="async"></div>
+          <div class="about-photo-detail"><img src="assets/media/about/production-console.jpg" alt="GDC audio mixing console and laptop during event production" width="900" height="506" loading="lazy" decoding="async"></div>
           <div class="about-photo-note"><span class="tiny-red-line" aria-hidden="true"></span><span>People who care.<br>Details that matter.</span></div>
         </div>
         <figcaption><span aria-hidden="true">↗</span> Behind the scenes, bringing your vision to life.</figcaption>
@@ -316,12 +316,12 @@ const home = `
       </div>
       <div class="why-layout" data-why-stories>
         <div class="why-visual">
-          ${whyStories.map((item, index) => `<figure class="why-photo" data-why-photo="${index}"${index ? ' hidden' : ''}><img src="${attr(item.image)}" alt="${attr(item.imageAlt)}" loading="lazy" decoding="async"><figcaption><div><span>GDC AT WORK</span><strong>${esc(item.project.title)}</strong></div><a href="${urlFor(item.project)}" aria-label="Read the ${attr(item.project.title)} case study">See this project ${arrow}</a></figcaption></figure>`).join('')}
+          ${whyStories.map((item, index) => `<figure class="why-photo" data-why-photo="${index}"${index ? ' hidden' : ''}><img src="${attr(item.image)}" alt="${attr(item.imageAlt)}" loading="lazy" decoding="async"><figcaption><div><span>GDC AT WORK</span><strong>${esc(item.project?.title || item.imageCaption)}</strong></div>${item.project ? `<a href="${urlFor(item.project)}" aria-label="Read the ${attr(item.project.title)} case study">See this project ${arrow}</a>` : ''}</figcaption></figure>`).join('')}
           <span class="why-photo-note"><span aria-hidden="true"></span> People. Ideas. Delivery.</span>
         </div>
         <div class="why-reasons">
           <p class="why-reasons-label">THE GDC DIFFERENCE</p>
-          ${whyStories.map((item, index) => `<details class="why-reason" name="why-reasons" data-why-reason="${index}"${index === 0 ? ' open' : ''}><summary><span class="why-reason-number" aria-hidden="true">${String(index + 1).padStart(2, '0')}</span><span class="why-reason-title">${esc(item.displayTitle)}</span><span class="why-reason-toggle" aria-hidden="true">+</span></summary><p>${esc(item.description)}</p><a class="why-inline-proof" href="${urlFor(item.project)}" aria-label="Read the ${attr(item.project.title)} case study"><img src="${attr(item.image)}" alt="${attr(item.imageAlt)}" loading="lazy" decoding="async"><span class="why-inline-caption">${esc(item.project.title)}<span>See this project ${arrow}</span></span></a></details>`).join('')}
+          ${whyStories.map((item, index) => `<details class="why-reason" name="why-reasons" data-why-reason="${index}"${index === 0 ? ' open' : ''}><summary><span class="why-reason-number" aria-hidden="true">${String(index + 1).padStart(2, '0')}</span><span class="why-reason-title">${esc(item.displayTitle)}</span><span class="why-reason-toggle" aria-hidden="true">+</span></summary><p>${esc(item.description)}</p>${item.project ? `<a class="why-inline-proof" href="${urlFor(item.project)}" aria-label="Read the ${attr(item.project.title)} case study"><img src="${attr(item.image)}" alt="${attr(item.imageAlt)}" loading="lazy" decoding="async"><span class="why-inline-caption">${esc(item.project.title)}<span>See this project ${arrow}</span></span></a>` : `<div class="why-inline-proof"><img src="${attr(item.image)}" alt="${attr(item.imageAlt)}" loading="lazy" decoding="async"><span class="why-inline-caption">${esc(item.imageCaption)}</span></div>`}</details>`).join('')}
           <p class="why-reasons-note">Explore what working with GDC feels like.</p>
         </div>
       </div>
@@ -415,7 +415,7 @@ const work = `
   <section class="inner-hero work-hero"><div class="container"><p class="section-label">OUR WORK / GLOBAL DIGITAL CENTRE</p><div class="inner-hero-row"><h1>Work made<br><em>to matter.</em></h1><p>Explore the experiences and platforms we have helped bring to life. Open any project to see more of the story.</p></div></div></section>
   <section class="section projects-section"><div class="container"><div class="filter-bar" role="group" aria-label="Filter projects">${categories.map(([label, value], index) => `<button type="button" class="filter-button ${index === 0 ? 'is-active' : ''}" data-filter="${value}" aria-pressed="${index === 0}">${label}</button>`).join('')}</div><div class="project-grid">${projects.map(project => card(project, '../', '', 2)).join('')}</div><p class="empty-filter" hidden>No projects in this category yet.</p></div></section>
   <section class="work-cta"><div class="container"><p>Have a project in mind?</p><h2>Let's make it happen.</h2><a class="button button-light" href="../index.html#contact">Start a conversation ${arrow}</a></div></section>`;
-write('our-work/index.html', page({ title: seo.work.title, description: seo.work.description, path: 'our-work/index.html', image: 'assets/media/projects/swift/cover.jpg', imageAlt: seo.projects.swift.imageAlt, structuredData: breadcrumbs([['Home', ''], ['Our Work', 'our-work/index.html']]), prefix: '../', active: 'work', body: work, bodyClass: 'work-page' }));
+write('our-work/index.html', page({ title: seo.work.title, description: seo.work.description, path: 'our-work/index.html', image: projects.find(project => project.id === 'swift').cover, imageAlt: seo.projects.swift.imageAlt, structuredData: breadcrumbs([['Home', ''], ['Our Work', 'our-work/index.html']]), prefix: '../', active: 'work', body: work, bodyClass: 'work-page' }));
 
 projects.forEach((project, index) => {
   const prefix = '../../';
