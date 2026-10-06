@@ -253,7 +253,6 @@ const home = `
       <div class="about-intro">
         <p class="section-label">01 / ABOUT US</p>
         <h2 class="section-heading" id="about-title"><em>${esc(site.aboutHeadingAccent)}</em></h2>
-        <p class="about-lead">${esc(site.aboutIntro)}</p>
       </div>
       <figure class="about-visual">
         <div class="about-photo-composition">
