@@ -1,7 +1,7 @@
 # GDC website redesign — plan and task tracker
 
-Status: Static SEO and the PHP Careers admin are built and tested locally; content updates, contact delivery, deployment and production indexing checks remain.
-Last updated: 1 October 2026
+Status: The new site is deployed. Static SEO and the PHP Careers admin passed local tests, and the private HR credential file is outside public_html. Live pages, redirects, sitemaps, PHP execution, the full HR draft/publish/close cycle, 132 referenced assets, all 12 hosted project films, and the directory-listing rule passed checks. The browser form reached FormSubmit's successful submission page, and both the browser test and a separate live endpoint diagnostic reached the inbox with all four fields after a delay. Production Search Console submission and indexing checks remain.
+Last updated: 9 October 2026
 
 Update this file as work progresses: change `[ ]` to `[x]` only when the task is finished. Record major client decisions under **Decision log**.
 
@@ -99,7 +99,9 @@ Preview the current build with node scripts/build.mjs and php -S 127.0.0.1:4174 
 - [x] Verify all 16 generated pages render, local links resolve, the mobile menu opens, and the project filters show the expected results.
 - [x] Check all project links, keyboard menu behaviour, required form fields, reduced-motion behaviour, video poster fallbacks, and a representative video metadata load.
 - [x] Check readable type, keyboard access, colour contrast, and reduced-motion behaviour on the main page types.
-- [ ] Verify the live contact form submission and all final media files before launch.
+- [x] Verify that the FormSubmit endpoint delivers enquiries to info@gdc-ltd.org, including the redesign's name, email, service, and message fields.
+- [x] Submit the published redesign's contact form in a browser and confirm the FormSubmit thank-you page and inbox delivery with all four fields.
+- [x] Verify the 132 assets referenced by the 15 sitemap pages and all 12 hosted project films on the published host.
 - [ ] Apply team/client visual and content feedback.
 - [ ] Obtain final approval of remaining copy, project facts, and contact numbers.
 
@@ -113,7 +115,7 @@ Preview the current build with node scripts/build.mjs and php -S 127.0.0.1:4174 
 - [x] Review local page speed and add font loading, intrinsic client-image dimensions, and Apache cache/compression rules.
 - [x] Replace generic descriptions on all 52 case-study gallery images after visually reviewing them.
 - [ ] Recheck SEO copy and image descriptions when ongoing content edits are approved.
-- [ ] Merge `.htaccess` with production server rules, publish, and verify live redirects, robots, sitemap, canonical URLs, compression and caching.
+- [x] Merge `.htaccess` with production server rules, publish, and verify live redirects, robots, sitemap, canonical URLs, compression and caching. The later `Options -Indexes` rule returns 403 for a media folder listing while its videos and main pages remain available.
 - [ ] Submit both static and Careers sitemaps in Google Search Console, inspect important pages, and monitor indexing after launch.
 
 ### Requested compact revision — 28 September 2026
@@ -132,7 +134,13 @@ Preview the current build with node scripts/build.mjs and php -S 127.0.0.1:4174 
 - [x] Build the PHP job-posting editor, public listing, job detail pages and dynamic sitemap.
 - [x] Require an application destination on publish and hide closed or expired roles from public pages and the careers sitemap.
 - [x] Verify local login, CSRF, draft, publish, escaping, public listing, job sitemap, close and logout.
-- [ ] Set the production HR credentials and private writable data directory; confirm PHP execution and permissions on the live host.
+- [x] Generate the production HR password hash locally and upload auth.json to a private cPanel folder beside public_html.
+- [x] Confirm MultiPHP Manager shows PHP 8.4 for gdc-ltd.org.
+- [x] Remove the stale ea-php74 handler with the release .htaccess and verify PHP execution after extraction.
+- [x] Confirm PHP can read the private credential file and that live HR login opens the dashboard.
+- [x] Confirm PHP can write the private folder by saving a live test draft; the draft stays off the public Careers page and sitemap.
+- [x] Test a live publish and close cycle after deployment, returning the public listing and Careers sitemap to no open roles.
+- [x] For the cPanel ZIP upload, move the old admin, Careers, and careers-data folders outside public_html after backing them up; an overwrite leaves obsolete scripts in place. Existing hosted videos, `.well-known`, Google verification, and other site folders remain.
 - [ ] Confirm the HR application email or link for each real role before publishing it.
 
 ### Landing-page viewport revision — 28 September 2026
@@ -220,6 +228,11 @@ Preview the current build with node scripts/build.mjs and php -S 127.0.0.1:4174 
 | 1 Oct 2026 | Fade the desktop hero overlay out by the midpoint so the right half of each video is unobscured. Retain the left copy treatment and the mobile overlay, where text covers more of the video. |
 | 1 Oct 2026 | Prepare SEO for Home, Our Work, and 13 case studies, with all six active services represented in page copy and structured data. Keep the deferred Careers placeholder out of search indexing. Production indexing checks follow deployment. |
 | 1 Oct 2026 | Replace the Careers placeholder with an independent PHP listing and password-protected HR editor. Keep Careers in the main navigation only. Show published, unexpired jobs with per-post application destinations; keep credentials and records outside the public website folder. |
+| 9 Oct 2026 | FormSubmit is active for info@gdc-ltd.org: two labelled posts to the live endpoint returned HTTP 200, and the inbox owner confirmed both arrived. The second included all four redesign form fields. Re-test through the redesign's browser form after deployment. |
+| 9 Oct 2026 | The live browser submission and a later diagnostic both reached the inbox after a delay. The client chose to keep the working FormSubmit integration rather than switch to SMTP. |
+| 9 Oct 2026 | The client will deploy by cPanel ZIP extraction. The domain document root is `public_html`, PHP 8.1+ is selected, and the new Careers listing should start with no open roles. The live `/admin/` currently lists old files publicly, so the old admin and Careers folders must be replaced cleanly. |
+| 9 Oct 2026 | The HR credential helper generated a `gdcadmin` password hash outside the website folder; the client confirmed uploading auth.json to the cPanel account home beside public_html. Runtime login and write tests follow deployment. |
+| 9 Oct 2026 | MultiPHP Manager shows PHP 8.4 for gdc-ltd.org, while the old public_html/.htaccess contains an ea-php74 handler. The release archive replaces that file and must preserve the existing hosted case-study videos under assets/projects media. |
 
 ## Preview review notes
 

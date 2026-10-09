@@ -58,7 +58,7 @@ Case-study videos, where provided, are not committed to this repository. The BLT
 
 Contact sits in a centered panel capped at 1200 px, with text and the map in its first row and the contact details and enquiry form in its second row. The cards share a height on desktop, and all four elements stack on smaller screens. Review [Contact on desktop](previews/contact-desktop.png), [laptop](previews/contact-laptop.png), and [mobile](previews/contact-mobile.png).
 
-The contact form sends enquiries through FormSubmit to info@gdc-ltd.org. FormSubmit requires the receiving inbox to confirm activation; a live submission and inbox delivery have not been tested. The map searches the listed South C address and includes a direct Google Maps link; replace the search with the exact office pin when available.
+The contact form sends enquiries through FormSubmit to info@gdc-ltd.org; the site does not use SMTP. On 9 October 2026, two labelled test posts to the live FormSubmit endpoint and a browser submission through the published redesign reached the inbox with name, email, service, and message fields. A later labelled diagnostic also arrived; live delivery had a delay. The form shows FormSubmit's default thank-you page after submission and sends no automatic response to the visitor. The map searches the listed South C address and includes a direct Google Maps link; replace the search with the exact office pin when available.
 
 ## Careers admin
 
@@ -66,7 +66,7 @@ Careers is a separate PHP page reached from the main navigation. It is not a hom
 
 Set up one HR username and password once on the PHP host. By default, job records and the password hash live in a sibling folder named gdc-careers-data, outside the public website folder. If needed, set GDC_CAREERS_DATA_DIR to a different private writable folder for both setup and the PHP server. No default password is shipped.
 
-    $env:GDC_ADMIN_USER = 'hr'
+    $env:GDC_ADMIN_USER = 'gdcadmin'
     $secure = Read-Host 'Choose a password of at least 12 characters' -AsSecureString
     $env:GDC_ADMIN_PASSWORD = (New-Object System.Net.NetworkCredential('', $secure)).Password
     php scripts/setup-careers-admin.php
@@ -77,11 +77,21 @@ Visit /admin/ to sign in. HR can create a draft, edit it, choose Published, and 
 
 For an end-to-end local test, run `node scripts/run-careers-tests.mjs`. It starts an isolated PHP server, creates temporary test credentials, checks the admin and public Careers flow, then removes its temporary data.
 
+### cPanel File Manager setup
+
+For the `gdc-ltd.org` cPanel account, the document root is `public_html`. MultiPHP Manager shows PHP 8.4 for this domain, but the old production `.htaccess` still contains an `ea-php74` handler block. The release ZIP replaces that stale file with the new redirects and no PHP 7.4 handler. After extraction, confirm PHP 8.4 remains selected and that any cPanel-generated handler block says `ea-php84`; use MultiPHP Manager to reapply the version if needed. Do not manually edit a cPanel-generated handler block. The default private Careers directory is `gdc-careers-data` in the account home, alongside `public_html`. Do not put this directory or `auth.json` in the public website ZIP.
+
+If cPanel Terminal is unavailable, run `powershell -NoProfile -ExecutionPolicy RemoteSigned -File .\scripts\prepare-careers-auth.ps1` on the local machine. The default username is `gdcadmin`. It prompts for the HR password without printing it and creates `auth.json` in a private `gdc-careers-data` directory beside this project folder. In cPanel File Manager, create `gdc-careers-data` in the account home, outside `public_html`, and upload only that `auth.json` file there. Set the directory permission to `0700` and the file permission to `0600` if the host allows it; the PHP account must be able to write to the directory. No `jobs.json` is needed for an empty Careers listing.
+
+When uploading the new site ZIP, first keep a backup outside `public_html`. Move the old `admin`, `careers`, and `careers-data` folders to an account-home backup folder, then extract their replacements. Extracting over the old admin leaves obsolete scripts accessible. Do not empty `public_html`: keep the existing `assets/projects media` case-study videos, `.well-known`, other site folders such as `wp` and `christinawambui`, and the Google verification file. The release ZIP contains the changed project pages and new local media. Extract it directly into `public_html`, including the hidden `.htaccess` files, and move the ZIP back out of the web root afterward. Then verify `/admin/` shows the new login rather than a directory listing, sign in with the chosen credentials, and test a draft and a temporary published role before closing it. The public Careers listing should then return to no open roles.
+
 ## SEO and launch
 
 Run node scripts/check-seo.mjs after each build. It checks the 15 generated indexable pages, all 52 gallery image descriptions, and the six active service anchors. The old HTML compatibility pages are noindex. The PHP Careers listing and open job pages are listed in the dynamic Careers sitemap.
 
 The build writes sitemap.xml and robots.txt; Careers serves careers/sitemap.php dynamically. Publish these with all .htaccess files, including the access rules for admin, careers, content and scripts. Merge the root rules with any existing server rules. Confirm the redirects, both sitemaps, robots file, canonical URLs, PHP execution, private data path, and cache headers on the published host. Submit both sitemaps in Google Search Console and inspect the pages after deployment.
+
+The root `.htaccess` also uses `Options -Indexes` so folders such as `assets/projects media` cannot show an Apache file listing. If this line is added to an existing live `.htaccess`, check that the homepage still loads and that a project video remains accessible; the folder URL itself should return 403.
 
 The Careers page now shows live HR posts. The old Careers HTML preview is noindex and redirects to the PHP page.
 

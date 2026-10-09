@@ -1,3 +1,6 @@
+# Prevent Apache from listing files in folders without an index page.
+Options -Indexes
+
 # Consolidate the public domain on the canonical HTTPS, non-www host.
 <IfModule mod_rewrite.c>
   RewriteEngine On
