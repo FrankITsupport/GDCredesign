@@ -264,7 +264,11 @@ const home = `
         <figcaption><span aria-hidden="true">↗</span> Behind the scenes, bringing your vision to life.</figcaption>
       </figure>
       <div class="about-story">
-        <p class="about-description">${esc(site.aboutText)}</p>
+        <h3 class="about-section-heading">${esc(site.aboutText)}</h3>
+        <ul class="about-bullet-list">${site.aboutBullets.map(bullet => `<li><p>${esc(bullet)}</p></li>`).join('')}</ul>
+      </div>
+      <div class="about-closing">
+        <p class="about-description">${esc(site.aboutClosing)}</p>
       </div>
       <div class="about-actions-section">
         <a class="button button-dark" href="#contact">Let's talk about your idea ${arrow}</a>
