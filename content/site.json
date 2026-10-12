@@ -9,7 +9,8 @@
     { "projectId": "swift", "src": "assets/media/hero/swift.mp4", "poster": "assets/media/hero/swift.jpg" }
   ],
   "aboutHeading": "About GDC",
-  "aboutIntro": "You believe that great ideas deserve exceptional execution, and that every event, campaign or brand experience should leave a lasting impression.\n\nAt Global Digital Centre (GDC), we work best with ambitious brands, organisations and individuals who value creativity, collaboration and results.",
+  "aboutIntro1": "You believe that great ideas deserve exceptional execution, and that every event, campaign or brand experience should leave a lasting impression.",
+  "aboutIntro2": "At Global Digital Centre (GDC), we work best with ambitious brands, organisations and individuals who value creativity, collaboration and results.",
   "aboutBullets": [
     "You think beyond the ordinary. You're looking for fresh ideas, bold thinking and experiences that stand out.",
     "You value a true partnership. You want a team that listens, understands your vision, challenges your thinking and brings solutions to the table.",

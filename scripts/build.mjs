@@ -252,7 +252,8 @@ const home = `
     <div class="container about-layout">
       <div class="about-intro">
         <h2 class="section-label" id="about-title">01 / ABOUT US</h2>
-        <p class="about-lead">${esc(site.aboutIntro)}</p>
+        <p class="about-lead">${esc(site.aboutIntro1)}</p>
+        <p class="about-lead">${esc(site.aboutIntro2)}</p>
       </div>
       <figure class="about-visual">
         <div class="about-photo-composition">
