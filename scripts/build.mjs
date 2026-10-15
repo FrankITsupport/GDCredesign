@@ -179,7 +179,7 @@ const heroVideos = site.heroVideos.map(video => ({ ...video, project: projects.f
 const heroSlides = [{ title: 'GDC at work across four disciplines' }, ...heroVideos.map(video => ({ title: video.project.title }))];
 const heroCollage = [
   ['Communications', 'assets/media/about/production-console.jpg'],
-  ['Public Relations', 'assets/media/projects/ariel/client-cover.jpg'],
+  ['Public Relations', 'assets/media/hero/public-relations-nairobi.png'],
   ['Marketing', 'assets/media/projects/swift/gallery-4.webp'],
   ['Events', 'assets/media/projects/ssd/gallery-2.jpg']
 ];
