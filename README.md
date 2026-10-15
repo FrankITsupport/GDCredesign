@@ -19,9 +19,9 @@ Screenshots for quick review: [desktop home](previews/home-desktop.png), [mobile
 
 Case-study gallery thumbnails open an image viewer with next/previous controls, arrow-key navigation, and Escape to close. Project cards link to full case studies.
 
-The main home sections fill at least the available screen height below the navigation and grow when needed for smaller screens. The hero uses four full-width, silent video clips with a darker gradient behind the left-side copy and an unobscured right half on desktop. The mobile overlay remains stronger where copy spans the video. The two buttons lead to Services and Selected Work. The client ribbon remains directly below the video, with its existing pause/resume control. Review the [hero viewport](previews/home-viewport.png), [mobile hero](previews/home-mobile-viewport.png), and [six service cards](previews/services-desktop.png).
+The main home sections fill at least the available screen height below the navigation and grow when needed for smaller screens. The hero starts with a four-photo collage representing Communications, Public Relations, Marketing, and Events, using photos from the GDC project galleries. Copy and two CTAs sit on a white panel to the left on desktop; the collage stacks below the copy on mobile. The CTAs lead to Selected Work and Contact. Four silent project videos follow the collage. The client ribbon remains directly below the hero, with its existing pause/resume control. Review the [updated desktop hero](previews/client-update-desktop.png), [mobile hero](previews/client-update-mobile-verified.png), and [eight service cards](previews/client-update-services-verified.png).
 
-Hero clips rotate at the end of each 12-second video. Visitors can select a video or pause playback; playback also pauses when the hero leaves the screen or the browser tab is hidden. Reduced-motion and data-saving preferences start with still images and an explicit Play button. A missing video keeps its poster and advances to the next selection. Without JavaScript, the first poster and both CTAs remain visible.
+The opening collage advances after eight seconds, followed by the four videos, which rotate at the end of each 12-second clip. Visitors can select a slide or pause playback; playback also pauses when the hero leaves the screen or the browser tab is hidden. Reduced-motion and data-saving preferences start on the collage with an explicit Play button. A missing video keeps its poster and advances to the next selection. Without JavaScript, the collage and both CTAs remain visible.
 
 The client ribbon displays all six existing logo assets in their original colours at full opacity, including while scrolling and in reduced-motion mode.
 
@@ -29,7 +29,7 @@ About uses real GDC crew and event photography, a soft warm background, a welcom
 
 All pages use the original logo's red G and black arrow as the tab icon. `favicon.ico` includes 16, 32, and 48 px versions; the branding folder contains a 32 px PNG fallback and a 180 px Apple touch icon.
 
-Services uses a premium six-card layout with a distinct GDC project photo behind every card, consistent dark overlays, concise titles and summaries, and expandable full descriptions. “Discuss your brief” takes visitors to Contact and selects the matching service in the enquiry form. Disclosures work with the keyboard and without JavaScript; without JavaScript, visitors select their service in the form themselves. Review [Services on desktop](previews/services-desktop.png), [laptop](previews/services-laptop.png), and [mobile](previews/services-mobile.png). Edit `servicesHeading`, `servicesHeadingAccent`, `servicesIntro`, and the service `displayTitle`, `summary`, `detail`, and optional `image` fields in `content/site.json`.
+Services uses eight close-set square cards in two rows of four on desktop, with a distinct GDC project photo behind every card, consistent dark overlays, concise titles and summaries, and expandable full descriptions. Communications and Public Relations are separate cards, as are Marketing & Digital and Branding & Creative. “Discuss your brief” takes visitors to Contact and selects the matching service in the enquiry form. Disclosures work with the keyboard and without JavaScript; without JavaScript, visitors select their service in the form themselves. Review the [updated desktop services](previews/client-update-services-verified.png). Edit `servicesHeading`, `servicesHeadingAccent`, `servicesIntro`, and the service `displayTitle`, `summary`, `detail`, and optional `image` fields in `content/site.json`.
 
 Home sections have distinct, subtle backgrounds: warm ivory for About, cool blue-grey for Services, charcoal for How We Work, warm stone for Selected Work, soft sage for Why GDC, and warm rose/stone for Contact. Selected Work uses dark text and a dark portfolio button to create a clear transition from the process section. Brand red remains the shared accent.
 
@@ -42,7 +42,7 @@ Why GDC uses the heading “Big ideas need the right people,” a soft sage back
 ## Where to edit
 
 - `content/site.json`: home-page and shared copy.
-- `content/site.json` → `heroVideos`: the four hero clips, their posters, and associated project IDs. Short, compressed clips and matching posters live in `assets/media/hero/`.
+- `scripts/build.mjs` → `heroCollage`: the four project photos on the first slide. `content/site.json` → `heroVideos`: the four following clips, their posters, and associated project IDs. Short, compressed clips and matching posters live in `assets/media/hero/`.
 - `content/projects.json`: project titles, summaries, case-study copy, and media references imported from the existing GDC website.
 - `content/seo.json`: canonical domain, page titles, search descriptions, and project cover/gallery image descriptions. Rebuild after editing it.
 - careers/index.php and careers/job.php: public roles created through the HR admin.
@@ -52,7 +52,7 @@ Why GDC uses the heading “Big ideas need the right people,” a soft sage back
 
 Data Analysis & Visualization is preserved in `content/site.json` with `enabled: false` and emitted as an HTML comment. Set it to `true` and rebuild when it is needed again; the cards, discipline count, and enquiry dropdown will update together.
 
-Selected GDC images and logos are stored in `assets/media/`. The four hero clips play in this order: NSSF AGM, Midnight East Nairobi, ARIEL Product Launch, and Swift. They are compressed local assets, about 12.4 MB in total. The case-study video players reference existing compressed files on the live GDC site. The selected media is approved; check those video URLs during final deployment.
+Selected GDC images and logos are stored in `assets/media/`. After the photo collage, the four hero clips play in this order: NSSF AGM, Midnight East Nairobi, ARIEL Product Launch, and Swift. They are compressed local assets, about 12.4 MB in total. The case-study video players reference existing compressed files on the live GDC site. Check those video URLs during final deployment.
 
 Case-study videos, where provided, are not committed to this repository. The BLT case study uses client photos and has no video. The plan records the remaining content checks and final URL verification.
 

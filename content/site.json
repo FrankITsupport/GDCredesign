@@ -1,7 +1,7 @@
 {
   "brand": "Global Digital Centre",
   "tagline": "Your Vision. Our Strategy. Real Impact.",
-  "heroLead": "Events, communications and consultancy shaped with purpose and delivered with precision.",
+  "heroLead": "Communications, PR, marketing and events that build trust, visibility and action.",
   "heroVideos": [
     { "projectId": "nssf", "src": "assets/media/hero/nssf.mp4", "poster": "assets/media/hero/nssf.jpg" },
     { "projectId": "shanila", "src": "assets/media/hero/midnight-east.mp4", "poster": "assets/media/hero/midnight-east.jpg" },
@@ -33,52 +33,66 @@
   "servicesIntro": "An event, a story, a new direction. Bring us your brief and we’ll bring the right mix of strategy, creativity and care.",
   "services": [
     {
+      "title": "Communications",
+      "displayTitle": "Communications",
+      "image": "assets/media/projects/safeschools/gallery-1.jpg",
+      "summary": "Clear messages and thoughtful content that help your story reach the right people.",
+      "detail": "Communication strategy, key messages, stakeholder materials, editorial content and campaign planning."
+    },
+    {
+      "title": "Public Relations",
+      "displayTitle": "Public relations",
+      "image": "assets/media/projects/ariel/client-cover.jpg",
+      "summary": "Relationships and media moments that strengthen trust and reputation.",
+      "detail": "Media relations, press launches, stakeholder engagement, reputation planning and crisis communication."
+    },
+    {
+      "title": "Marketing & Digital",
+      "displayTitle": "Marketing & digital",
+      "image": "assets/media/projects/ariel/gallery-3.jpg",
+      "summary": "Campaigns and digital experiences designed to connect with your audience.",
+      "detail": "Campaign strategy, digital content, social media, audience engagement and website experiences."
+    },
+    {
       "title": "Event Design, Management & Technical Support",
       "displayTitle": "Events & experiences",
-      "image": "assets/media/services/events.webp",
+      "image": "assets/media/projects/shanila/client-cover.jpg",
       "summary": "Thoughtful events, from the first idea to a seamless experience on the day.",
       "detail": "Event design, stages, exhibition booths, audio-visual production, coordination, logistics and vendor management."
     },
     {
-      "title": "Public Relations & Communications",
-      "displayTitle": "PR & communications",
-      "image": "assets/media/services/communications.webp",
-      "summary": "Clear communication that builds trust and connects you with the right people.",
-      "detail": "Media relations, campaigns, stakeholder engagement, crisis communication, digital strategy and editorial content."
-    },
-    {
-      "title": "Creative Design, Branding & Digital Solutions",
-      "displayTitle": "Branding & digital",
-      "image": "assets/media/services/branding.webp",
-      "summary": "Distinct brands and digital experiences that make your story stand out.",
-      "detail": "Brand identity, campaign and event graphics, motion creative, publications and website design."
-    },
-    {
-      "title": "Simultaneous Interpretation Equipment & Services",
-      "displayTitle": "Interpretation & languages",
-      "image": "assets/media/services/interpretation.webp",
-      "summary": "Language support and conference technology that bring everyone into the conversation.",
-      "detail": "Interpreter booths, multi-channel audio systems, interpreters and technical integration."
+      "title": "Branding & Creative Design",
+      "displayTitle": "Branding & creative",
+      "image": "assets/media/projects/swift/gallery-4.webp",
+      "summary": "Distinct identities and creative work that make your story stand out.",
+      "detail": "Brand identity, campaign and event graphics, motion creative and publications."
     },
     {
       "title": "Photography, Videography & Livestreaming",
       "displayTitle": "Photography & film",
-      "image": "assets/media/services/film.webp",
+      "image": "assets/media/projects/iea/gallery-3.jpg",
       "summary": "Photography, films and livestreams that let your story travel beyond the room.",
       "detail": "Event coverage, documentary and corporate video, live streams, photography and post-production."
+    },
+    {
+      "title": "Consultancy & Research",
+      "displayTitle": "Consultancy & research",
+      "image": "assets/media/projects/apra/gallery-4.jpg",
+      "summary": "Practical advice, grounded in research, to help you move forward with confidence.",
+      "detail": "Manufacturing, climate and renewable energy, public sector advice, market intelligence and project support."
+    },
+    {
+      "title": "Simultaneous Interpretation Equipment & Services",
+      "displayTitle": "Interpretation & languages",
+      "image": "assets/media/projects/issa/gallery-4.jpg",
+      "summary": "Language support and conference technology that bring everyone into the conversation.",
+      "detail": "Interpreter booths, multi-channel audio systems, interpreters and technical integration."
     },
     {
       "title": "Data Analysis & Visualization",
       "enabled": false,
       "summary": "Turning research and data into clear stories that support decisions and reporting.",
       "detail": "Analysis, dashboards, infographics, monitoring and evaluation visuals, and data storytelling."
-    },
-    {
-      "title": "Consultancy & Research",
-      "displayTitle": "Consultancy & research",
-      "image": "assets/media/services/consultancy.webp",
-      "summary": "Practical advice, grounded in research, to help you move forward with confidence.",
-      "detail": "Manufacturing, climate and renewable energy, public sector advice, market intelligence and project support."
     }
   ],
   "approachHeading": "One goal. The right people.",

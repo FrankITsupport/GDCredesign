@@ -714,6 +714,64 @@ body.gallery-open { overflow: hidden; }
   .career-listing { align-items: flex-start; flex-direction: column; gap: 10px; }
 }
 
+/* First hero slide: four photographed disciplines from GDC projects. */
+.hero-slide { opacity: 0; transition: opacity .7s ease; }
+.hero-slide.is-active { opacity: 1; }
+.hero-collage { position: absolute; inset: 0 0 0 47%; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: repeat(2, minmax(0, 1fr)); gap: 3px; background: #fff; }
+.hero-collage-tile { position: relative; min-width: 0; min-height: 0; overflow: hidden; }
+.hero-collage img { width: 100%; height: 100%; min-height: 0; object-fit: cover; }
+.hero-collage-tile:nth-child(2) img { object-position: 43% center; }
+.hero-collage-label { position: absolute; top: 16px; left: 16px; z-index: 1; max-width: calc(100% - 32px); padding: 8px 10px; color: #fff; background: rgba(9, 15, 19, .82); border: 1px solid rgba(255, 255, 255, .48); font-size: 11px; font-weight: 700; line-height: 1.2; letter-spacing: .08em; text-transform: uppercase; }
+.hero-stage.is-collage-active { background: #fff; color: var(--ink); }
+.hero-stage.is-collage-active .hero-overlay { background: linear-gradient(90deg, #fff 0%, #fff 47%, transparent 47%); }
+.hero-stage.is-collage-active .hero-copy { width: min(44%, 540px); }
+.hero-stage.is-collage-active .hero h1, .hero-stage.is-collage-active h1 { font-size: clamp(42px, 4.3vw, 64px); font-weight: 750; line-height: 1.07; letter-spacing: -.065em; }
+.hero-stage.is-collage-active h1 em { color: var(--red); font-weight: inherit; }
+.hero-stage.is-collage-active .hero-lead { color: var(--ink-soft); }
+.hero-stage.is-collage-active .eyebrow { color: var(--red); }
+.hero-stage.is-collage-active .hero-actions .button-outline-light { color: var(--red); border-color: var(--red); background: #fff; }
+.hero-stage.is-collage-active .hero-actions .button-outline-light:hover { color: #fff; background: var(--red); }
+.hero-stage.is-collage-active .hero-caption { display: none; }
+.hero-stage.is-collage-active .hero-bottom > a { color: var(--ink); }
+.hero-stage.is-collage-active .hero-video-title { color: #fff; text-shadow: 0 1px 6px #111; }
+
+/* Two rows of four compact, square-cornered service cards. */
+.services-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+.service-card { border-radius: 0; padding: 18px 18px 14px; min-height: 282px; }
+.service-icon { border-radius: 0; }
+.service-card h3 { font-size: clamp(17px, 1.3vw, 21px); }
+.service-card-with-image .service-card-photo { z-index: 0; }
+.service-card-with-image::before { z-index: 1; background: linear-gradient(0deg, rgba(12,20,26,.95), rgba(12,20,26,.45) 75%, rgba(12,20,26,.3)); }
+.service-card-with-image > :not(img) { position: relative; z-index: 2; }
+
+@media (max-width: 1100px) {
+  .services-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .hero-stage.is-collage-active .hero-copy { width: min(45%, 450px); }
+  .hero-stage.is-collage-active h1 { font-size: clamp(38px, 4.7vw, 52px); }
+}
+@media (max-width: 850px) {
+  .hero-stage.is-collage-active { display: flex; flex-direction: column; min-height: 0; }
+  .hero-stage.is-collage-active .hero-content { order: 0; width: min(1312px, calc(100% - 64px)); }
+  .hero-stage.is-collage-active .hero-copy { width: 100%; max-width: 650px; padding: 38px 0; }
+  .hero-stage.is-collage-active h1 { font-size: clamp(42px, 6vw, 60px); }
+  .hero-stage.is-collage-active .hero-backdrop { position: relative; order: 1; width: 100%; height: min(55vw, 400px); z-index: auto; }
+  .hero-stage.is-collage-active .hero-collage { inset: 0; }
+  .hero-collage-label { top: 10px; left: 10px; max-width: calc(100% - 20px); padding: 6px 8px; font-size: 10px; letter-spacing: .04em; }
+  .hero-stage.is-collage-active .hero-overlay { display: none; }
+  .hero-stage.is-collage-active .hero-bottom { order: 2; width: min(1312px, calc(100% - 64px)); color: var(--ink); }
+  .hero-stage.is-collage-active .hero-video-title { color: var(--ink); text-shadow: none; }
+  .hero-stage.is-collage-active .hero-video-choice, .hero-stage.is-collage-active .hero-video-toggle { color: var(--ink); border-color: #aeb3b5; background: #fff; }
+  .hero-stage.is-collage-active .hero-video-choice.is-active { color: #fff; background: var(--ink); }
+}
+@media (max-width: 600px) {
+  .services-grid { grid-template-columns: 1fr; }
+  .service-card { border-radius: 0; }
+  .hero-stage.is-collage-active .hero-content, .hero-stage.is-collage-active .hero-bottom { width: min(1312px, calc(100% - 40px)); }
+  .hero-stage.is-collage-active .hero-copy { padding: 26px 0; }
+  .hero-stage.is-collage-active h1 { font-size: clamp(36px, 10vw, 52px); }
+  .hero-stage.is-collage-active .hero-backdrop { height: 68vw; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }

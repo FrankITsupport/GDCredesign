@@ -73,6 +73,7 @@
 
   const heroPlayer = document.querySelector('[data-hero-player]');
   if (heroPlayer) {
+    const slides = [...heroPlayer.querySelectorAll('.hero-slide')];
     const videos = [...heroPlayer.querySelectorAll('.hero-video')];
     const choices = [...heroPlayer.querySelectorAll('.hero-video-choice')];
     const toggle = heroPlayer.querySelector('.hero-video-toggle');
@@ -88,7 +89,7 @@
 
     const updateToggle = () => {
       toggle.setAttribute('aria-pressed', String(paused));
-      toggle.setAttribute('aria-label', paused ? 'Play background videos' : 'Pause background videos');
+      toggle.setAttribute('aria-label', paused ? 'Play hero slides' : 'Pause hero slides');
       toggle.innerHTML = paused ? 'Play <span aria-hidden="true">▷</span>' : 'Pause <span aria-hidden="true">Ⅱ</span>';
     };
 
@@ -97,13 +98,15 @@
     const syncPlayback = () => {
       clearTimeout(fallbackTimer);
       const request = ++playRequest;
-      videos.forEach((video, index) => {
-        if (index !== activeIndex || !canPlay()) video.pause();
-      });
+      videos.forEach(video => { if (video !== slides[activeIndex] || !canPlay()) video.pause(); });
       if (!canPlay()) return;
-      const video = videos[activeIndex];
+      if (activeIndex === 0) {
+        fallbackTimer = setTimeout(() => selectSlide(1), 8000);
+        return;
+      }
+      const video = slides[activeIndex];
       if (video.dataset.failed) {
-        fallbackTimer = setTimeout(() => selectVideo((activeIndex + 1) % videos.length), 8000);
+        fallbackTimer = setTimeout(() => selectSlide((activeIndex + 1) % slides.length), 8000);
         return;
       }
       if (!video.hasAttribute('src')) {
@@ -112,7 +115,7 @@
         video.load();
       }
       video.play().then(() => {
-        if (!canPlay() || video !== videos[activeIndex]) video.pause();
+        if (!canPlay() || video !== slides[activeIndex]) video.pause();
       }).catch((error) => {
         if (request !== playRequest || error.name === 'AbortError') return;
         if (video.error) return; // The error handler keeps the poster visible and advances.
@@ -121,13 +124,14 @@
       });
     };
 
-    const selectVideo = (index) => {
-      videos[activeIndex].pause();
+    const selectSlide = (index) => {
+      if (slides[activeIndex].tagName === 'VIDEO') slides[activeIndex].pause();
       activeIndex = index;
-      videos.forEach((video, videoIndex) => {
-        video.classList.toggle('is-active', videoIndex === index);
-        if (videoIndex === index && video.readyState > 0) video.currentTime = 0;
+      slides.forEach((slide, slideIndex) => {
+        slide.classList.toggle('is-active', slideIndex === index);
+        if (slideIndex === index && slide.tagName === 'VIDEO' && slide.readyState > 0) slide.currentTime = 0;
       });
+      heroPlayer.classList.toggle('is-collage-active', index === 0);
       choices.forEach((choice, choiceIndex) => {
         choice.classList.toggle('is-active', choiceIndex === index);
         choice.setAttribute('aria-pressed', String(choiceIndex === index));
@@ -138,17 +142,17 @@
 
     videos.forEach((video, index) => {
       video.addEventListener('ended', () => {
-        if (index === activeIndex && canPlay()) selectVideo((index + 1) % videos.length);
+        if (video === slides[activeIndex] && canPlay()) selectSlide((activeIndex + 1) % slides.length);
       });
       video.addEventListener('error', () => {
         video.dataset.failed = 'true';
-        if (index === activeIndex) syncPlayback();
+        if (video === slides[activeIndex]) syncPlayback();
       });
     });
-    choices.forEach((choice, index) => choice.addEventListener('click', () => selectVideo(index)));
+    choices.forEach((choice, index) => choice.addEventListener('click', () => selectSlide(index)));
     toggle.addEventListener('click', () => {
       paused = !paused;
-      if (!paused && videos[activeIndex].ended) videos[activeIndex].currentTime = 0;
+      if (!paused && slides[activeIndex].tagName === 'VIDEO' && slides[activeIndex].ended) slides[activeIndex].currentTime = 0;
       updateToggle();
       syncPlayback();
     });

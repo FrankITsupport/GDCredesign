@@ -176,6 +176,13 @@ function groupFor(project) {
 
 const featured = ['swift', 'iea', 'ariel', 'un-sacco', 'shanila', 'safeschools', 'nssf', 'blt'].map(id => projects.find(project => project.id === id));
 const heroVideos = site.heroVideos.map(video => ({ ...video, project: projects.find(project => project.id === video.projectId) }));
+const heroSlides = [{ title: 'GDC at work across four disciplines' }, ...heroVideos.map(video => ({ title: video.project.title }))];
+const heroCollage = [
+  ['Communications', 'assets/media/projects/safeschools/gallery-1.jpg'],
+  ['Public Relations', 'assets/media/projects/ariel/client-cover.jpg'],
+  ['Marketing', 'assets/media/projects/swift/gallery-4.webp'],
+  ['Events', 'assets/media/projects/shanila/cover.jpg']
+];
 const whyStories = site.why.map(item => ({ ...item, project: projects.find(project => project.id === item.projectId) }));
 const mapQuery = encodeURIComponent(`${site.brand}, ${site.contact.address}`);
 const clientLogos = [
@@ -192,12 +199,14 @@ function clientLogoGroup(duplicate = false) {
 }
 
 const serviceIcons = [
+  '<path d="M5 8h22v15H12l-7 5V8Z"/><path d="M10 13h12M10 18h8"/>',
+  '<path d="M5 17h5l13-7v14l-13-7H5v-6Z"/><path d="M10 17v8M26 13l2-2M26 21l2 2"/>',
+  '<rect x="4" y="6" width="24" height="20" rx="2"/><path d="M4 12h24M10 20l4-4 4 3 4-5"/>',
   '<rect x="4" y="6" width="24" height="20" rx="2"/><path d="M4 12h24M10 3v6M22 3v6M10 18h5M10 22h12"/>',
-  '<path d="M27 16a11 11 0 0 1-11 11H5l2-6a11 11 0 1 1 20-5Z"/><path d="M10 12h12M10 17h8"/>',
   '<path d="m7 22 14-14 5 5-14 14-7 2 2-7ZM18 11l5 5M5 5h9M5 5v9M19 27h8"/>',
-  '<circle cx="16" cy="16" r="12"/><path d="M4 16h24M16 4c8 8 8 16 0 24-8-8-8-16 0-24Z"/>',
   '<rect x="3" y="8" width="26" height="20" rx="2"/><path d="m10 8 2-4h8l2 4"/><circle cx="16" cy="18" r="6"/>',
-  '<circle cx="13" cy="13" r="9"/><path d="m20 20 8 8M8 15l3-4 4 2 3-5"/>'
+  '<circle cx="13" cy="13" r="9"/><path d="m20 20 8 8M8 15l3-4 4 2 3-5"/>',
+  '<circle cx="16" cy="16" r="12"/><path d="M4 16h24M16 4c8 8 8 16 0 24-8-8-8-16 0-24Z"/>'
 ];
 
 function serviceCard(service, index) {
@@ -215,19 +224,20 @@ function serviceCard(service, index) {
 
 const home = `
   <section class="hero" aria-labelledby="hero-title">
-    <div class="hero-stage" data-hero-player>
+    <div class="hero-stage is-collage-active" data-hero-player>
       <div class="hero-backdrop" aria-hidden="true">
-        ${heroVideos.map((video, index) => `<video class="hero-video${index === 0 ? ' is-active' : ''}" muted playsinline preload="none" poster="${attr(video.poster)}" data-src="${attr(video.src)}" tabindex="-1"></video>`).join('')}
+        <div class="hero-collage hero-slide is-active">${heroCollage.map(([name, src]) => `<div class="hero-collage-tile"><img src="${attr(src)}" alt="" width="900" height="506" loading="eager" decoding="async"><span class="hero-collage-label">${esc(name)}</span></div>`).join('')}</div>
+        ${heroVideos.map(video => `<video class="hero-video hero-slide" muted playsinline preload="none" poster="${attr(video.poster)}" data-src="${attr(video.src)}" tabindex="-1"></video>`).join('')}
       </div>
       <div class="hero-overlay" aria-hidden="true"></div>
       <div class="container hero-content">
       <div class="hero-copy">
         <p class="eyebrow"><span class="eyebrow-line"></span> NAIROBI · WORKING ACROSS AFRICA</p>
-        <h1 id="hero-title">Your vision.<br>Our strategy.<br><em>Real impact.</em></h1>
+        <h1 id="hero-title">Build your brand.<br>Shape your reputation.<br><em>Connect with your audience.</em></h1>
         <p class="hero-lead">${esc(site.heroLead)}</p>
         <div class="hero-actions">
-          <a class="button hero-primary" href="#services">Explore our services ${arrow}</a>
-          <a class="button button-outline-light" href="#work">See our work ${arrow}</a>
+          <a class="button hero-primary" href="#work">Explore our work ${arrow}</a>
+          <a class="button button-outline-light" href="#contact">Discuss your project ${arrow}</a>
         </div>
         <div class="hero-caption"><span class="tiny-red-line"></span> Strategy · Creativity · Delivery</div>
       </div>
@@ -235,11 +245,11 @@ const home = `
       <div class="hero-bottom container">
         <a href="#about" aria-label="Scroll to about GDC">Scroll to explore <span aria-hidden="true">↓</span></a>
         <div class="hero-controls" hidden>
-          <span class="hero-video-title">${esc(heroVideos[0].project.title)}</span>
-          <div class="hero-video-selector" role="group" aria-label="Choose a background video">
-            ${heroVideos.map((video, index) => `<button class="hero-video-choice${index === 0 ? ' is-active' : ''}" type="button" aria-label="Show ${attr(video.project.title)} video" aria-pressed="${index === 0}" data-video-index="${index}" data-video-title="${attr(video.project.title)}">${String(index + 1).padStart(2, '0')}</button>`).join('')}
+          <span class="hero-video-title">${esc(heroSlides[0].title)}</span>
+          <div class="hero-video-selector" role="group" aria-label="Choose a hero slide">
+            ${heroSlides.map((slide, index) => `<button class="hero-video-choice${index === 0 ? ' is-active' : ''}" type="button" aria-label="Show ${attr(slide.title)}" aria-pressed="${index === 0}" data-video-index="${index}" data-video-title="${attr(slide.title)}">${String(index + 1).padStart(2, '0')}</button>`).join('')}
           </div>
-          <button class="hero-video-toggle" type="button" aria-label="Pause background videos" aria-pressed="false">Pause <span aria-hidden="true">Ⅱ</span></button>
+          <button class="hero-video-toggle" type="button" aria-label="Pause hero slides" aria-pressed="false">Pause <span aria-hidden="true">Ⅱ</span></button>
         </div>
       </div>
     </div>
