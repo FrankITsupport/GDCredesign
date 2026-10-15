@@ -178,7 +178,7 @@ const featured = ['swift', 'iea', 'ariel', 'un-sacco', 'shanila', 'safeschools',
 const heroVideos = site.heroVideos.map(video => ({ ...video, project: projects.find(project => project.id === video.projectId) }));
 const heroSlides = [{ title: 'GDC at work across four disciplines' }, ...heroVideos.map(video => ({ title: video.project.title }))];
 const heroCollage = [
-  ['Communications', 'assets/media/projects/safeschools/gallery-1.jpg'],
+  ['Communications', 'assets/media/about/production-console.jpg'],
   ['Public Relations', 'assets/media/projects/ariel/client-cover.jpg'],
   ['Marketing', 'assets/media/projects/swift/gallery-4.webp'],
   ['Events', 'assets/media/projects/shanila/cover.jpg']

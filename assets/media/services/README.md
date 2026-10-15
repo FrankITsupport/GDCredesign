@@ -1,6 +1,6 @@
 # Services imagery
 
-These six optimized WebP images were used by an earlier service-card layout. The current eight service cards reference GDC project-gallery photos directly through `content/site.json`. Each WebP here is 900×506; together they total about 371 KB.
+These six optimized WebP images were used by an earlier service-card layout. The current eight service cards reference GDC work photos through `content/site.json`; Communications uses the small production-console photo from About. Each WebP here is 900×506; together they total about 371 KB.
 
 | Service | Asset | Original project image |
 | --- | --- | --- |
