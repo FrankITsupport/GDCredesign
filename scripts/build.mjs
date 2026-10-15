@@ -181,7 +181,7 @@ const heroCollage = [
   ['Communications', 'assets/media/about/production-console.jpg'],
   ['Public Relations', 'assets/media/projects/ariel/client-cover.jpg'],
   ['Marketing', 'assets/media/projects/swift/gallery-4.webp'],
-  ['Events', 'assets/media/projects/shanila/cover.jpg']
+  ['Events', 'assets/media/projects/ssd/gallery-2.jpg']
 ];
 const whyStories = site.why.map(item => ({ ...item, project: projects.find(project => project.id === item.projectId) }));
 const mapQuery = encodeURIComponent(`${site.brand}, ${site.contact.address}`);
