@@ -2,7 +2,7 @@
 
 `public-relations-nairobi.png` is an AI-generated editorial image of a Nairobi media interview, created for the Public Relations tile in the first hero slide and its matching service card. It is illustrative and does not depict a GDC project.
 
-`marketing-nairobi.png` is an AI-generated editorial image of a Nairobi marketing team reviewing campaign creative, created for the Marketing tile in the first hero slide and its matching Marketing & Digital service card. It is illustrative and does not depict a GDC project.
+`marketing-nairobi.png` is the original AI-generated editorial image of a Nairobi marketing team reviewing campaign creative. `marketing-nairobi-gdc.png` edits that image with GDC branding on the presentation screen, printed campaign documents, and back wall. The branded version appears in the Marketing tile on the first hero slide and its matching Marketing & Digital service card. Both images are illustrative and do not depict a GDC project.
 
 Four short clips from GDC's existing project reels, used as the full-width home-page background. Swift uses seconds 5–17 of its original; Midnight East uses seconds 40–52, showing the illuminated entrance and evening event; ARIEL uses seconds 14–26, showing the stage, screen, branded launch reveal, and venue; NSSF uses seconds 24–36, showing the completed conference stage, screens, lighting, and room layout. Each plays silently and is 12 seconds, 1280×720, 24 fps, H.264, with no audio track and MP4 fast-start metadata. Matching JPEG posters are captured at 0.5 seconds of the clip.
 
