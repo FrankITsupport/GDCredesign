@@ -180,7 +180,7 @@ const heroSlides = [{ title: 'GDC at work across four disciplines' }, ...heroVid
 const heroCollage = [
   ['Communications', 'assets/media/about/production-console.jpg'],
   ['Public Relations', 'assets/media/hero/public-relations-nairobi.png'],
-  ['Marketing', 'assets/media/projects/swift/gallery-4.webp'],
+  ['Marketing', 'assets/media/hero/marketing-nairobi.png'],
   ['Events', 'assets/media/projects/ssd/gallery-2.jpg']
 ];
 const whyStories = site.why.map(item => ({ ...item, project: projects.find(project => project.id === item.projectId) }));
