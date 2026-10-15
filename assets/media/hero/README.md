@@ -1,5 +1,7 @@
 # Hero media
 
+`left-wave.svg` is the decorative red line in the outer white margin of the first hero slide on wide screens. It is hidden on narrower screens and fades out for the full-width video slides.
+
 `public-relations-nairobi.png` is an AI-generated editorial image of a Nairobi media interview, created for the Public Relations tile in the first hero slide and its matching service card. It is illustrative and does not depict a GDC project.
 
 `marketing-nairobi.png` is the original AI-generated editorial image of a Nairobi marketing team reviewing campaign creative. `marketing-nairobi-gdc.png` edits that image with GDC branding on the presentation screen, printed campaign documents, and back wall. The branded version appears in the Marketing tile on the first hero slide and its matching Marketing & Digital service card. Both images are illustrative and do not depict a GDC project.
