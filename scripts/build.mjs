@@ -278,9 +278,6 @@ const home = `
         <h3 class="about-section-heading">${esc(site.aboutText)}</h3>
         <ul class="about-bullet-list">${site.aboutBullets.map(bullet => `<li><p>${esc(bullet)}</p></li>`).join('')}</ul>
       </div>
-      <div class="about-closing">
-        <p class="about-description">${esc(site.aboutClosing)}</p>
-      </div>
       <div class="about-actions-section">
         <a class="button button-dark" href="#contact">Let's talk about your idea ${arrow}</a>
         <a class="underlined-link" href="#services">Explore our services ${arrow}</a>
